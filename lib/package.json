@@ -1,0 +1,24 @@
+{
+  "name": "client-side-capstone",
+  "version": "1.0.0",
+  "description": "Connecting donators with people in need",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krysmathis/client-side-capstone.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krysmathis/client-side-capstone/issues"
+  },
+  "homepage": "https://github.com/krysmathis/client-side-capstone#readme",
+  "dependencies": {
+    "angular": "^1.6.7",
+    "angular-route": "^1.6.7",
+    "firebase": "^4.7.0"
+  }
+}

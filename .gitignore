@@ -1,5 +1,7 @@
 node_modules
+lib/node_modules
 .vscode
 .DS_Store
 build
-    
+app/app.config.js
+app.config.js

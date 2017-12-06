@@ -1,1 +1,1 @@
-const app = angular.module("", []);
+const app = angular.module("TheGiveawayBoxApp", ["ngRoute"]);

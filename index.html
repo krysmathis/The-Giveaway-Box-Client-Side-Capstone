@@ -1,22 +1,35 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>client-side-capstone</title> 
-  <link rel="stylesheet" href="styles/client-side-capstone.css"> 
-</head> 
-  <body> 
-    <nav class="nav"></nav> 
-    <main class="main-content"> 
-      <!-- PLACEHOLDER CONTENT --> 
-      <header class="header">client-side-capstone</header> 
-      <article class="article"> 
-        Start of article content 
-      </article> 
-      <!-- END OF PLACEHOLDER CONTENT--> 
-    </main> 
-    <footer class="footer"></footer> 
-    <script src='lib/node_modules/angular/angular.min.js'></script>
-  <script src="app/app.js"></script> 
+  <title>client-side-capstone</title>
+  <link rel="stylesheet" href="styles/client-side-capstone.css">
+</head>
+
+<body ng-app="TheGiveawayBoxApp">
+  
+  <nav class="nav" ng-controller="AuthCtrl">
+    <button ng-click="logoutUser()">Logout</button>
+  </nav>
+<main class="main-content">
+  <section ng-view></section>
+</main>
+  <footer class="footer"></footer>
+  <!-- <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-oRzn8b_eNCH5iCbQfkSVbH9UcuE-HSM&callback=initMap"></script> -->
+  <script src="./lib/node_modules/angular/angular.min.js"></script>
+  <script src="./lib/node_modules/firebase/firebase.js"></script>
+  <script src="./lib/node_modules/angular-route/angular-route.min.js"></script>
+  <script src="./app/app.js"></script>
+  <script src="./app/app.config.js"></script>
+
+  <script src="./app/auth/factories/AuthFactory.js"></script>
+  <script src="./app/auth/controllers/AuthCtrl.js"></script>
+  
+  <script src="./app/users/factories/UserFactory.js"></script>
+  <script src="./app/users/controllers/UserCtrl.js"></script>
+</body>
+
 </html>
