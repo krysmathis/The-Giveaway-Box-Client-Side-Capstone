@@ -27,6 +27,14 @@ $scope.addSubCategoryAttributes = () => {
         adminFactory.addSubCategoryAttributes(attr)
     })
 }
+
+$scope.addProductListingSeeds = () => {
+    $scope.productListingSeeds.forEach(item => {
+        adminFactory.addProductListingSeeds(item)
+    })
+}
+
+//$scope.productListingSeeds
 //subCategoryAttributes
 
 //addAttributeValues()
@@ -358,6 +366,17 @@ $scope.subCategoryAttributes = [
     },
 ]
 
+$scope.productListingSeeds = [
+    {
+        desc: "a heavyweight stroller",
+        image: "https://images-na.ssl-images-amazon.com/images/I/915e2De5-BL._SX355_.jpg",
+        price: 0,
+        availabile: true,
+        timestamp: Date.now(),
+        categoryExternalId: 800,
+        subcategoryExternalId: 8001
+    }
+]
 
 // END OF MODULE
 })

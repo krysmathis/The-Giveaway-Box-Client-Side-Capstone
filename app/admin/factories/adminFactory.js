@@ -62,6 +62,22 @@ angular
                 })
             }
         },
+        "addProductListingSeeds": {
+            value: function (item) {
+                return firebase.auth().currentUser.getIdToken(true)
+                .then(idToken => {  
+                    // add the userId as a property
+                    item.userId = firebase.auth().currentUser.uid
+                    return $http({
+                        method: "POST",
+                        url: `https://${firebasePath}/itemListings/.json?auth=${idToken}`,
+                        data: item
+                    }).then(result => {
+                        console.log(result)
+                    })
+                })
+            }
+        },
 
         //subCategoryAttributes
     // End of object.create    
