@@ -44,7 +44,7 @@ angular
                     user.userId = firebase.auth().currentUser.uid
                     return $http({
                         method: "POST",
-                        url: `https://${firebasePath}/users/.json`,
+                        url: `https://${firebasePath}/users/.json?auth=${idToken}`,
                         data: user
                     })
                 })
