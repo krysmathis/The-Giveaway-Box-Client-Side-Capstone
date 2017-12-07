@@ -6,11 +6,11 @@ angular.module("TheGiveawayBoxApp")
     $scope.categories = []
 
     $scope.item = {
-        description: "",
-        retail: "",
+        desc: "",
+        price: "",
         image: "",
-        category: "",
-        subCategory: ""
+        categoryId: "",
+        subCategoryId: ""
     }
 
     // use the cached view model otherwise pull a new one
@@ -30,28 +30,29 @@ angular.module("TheGiveawayBoxApp")
     $scope.getSubCategories = function() {
         if (AddListingFactory.subCategories.length === 0) {
             AddListingFactory.getSubCategories().then(r=>{
-                $scope.subCategories = AddListingFactory.getSubCategoryViewModel($scope.item.category);
+                $scope.subCategories = AddListingFactory.getSubCategoryViewModel($scope.item.categoryId);
             })
         } else {
-                $scope.subCategories = AddListingFactory.getSubCategoryViewModel($scope.item.category);
+                $scope.subCategories = AddListingFactory.getSubCategoryViewModel($scope.item.categoryId);
         }
     }
 
     $scope.getAttributes = () => {
         if (AddListingFactory.attributes.length === 0) {
             AddListingFactory.getAttributes().then(r=> {
-                $scope.attributeModel = AddListingFactory.getAttributeView($scope.item.subCategory)
+                $scope.attributeModel = AddListingFactory.getAttributeView($scope.item.subCategoryId)
                 console.log("view", AddListingFactory.attributeView)
             });
         } else {
             console.log("pulling from cache")
-            $scope.attributeModel =AddListingFactory.getAttributeView($scope.item.subCategory)
+            $scope.attributeModel =AddListingFactory.getAttributeView($scope.item.subCategoryId)
         }
         
     }
 
-    $scope.attributeModel = {};
+    $scope.attributeModel = [];
         
+    $scope.submitListing = () => AddListingFactory.addListing($scope.item, $scope.attributeModel)
     // $scope.listingModel = [
     //     {
     //         label: "Item Description",

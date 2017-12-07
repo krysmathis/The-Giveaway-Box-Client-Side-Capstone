@@ -232,6 +232,34 @@ angular
                 })
             },
         },
+        "addListing": {
+            // get current userId
+            value: function (item,attributes) {
+                return firebase.auth().currentUser.getIdToken(true)
+                .then(idToken => {
+                    // add the userId as a property
+                    item.userId = firebase.auth().currentUser.uid
+                    return $http({
+                        method: "POST",
+                        url: `https://${firebasePath}/userItems/.json?auth=${idToken}`,
+                        data: item
+                    }).then(r=> {
+                        const listingId = r.data.name
+                        attributes.forEach(attr => {
+                            attr.itemId = listingId
+                            return $http({
+                                method: "POST",
+                                url: `https://${firebasePath}/itemAttributes/.json?auth=${idToken}`,
+                                data: attr
+                            })
+                        })
+                    })
+                })
+            },
+            enumerable: true
+            // add item and then retrieve data.name
+            // then add the attribute values k
+        }
         
     })
 

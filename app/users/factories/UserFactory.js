@@ -50,51 +50,6 @@ angular
                 })
             }
         },
-        "fire": {
-            value: function (employee,key) {
-                return $http({
-                    method: "PUT",
-                    url: `https://${firebasePath}/users/${key}/.json`,
-                    data: {
-                        "firstName": employee.firstName,
-                        "lastName": employee.lastName,
-                        "employmentStart": employee.employmentStart,
-                        "employmentEnd": Date.now()
-                    }
-                })
-            }
-        },
-        "kill": {
-            value: function (key) {
-                return $http({
-                    method: "DELETE",
-                    url: `https://${firebasePath}/users/${key}/.json`
-                })
-            }
-        },
-        "resetEmployment":  {
-            value: function (employee,key) {
-                return $http({
-                    method: "PUT",
-                    url: `https://${firebasePath}/users/${key}/.json`,
-                    data: {
-                        "firstName": employee.firstName,
-                        "lastName": employee.lastName,
-                        "employmentStart": employee.employmentStart,
-                        "employmentEnd": 0
-                    }
-                })
-            }
-        },
-        "find": {
-            value: function (searchString) {
-                const result = this.cache.find(employee => {
-                    return employee.firstName.includes(searchString) ||
-                            employee.lastName.includes(searchString)
-                })
-                return result;
-            },
-            enumerable: true
-        }
+        
     })
 })
