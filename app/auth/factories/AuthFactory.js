@@ -6,9 +6,9 @@ angular.module("TheGiveawayBoxApp")
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             currentUserData = user
-            if ($location.url() !== "/admin"){
+            if ($location.url() !== "/add-listing"){
                 $timeout(function () {
-                    $location.url("/admin")
+                    $location.url("/add-listing")
                 }, 100);
             } else {
                 $route.reload();

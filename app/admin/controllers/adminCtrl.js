@@ -9,6 +9,12 @@ $scope.addCategories = () => {
     })
 }
 
+$scope.addSubCategories = () => {
+    $scope.subCategories.forEach(cat => {
+        adminFactory.addSubCategories(cat)
+    })
+}
+
 $scope.addAttributes = () => {
     $scope.attributes.forEach(attr => {
         adminFactory.addAttributes(attr)
@@ -38,6 +44,18 @@ $scope.addProductListingSeeds = () => {
 //subCategoryAttributes
 
 //addAttributeValues()
+
+$scope.productListingSeeds = [
+    {
+        desc: "a heavyweight stroller",
+        image: "https://images-na.ssl-images-amazon.com/images/I/915e2De5-BL._SX355_.jpg",
+        price: 0,
+        available: true,
+        timestamp: Date.now(),
+        categoryExternalId: 800,
+        subcategoryExternalId: 8001
+    }
+]
 
 $scope.categories = [
     {
@@ -366,17 +384,8 @@ $scope.subCategoryAttributes = [
     },
 ]
 
-$scope.productListingSeeds = [
-    {
-        desc: "a heavyweight stroller",
-        image: "https://images-na.ssl-images-amazon.com/images/I/915e2De5-BL._SX355_.jpg",
-        price: 0,
-        availabile: true,
-        timestamp: Date.now(),
-        categoryExternalId: 800,
-        subcategoryExternalId: 8001
-    }
-]
+
+
 
 // END OF MODULE
 })

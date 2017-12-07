@@ -1,11 +1,36 @@
 
 <div>HELLO, ADDLISTING</div>
 
+<div ng-controller="AddListingCtrl as filter">
+    <form name='myForm' ng-submit="submit(listingModel)">
 
-<!-- <div ng-controller="FilterCtrl as filter">
-    <h1>Hello, Filter</h1>
-    <form name='myForm' ng-submit="submit(viewModel)">
-        <div ng-repeat="field in viewModel" ng-form='subForm'>
+        // some of these will be set
+        <div>
+            <label>Item Description</label>
+            <input type="text" ng-model="item.description" placeholder="description">
+        </div>
+        <div>
+            <label for="Retail Price">Retail Price</label>
+            <input type="text" ng-model="item.retail" placeholder="original retail">
+        </div>
+        <div>
+            <label for="Image">Image</label>
+            <input type="file" ng-model="item.image">
+        </div>
+        something else is here!
+        <div>
+            <label for="Category">Category</label>
+            <select ng-model="item.category" ng-change="getSubCategories()">
+                <option ng-repeat="cat in categories" value="{{cat.value}}" ng-selected='cat.isSelected'>{{cat.label}}</option>
+            </select>
+        </div>
+        <div>
+            <label>SubCategory</label>
+            <select ng-model="item.subCategory" ng-change="getAttributes()">
+            <option ng-repeat="cat in subCategories" value="{{cat.value}}" ng-selected='cat.isSelected'>{{cat.label}}</option>        
+            </select>
+        </div>
+        <div ng-repeat="field in attributeModel" ng-form='subForm'>
         <div class="input-field inline" ng-if='field.data_type == "text"'>
             <label>{{field.label}}</label>
             <input type='text' ng-model='field.model' placeholder='{{field.label}}' name='myText' required/>
@@ -15,7 +40,12 @@
             <input type='email' ng-model='field.model' placeholder='{{field.label}}' name='myEmail'/>
             <span class='required' ng-show="subForm.myEmail.$error.required">*</span>
         </div>
-        <div ng-if='field.data_type == "select"'>
+        <div ng-if='field.data_type === "file"'>
+        <label>{{field.label}}</label>
+        <input type="file" ng-model='field.model' placeholder='{{field.label}}' name="myImage"/>
+        </div>
+        <div ng-if='field.data_type === "select"'>
+        <label>{{field.label}}</label>
             <select ng-model='field.model'>
             <option ng-repeat='m in field.viewModel' value="{{m.value}}" ng-selected='m.isSelected'>{{m.label}}</option>
             </select>
@@ -26,10 +56,10 @@
     
     </form>
         
-    <div ng-show='submitted && myForm.$valid' class='form-result'>
-        <div ng-repeat='model in viewModel'>
+    <!-- <div ng-show='submitted' class='form-result'> -->
+        <div>{{item.description}}</div>
+        <div ng-repeat='model in listingModel'>
         {{model.name}}: {{model.model}}
         </div>
-    </div>
+    <!-- </div> -->
 </div>
-             -->

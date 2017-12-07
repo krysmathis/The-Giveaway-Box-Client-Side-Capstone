@@ -20,6 +20,22 @@ angular
                 })
             }
         },
+        "addSubCategories": {
+            value: function (categories) {
+                return firebase.auth().currentUser.getIdToken(true)
+                .then(idToken => {  
+                    // add the userId as a property
+                    // user.userId = firebase.auth().currentUser.uid
+                    return $http({
+                        method: "POST",
+                        url: `https://${firebasePath}/subCategories/.json?auth=${idToken}`,
+                        data: categories
+                    })
+                })
+            }
+        },
+
+        //addSubCategories
         "addAttributes": {
             value: function (attributes) {
                 return firebase.auth().currentUser.getIdToken(true)

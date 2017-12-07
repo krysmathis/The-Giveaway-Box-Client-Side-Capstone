@@ -23,14 +23,14 @@ module.exports = {
         "no-unused-vars": [
             "warn"
         ],
-        "angular/controller-as":
-        ["none"],
-        "angular/controller-name": [
-            "warn"
-        ],
-        "angular/controller-as-route": [
-            "none"
-        ],
+        // "angular/controller-as":
+        // ["warn"],
+        // "angular/controller-name": [
+        //     "warn"
+        // ],
+        // "angular/controller-as-route": [
+        //     "none"
+        // ],
         "no-undef": [
             "warn"
         ],
