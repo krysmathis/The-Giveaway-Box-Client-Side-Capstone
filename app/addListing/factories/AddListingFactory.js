@@ -102,7 +102,7 @@ angular
                         inclusive: attr.inclusive,
                         externalId: attr.externalId,
                         desc: attr.desc,
-                        model: "",
+                        value: "",
                         viewModel: []
                     }
                 })
@@ -234,23 +234,42 @@ angular
         },
         "addListing": {
             // get current userId
-            value: function (item,attributes) {
+            value: function (item,attributes,tags) {
+                let listingId = ""
                 return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
                     // add the userId as a property
                     item.userId = firebase.auth().currentUser.uid
-                    return $http({
+                    item.timestamp = Date.now()
+                    $http({
                         method: "POST",
-                        url: `https://${firebasePath}/userItems/.json?auth=${idToken}`,
+                        url: `https://${firebasePath}/itemListings/.json?auth=${idToken}`,
                         data: item
                     }).then(r=> {
-                        const listingId = r.data.name
+                        listingId = r.data.name
                         attributes.forEach(attr => {
-                            attr.itemId = listingId
-                            return $http({
-                                method: "POST",
+                            const attrUp = {
+                                itemListingId: listingId,
+                                attributeId: attr.externalId, 
+                                value: attr.value
+                            }
+                            $http({
+                                 method: "POST",
                                 url: `https://${firebasePath}/itemAttributes/.json?auth=${idToken}`,
-                                data: attr
+                                data: attrUp
+                            })
+
+                        })
+                    }).then(r=> {
+                        tags.forEach(t=> {
+                            const tag = {
+                                listingId: listingId,
+                                tag: t
+                            }
+                            $http({
+                                method: "POST",
+                                url: `https://${firebasePath}/tags/.json?auth=${idToken}`,
+                                data: tag
                             })
                         })
                     })
