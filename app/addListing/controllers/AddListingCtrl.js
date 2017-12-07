@@ -3,6 +3,22 @@
 angular.module("TheGiveawayBoxApp")
 .controller("AddListingCtrl", function($scope, $location, AddListingFactory) {
     
+
+    $scope.addImage = (e) => 
+        console.log(e.target.files)
+        //AddListingFactory.addImage($scope.item.image)
+
+    $scope.saveImage = () => {
+
+        var filename = document.getElementById("addListing__image");
+        let file = filename.files[0]
+        $scope.item.image = file.name
+        AddListingFactory.addImage(file)
+        
+    }
+    
+
+
     /**
      * tag objects
      */
@@ -12,8 +28,8 @@ angular.module("TheGiveawayBoxApp")
     $scope.newTag = "";
     
     $scope.addTags = (tag) => {
-        //TODO: check for duplicates in this
             if ($scope.tags.find(f=> f===tag)) {
+                //TODO user display when the tag won't go in
                 console.log("already here")
             } else {
                 $scope.tags.push(tag)

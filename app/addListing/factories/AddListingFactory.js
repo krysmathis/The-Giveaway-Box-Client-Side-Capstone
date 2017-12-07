@@ -232,6 +232,19 @@ angular
                 })
             },
         },
+        "addImage": {
+            value: function(file) {
+                // Create a root reference
+                var storageRef = firebase.storage().ref();
+                // Create a reference to 'mountains.jpg'
+                var mountainsRef = storageRef.child(`/images/${file.name}`);
+
+                // Create a reference to 'mountains.jpg'
+                mountainsRef.put(file).then(function(snapshot) {
+                    console.log('Uploaded a blob or file!');
+                  });
+            }
+        },
         "addListing": {
             // get current userId
             value: function (item,attributes,tags) {
@@ -241,6 +254,11 @@ angular
                     // add the userId as a property
                     item.userId = firebase.auth().currentUser.uid
                     item.timestamp = Date.now()
+                    item.available = true,
+                    item.active = true,
+                    item.categoryExternalId = parseInt(item.categoryExternalId)
+                    item.subCategoryExternalId = parseInt(item.subCategoryExternalId)
+
                     $http({
                         method: "POST",
                         url: `https://${firebasePath}/itemListings/.json?auth=${idToken}`,

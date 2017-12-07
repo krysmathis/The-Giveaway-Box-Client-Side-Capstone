@@ -4,7 +4,6 @@
 <div ng-controller="AddListingCtrl as filter">
     <form name='myForm'>
         <h1>Base Data</h1>
-        // some of these will be set
         <div>
             <label>Item Description</label>
             <input type="text" ng-model="item.desc" placeholder="description" value="Baby stroller">
@@ -15,7 +14,8 @@
         </div>
         <div>
             <label for="Image">Image</label>
-            <input type="file" ng-model="item.image">
+            <input id="addListing__image" type="file" ng-model="item.image" ng-change="saveImage()">
+            <button type="button" ng-click="saveImage()">Upload</button>
         </div>
         <div>
             <label for="Category">Category</label>
