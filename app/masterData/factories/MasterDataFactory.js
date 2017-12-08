@@ -92,11 +92,7 @@ angular
                     })
                     console.log("attributes", this.attributes);
                     return this.attributes
-                }).then(() => 
-                    this.getSubCategoryAttributes().then(() => 
-                        this.getAttributeValues()
-                    )
-                )
+                })
             },
         },
         "getTags": {

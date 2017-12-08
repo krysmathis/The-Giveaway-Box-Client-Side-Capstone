@@ -36,6 +36,7 @@ angular.module("TheGiveawayBoxApp")
                     document.querySelector(".progress-circle.indefinite").style.display="none"
                 })
             } else {
+                console.log("loading from database")
                 masterData.getCategories().then(cats => {
                     database.categories = cats
                     masterData.getSubCategories().then(subs => {
@@ -45,7 +46,7 @@ angular.module("TheGiveawayBoxApp")
                             masterData.getTags().then(tags =>{
                                 database.tags = tags
                                 f.getListings(database).then(r => {
-                                    console.log(r)
+                                    console.log("listings",r)
                                     $scope.listings = r
                                     document.querySelector(".progress-circle.indefinite").style.display="none"
                                 })

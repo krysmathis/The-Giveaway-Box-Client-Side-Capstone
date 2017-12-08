@@ -10,8 +10,10 @@
 
 <body ng-app="TheGiveawayBoxApp">
   
-  <nav class="nav" ng-controller="AuthCtrl">
-    <button ng-click="logoutUser()">Logout</button>
+    <nav class="nav" ng-include="'app/nav/partials/nav.html'">
+    </nav>
+ 
+    
   </nav>
 <main class="main-content">
   <section ng-view></section>
@@ -27,6 +29,9 @@
 
   <script src="./app/auth/factories/AuthFactory.js"></script>
   <script src="./app/auth/controllers/AuthCtrl.js"></script>
+
+  <script src="./app/nav/factories/NavFactory.js"></script>
+  <script src="./app/nav/controllers/NavCtrl.js"></script>
 
   <script src="./app/admin/factories/adminFactory.js"></script>
   <script src="./app/admin/controllers/adminCtrl.js"></script>

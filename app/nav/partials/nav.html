@@ -1,0 +1,24 @@
+<div ng-controller="NavCtrl" class="nav__list">
+    
+    <button type="button" ng-click="navLogout()">Logout</button>
+    
+    <div>
+        <a href="/#!/listings">Listings</a>
+    </div>
+    
+    <div>
+        <a href="/#!/add-listing">Add New</a>
+    </div>
+
+    <div>
+        <span ng-include="'./app/nav/partials/search.html'"></span>
+    </div>
+
+    <div class="align-right">
+        <span ng-if="isAuthenticated()">
+            <a href="#" ng-click="logout()">Logout</a>
+        </span>
+        <span ng-if="!isAuthenticated()"></span>
+    </div>
+
+</div>

@@ -46,6 +46,17 @@ body {
   height: var(--nav-footer-height);
   width: 100%;
   z-index: 101;
+  margin: 0 auto;
+
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  padding-top: 20px;
+
 }
 
 .footer {

@@ -34,7 +34,11 @@ angular.module("TheGiveawayBoxApp")
             value: () => firebase.auth().currentUser
         },
         logout: {
-            value: () => firebase.auth().signOut()
+            value: () => {
+                firebase.auth().signOut()
+                $location.url("/auth")
+            }
+
         },
         authenticate: {
             value: credentials =>

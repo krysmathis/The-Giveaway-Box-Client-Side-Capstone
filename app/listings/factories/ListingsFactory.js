@@ -28,7 +28,25 @@ angular
             enumerable: true,
             writable: true
         },
-
+        "find": {
+            value: [],
+            enumerable: true
+        },
+        
+        "addAttributeLabels": {
+            value: function(item,database) {
+                if (item.hasOwnProperty("attributes")){
+                    item.attributes.forEach(a=> {
+                        const matchingAttribute = database.attributes.find(attr=> attr.externalId === a.attributeId)
+                        if (matchingAttribute !== undefined) {
+                            a.attributeName = matchingAttribute.label
+                        }
+                    })
+                }
+                return item
+            },
+            enumerable: true
+        },
         "getListings": {
             value: function(database) {
                 return $http({
@@ -51,32 +69,25 @@ angular
                     
                     }).then(r=> {
                         const data = r.data
-                            // Make an array of objects so we can use filters
+                            
+                            //Make an array of objects so we can use filters
                             this.itemAttributes = Object.keys(data).map(key => {
                                 data[key].id = key
                                 return data[key]
                             })
-                            console.log(this.itemAttributes)
-                            return this.itemAttributes
-                            }).then( r=> {
-                                // return the enriched item display
-                                return this.listings.map(item => {
-                                    item.category = database.categories.find(c=> item.categoryExternalId === c.externalId)
-                                    item.subCategory = database.subCategories.find(s=> item.subCategoryExternalId === s.externalId)
-                                    // create the attributes
-                                    //item.attributes = 
-                                    item.attributes = this.itemAttributes.filter(a=> a.itemListingId === item.id)
-                                    if (item.attributes !== undefined){
-                                        item.attributes.forEach(a=> {
-                                            const matchingAttribute = database.attributes.find(attr=> attr.externalId === a.attributeId)
-                                            if (matchingAttribute !== undefined) {
-                                                a.attributeName = matchingAttribute.label
-                                            }
-                                        })
-                                    }
-                                    return item
-                                })
+
+                            // return the enriched item display
+                            this.listings.forEach(item => {
+                                
+                                item.category = database.categories.find(c=> item.categoryExternalId === c.externalId)
+                                item.subCategory = database.subCategories.find(s=> item.subCategoryExternalId === s.externalId)
+                                // create the attributes
+                                item.attributes = this.itemAttributes.filter(a=> a.itemListingId === item.id)
+                                item = this.addAttributeLabels(item,database)
                             })
+                            return this.listings
+                        })
+                         
                     })
             },
             enumerable: true,
