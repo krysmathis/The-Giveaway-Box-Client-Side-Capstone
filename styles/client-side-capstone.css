@@ -60,3 +60,41 @@ body {
   z-index: 101;
 }
 
+.progress-circle.definite .progress {
+  stroke: red;
+  stroke-width: 2;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 251;
+  animation: progress-anim 2s ease;
+}
+
+.progress-circle.definite .bg {
+  stroke: #eee;
+  stroke-width: 2;
+}
+
+@keyframes progress-anim {
+  0% { stroke-dashoffset: 251; }
+  100% { stroke-dashoffset: 0; }
+}
+
+
+/* indefinite */
+.progress-circle.indefinite .progress {
+  stroke: blue;
+  stroke-width: 2;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 63 188;
+  animation: progress-indef 2s linear infinite;
+}
+
+.progress-circle.indefinite .bg {
+  stroke: #eee;
+  stroke-width: 2;
+}
+
+@keyframes progress-indef {
+  0% { stroke-dashoffset: 251; }
+  100% { stroke-dashoffset: 0; }
+}
+

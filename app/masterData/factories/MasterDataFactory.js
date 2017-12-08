@@ -2,7 +2,7 @@
 
 angular
 .module("TheGiveawayBoxApp")
-.factory("MasterDataListingFactory", function ($http) {
+.factory("MasterDataFactory", function ($http) {
 
 
     return Object.create(null, {
@@ -18,6 +18,11 @@ angular
             writable: true
         },
         "attributes": {
+            value: [],
+            enumerable: true,
+            writable: true
+        },
+        "tags": {
             value: [],
             enumerable: true,
             writable: true
@@ -87,6 +92,28 @@ angular
                     })
                     console.log("attributes", this.attributes);
                     return this.attributes
+                }).then(() => 
+                    this.getSubCategoryAttributes().then(() => 
+                        this.getAttributeValues()
+                    )
+                )
+            },
+        },
+        "getTags": {
+            value: function () {
+                return $http({
+                    method: "GET",
+                    url: `https://${firebasePath}/tags/.json`
+                }).then(response => {
+                    const data = response.data
+
+                    // Make an array of objects so we can use filters
+                    this.tags = Object.keys(data).map(key => {
+                        data[key].id = key
+                        return data[key]
+                    })
+                    console.log("tags", this.tags);
+                    return this.tags
                 }).then(() => 
                     this.getSubCategoryAttributes().then(() => 
                         this.getAttributeValues()
