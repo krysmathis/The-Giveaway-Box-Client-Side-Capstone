@@ -2,23 +2,14 @@
     
     <button type="button" ng-click="navLogout()">Logout</button>
     
-    <div>
-        <a href="/#!/listings">Listings</a>
-    </div>
-    
-    <div>
-        <a href="/#!/add-listing">Add New</a>
-    </div>
-
-    <div>
-        <span ng-include="'./app/nav/partials/search.html'"></span>
-    </div>
-
-    <div class="align-right">
+    <li><a href="/#!/listings">Listings</a></li>
+    <li><a href="/#!/add-listing">Add New</a></li>
+    <li><a ng-click="toUserProfile()">Me</a></li>
+    <!-- <li>
         <span ng-if="isAuthenticated()">
-            <a href="#" ng-click="logout()">Logout</a>
+            <a href="#!" ng-click="logout()">Logout</a>
         </span>
         <span ng-if="!isAuthenticated()"></span>
-    </div>
-
+    </li> -->
+    
 </div>

@@ -6,10 +6,11 @@ angular.module("TheGiveawayBoxApp")
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             currentUserData = user
-            if ($location.url() !== "/listings"){
+            if ($location.url() !== "/auth"){
                 $timeout(function () {
                     $location.url("/listings")
-                }, 100);
+                    updateNavBar()
+                }, 500);
             } else {
                 $route.reload();
             }
@@ -23,7 +24,23 @@ angular.module("TheGiveawayBoxApp")
         }
     })
 
+    const updateNavBar = () => {
+        const navBar = document.querySelector(".nav__list")
+        if (navBar.hasChildNodes()){
+            const li = document.createElement("li")
+            li.innerHTML = currentUserData.email
+            navBar.appendChild(li)
+        }
+
+    }
+
     return Object.create(null, {
+        currentUser: {
+            value: () => {
+                return currentUserData ? currentUserData : ""
+            },
+            enumerable: true
+        },
         isAuthenticated: {
             value: () => {
                 const user = currentUserData

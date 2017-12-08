@@ -11,10 +11,15 @@ function ($scope, $location, AuthFactory, ListingsFactory) {
         AuthFactory.isAuthenticated();
     }
 
+    $scope.toUserProfile = () => {
+        const user = AuthFactory.getUser().uid;
+        $location.url(`/users/${user}`)
+        //console.log(`users/${$scope.navUser}`)
+    }
+
     $scope.finder = event => {
         if (event.key === "Enter") {
             const employee = Listing.find($scope.searchString)
-            $location.url(`/employees/detail/${employee.id}`)
         }
     }
 

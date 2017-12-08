@@ -1,5 +1,7 @@
 angular.module("TheGiveawayBoxApp")
-.controller("UserCtrl", function($scope, $location, UserFactory) {
+.controller("UserCtrl", function($scope, $location, $routeParams, UserFactory) {
+    
+    
     
     //firebase.auth().currentUser.getIdToken(true)
     $scope.userDataSeed = [
@@ -22,5 +24,7 @@ angular.module("TheGiveawayBoxApp")
             UserFactory.add(user)
         })
     }
+
+    
 
 })

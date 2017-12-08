@@ -1,14 +1,14 @@
 "use strict"
 
 angular.module("TheGiveawayBoxApp")
-.controller("ListingsCtrl", function($scope, $http, $location, ListingsFactory, MasterDataFactory) {
+.controller("ListingsCtrl", function($scope, $http, $location, ListingsFactory, AuthFactory, MasterDataFactory) {
     
     $scope.listings = []
 
     const f = ListingsFactory
     const masterData = MasterDataFactory
 
-
+    $scope.currentUser = AuthFactory.getUser().email;
     // Construct the request
 // Replace MyAppID with your Production AppID
     $scope.test = () => {
