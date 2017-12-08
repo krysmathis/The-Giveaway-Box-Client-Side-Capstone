@@ -12,12 +12,11 @@ angular.module("TheGiveawayBoxApp")
 
         var filename = document.getElementById("addListing__image");
         let file = filename.files[0]
-        $scope.item.image = file.name
-        AddListingFactory.addImage(file)
-        
-    }
-    
+        AddListingFactory.addImage(file).then(_url=> {
+            $scope.item.image = _url
+        })
 
+    }
 
     /**
      * tag objects

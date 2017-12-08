@@ -234,15 +234,12 @@ angular
         },
         "addImage": {
             value: function(file) {
-                // Create a root reference
-                var storageRef = firebase.storage().ref();
-                // Create a reference to 'mountains.jpg'
-                var mountainsRef = storageRef.child(`/images/${file.name}`);
-
-                // Create a reference to 'mountains.jpg'
-                mountainsRef.put(file).then(function(snapshot) {
-                    console.log('Uploaded a blob or file!');
-                  });
+                //upload an image
+                const stamp = Date.now()
+                return firebase.storage().ref().child(`images/`+ stamp + file.name).put(file).then(result => {
+                    return firebase.storage().ref().child(`images/`+ stamp + file.name).getDownloadURL()
+                        //return the url of the image you uploade
+                })
             }
         },
         "addListing": {
