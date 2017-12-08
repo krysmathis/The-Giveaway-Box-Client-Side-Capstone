@@ -5,8 +5,13 @@
     <form name='myForm'>
         <h1>Base Data</h1>
         <div>
+            <label>Item Label</label>
+            <input type="text" ng-model="item.label" placeholder="heading for your item" value="Baby stroller">
+        </div>
+        <div>
             <label>Item Description</label>
-            <input type="text" ng-model="item.desc" placeholder="description" value="Baby stroller">
+            <textarea ng-model="item.desc"></textarea>
+            <!-- <input type="text" ng-model="item.desc" placeholder="description" value="Baby stroller"> -->
         </div>
         <div>
             <label for="Retail Price">Retail Price</label>
@@ -14,7 +19,7 @@
         </div>
         <div>
             <label for="Image">Image</label>
-            <input id="addListing__image" type="file" ng-model="item.image" ng-change="saveImage()">
+            <input id="addListing__image" type="file" accept=".jpg,.png,.gif" ng-model="item.image" ng-change="saveImage()">
             <button type="button" ng-click="saveImage()">Upload</button>
             <img ng-src="{{item.image}}" style="width:150px;height:auto;"/>
         </div>

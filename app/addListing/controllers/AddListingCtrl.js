@@ -56,6 +56,7 @@ angular.module("TheGiveawayBoxApp")
     $scope.categories = []
 
     $scope.item = {
+        label: "",
         desc: "",
         price: "",
         image: "",
