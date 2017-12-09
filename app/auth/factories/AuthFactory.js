@@ -6,7 +6,7 @@ angular.module("TheGiveawayBoxApp")
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             currentUserData = user
-            if ($location.url() !== "/auth"){
+            if ($location.url() !== "/listings"){
                 $timeout(function () {
                     $location.url("/listings")
                     updateNavBar()

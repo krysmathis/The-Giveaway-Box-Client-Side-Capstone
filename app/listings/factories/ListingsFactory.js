@@ -47,6 +47,13 @@ angular
             },
             enumerable: true
         },
+        "addTags": {
+            value: function(item, database) {
+                item.tags = database.tags.filter(t=> t.listingId === item.id)
+                return item
+            }, 
+            enumerable: true
+        },
         "getListings": {
             value: function(database) {
                 return $http({
@@ -83,7 +90,8 @@ angular
                                 item.subCategory = database.subCategories.find(s=> item.subCategoryExternalId === s.externalId)
                                 // create the attributes
                                 item.attributes = this.itemAttributes.filter(a=> a.itemListingId === item.id)
-                                item = this.addAttributeLabels(item,database)
+                                item = this.addAttributeLabels(item, database)
+                                item = this.addTags(item, database)
                             })
                             return this.listings
                         })

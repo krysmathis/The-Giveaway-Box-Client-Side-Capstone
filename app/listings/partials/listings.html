@@ -21,6 +21,11 @@
         <div ng-repeat="attr in item.attributes">
             {{attr.attributeName}}: {{attr.value}}
         </div>
+        <div class="listing__tag-container">
+            <span ng-repeat="tag in item.tags" class="listing__tag chip">
+                {{tag.tag}}
+            </span>
+        </div>
         <button type="button" ng-click="test()">I want this one</button>
     </div>
 </div>
