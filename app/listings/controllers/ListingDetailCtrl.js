@@ -12,7 +12,7 @@ angular.module("TheGiveawayBoxApp")
         ListingsFactory.deleteListing(e.target.id).then(r=>{
             $timeout(function () {
                 $location.url(`/users/${$scope.listing.userId}`)
-            }, 1000);
+            }, 100);
         })
     }
 })
