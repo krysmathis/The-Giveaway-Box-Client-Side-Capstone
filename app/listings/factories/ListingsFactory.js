@@ -77,6 +77,52 @@ angular
             },
             enumerable: true
         },
+        "purchase": {
+            value: function(listingId, user) {
+                return $http({
+                    method: "GET",
+                    url: `https://${firebasePath}/itemListings/${listingId}.json`
+                }).then(response => {
+                    const item = response.data
+                    // update item values based on what we're modifying
+                    item.buyer = user.uid
+                    item.buyerEmail = user.name
+                    item.requestedDate = Date.now()
+
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "PUT",
+                                url: `https://${firebasePath}/itemListings/${listingId}.json?auth=${idToken}`,
+                                data: item
+                            })
+                        })
+                })
+            },
+            enumerable: true
+        },
+        "closeListing":{
+            value: function(listingId) {
+                return $http({
+                    method: "GET",
+                    url: `https://${firebasePath}/itemListings/${listingId}.json`
+                }).then(response => {
+                    const item = response.data
+                    // update item values based on what we're modifying
+                    item.purchaseCompletedOn = Date.now()
+
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "PUT",
+                                url: `https://${firebasePath}/itemListings/${listingId}.json?auth=${idToken}`,
+                                data: item
+                            })
+                        })
+                })
+            },
+            enumerable: true
+        },
         "addAttributeLabels": {
             value: function(item,database) {
                 if (item.hasOwnProperty("attributes")){

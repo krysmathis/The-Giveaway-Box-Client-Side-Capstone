@@ -7,7 +7,7 @@
     </g>
 </svg>
 
-<div ng-repeat="item in listings" ng-cloak>
+<div ng-repeat="item in listings | filter: {requestedDate: 0}:true" ng-cloak>
     <div>
         <h3>{{item.label}}</h3>
         <div>{{item.desc}}</div>
@@ -26,6 +26,6 @@
                 {{tag.tag}}
             </span>
         </div>
-        <button type="button" ng-click="test()">I want this one</button>
+        <button type="button" id="{{item.id}}"ng-click="purchase($event)">I want this one</button>
     </div>
 </div>

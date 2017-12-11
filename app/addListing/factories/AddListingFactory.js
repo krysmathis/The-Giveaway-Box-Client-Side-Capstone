@@ -235,8 +235,8 @@ angular
             value: function(file) {
                 //upload an image
                 const stamp = Date.now()
-                return firebase.storage().ref().child(`images/`+ stamp + file.name).put(file).then(result => {
-                    return firebase.storage().ref().child(`images/`+ stamp + file.name).getDownloadURL()
+                return firebase.storage().ref().child("images/"+ stamp + file.name).put(file).then(result => {
+                    return firebase.storage().ref().child("images/"+ stamp + file.name).getDownloadURL()
                         //return the url of the image you uploade
                 })
             }
@@ -254,6 +254,10 @@ angular
                     item.active = true,
                     item.categoryExternalId = parseInt(item.categoryExternalId)
                     item.subCategoryExternalId = parseInt(item.subCategoryExternalId)
+                    item.buyer = ""
+                    item.buyerEmail = ""
+                    item.requestedDate = 0
+                    item.purchaseCompletedOn = 0
 
                     $http({
                         method: "POST",

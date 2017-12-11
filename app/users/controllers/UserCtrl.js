@@ -1,4 +1,4 @@
-angular.module("TheGiveawayBoxApp")
+    angular.module("TheGiveawayBoxApp")
 .controller("UserCtrl", function($scope, $route, $routeParams, $timeout, $location, ListingsFactory, UserFactory, AuthFactory, InviteFactory, GroupsFactory) {
     
     $scope.listingsInit = () => {
@@ -9,6 +9,20 @@ angular.module("TheGiveawayBoxApp")
         })
     }
 
+    $scope.seedGroups = () => {
+        const user = AuthFactory.getUser()
+        GroupsFactory.seedUserGroups(user).then(r=> {
+            console.log("you've been seeded")
+            
+        })
+    }
+    //utility function for filtering
+    $scope.greaterThan = function(prop, val){
+        return function(item){
+          return item[prop] > val;
+        }
+    }
+    
     $scope.deleteListing = (e) => {
         ListingsFactory.deleteListing(e.target.id).then(r=>{
             console.log("record deleted", e.target.id)
@@ -18,6 +32,13 @@ angular.module("TheGiveawayBoxApp")
             // }, 100);
         })
     }
+
+    $scope.closeListing = (e) => {
+        ListingsFactory.closeListing(e.target.id).then(r=>{
+            console.log("another successful listing")
+        })
+    }
+
 
     $scope.refresh = () => $scope.groupsInit()
 
@@ -86,7 +107,7 @@ angular.module("TheGiveawayBoxApp")
             // only add groups if they aren't already listed
             const groups = $scope.user.joinGroups.filter(g=> 
                 // TODO: add the ! back in 
-               userGroups.some(i=> 
+               !userGroups.some(i=> 
                     i.groupId === g.groupId))
 
             if (!groups || groups.length === 0) {

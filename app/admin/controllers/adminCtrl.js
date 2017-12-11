@@ -1,5 +1,5 @@
 angular.module("TheGiveawayBoxApp")
-.controller("adminCtrl", function($scope, $location, adminFactory, GroupsFactory) {
+.controller("adminCtrl", function($scope, $location, adminFactory, GroupsFactory, AuthFactory, ListingsFactory) {
 
 // controller for category data
 
@@ -44,6 +44,10 @@ $scope.addProductListingSeeds = () => {
     })
 }
 
+$scope.approvedUsers = () => {
+    const user = AuthFactory.getUser()
+    ListingsFactory.getApprovedUsers(user).then(r=> console.log(r))
+}
 //$scope.productListingSeeds
 //subCategoryAttributes
 

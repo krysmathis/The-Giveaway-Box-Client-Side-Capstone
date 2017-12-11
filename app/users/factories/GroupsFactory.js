@@ -23,6 +23,12 @@ angular
     ]
 
     return Object.create(null, {
+        "groups": {
+            value: [],
+            enumerable: true,
+            writable: true
+        },
+
         // create the initial list of groups
         "seedGroups": {
             value: function() {
@@ -35,6 +41,42 @@ angular
                             url: `https://${firebasePath}/groups/.json?auth=${idToken}`,
                             data: sg
                         })
+                    })
+                })
+            },
+            enumerable: true
+        },
+        "getGroups": {
+            value: function() {
+                return $http({
+                    method: "GET",
+                    url: `https://${firebasePath}/groups/.json?`
+                    // url: `https://${firebasePath}/groups/-L0-rV_L1VPW3pmhOx8D/.json?`
+                }).then(r => {
+                    const data = r.data
+                    this.groups = Object.keys(data).map(key => {
+                        data[key].id = key
+                        return data[key]
+                    })
+                    return this.groups
+
+                    // this.groups.push(data)
+                    // return this.groups
+                })
+            },
+            enumerable: true
+        },
+        "seedUserGroups":{
+            value: function(user) {
+                return this.getGroups().then(r=> {
+                    this.groups.forEach(g=> {
+                        const userGroup = {
+                            groupId: g.id,
+                            groupName: g.name,
+                            inviteCode: "SEED",
+                            dateAdded: Date.now()
+                        }
+                        this.joinGroup(user,userGroup)
                     })
                 })
             },

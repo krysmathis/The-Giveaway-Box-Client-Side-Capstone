@@ -13,7 +13,13 @@ angular.module("TheGiveawayBoxApp")
 // Replace MyAppID with your Production AppID
     $scope.test = () => {
         //ListingsFactory.makeEbaySearch("strollers")
-        ListingsFactory.makeAmazonSearch("stroller")    
+        //ListingsFactory.makeAmazonSearch("stroller")  
+    }
+
+    $scope.purchase = (e) => {
+        console.log("making purchase")
+        const user = AuthFactory.getUser()
+        ListingsFactory.purchase(e.target.id, user)
     }
 
     $scope.init = () => {

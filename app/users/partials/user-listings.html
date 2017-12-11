@@ -1,6 +1,6 @@
 <div ng-controller="UserCtrl" data-ng-init="listingsInit()">
-    <h1>User Listings</h1>
-    <div ng-repeat="listing in user.listings">
+    <h1>Available Listings</h1>
+    <div ng-repeat="listing in user.listings | filter: {requestedDate: 0}:true" >
         <div>{{listing.label}}</div>
         <a href="#!/listings/detail/{{ listing.id }}">Update</a>
         <button type="button" id="{{ listing.id }}" ng-click="deleteListing($event)">DELETE</button>

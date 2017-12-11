@@ -25,7 +25,9 @@ angular.module("TheGiveawayBoxApp")
         var filename = document.getElementById("addListing__image");
         let file = filename.files[0]
         AddListingFactory.addImage(file).then(_url=> {
-            $scope.item.image = _url
+            $scope.$apply(function() {
+                $scope.item.image = _url
+            })
         })
 
     }
@@ -67,18 +69,25 @@ angular.module("TheGiveawayBoxApp")
      */
     $scope.categories = []
     
-    $scope.item = {}
+    $scope.item = {
+        label: "",
+        desc: "",
+        price: "",
+        image: "",
+        categoryExternalId: "",
+        subCategoryExternalId: ""
+    }
+
+    // populate the attributes of the item if we are in update mode
     if (updateMode) {
        ListingsFactory.getSingleListing($routeParams.listingId).then(r=> {
-            const item = r
-            $scope.item = {
-                label: item.label,
-                desc: item.desc,
-                price: item.price,
-                image: item.image,
-                categoryExternalId: item.categoryExternalId,
-                subCategoryExternalId: item.subCategoryExternalId
-            }
+            const storedItem = r
+                $scope.item.label= storedItem.label,
+                $scope.item.desc= storedItem.desc,
+                $scope.item.price= storedItem.price,
+                $scope.item.image= storedItem.image,
+                $scope.item.categoryExternalId= storedItem.categoryExternalId,
+                $scope.item.subCategoryExternalId= storedItem.subCategoryExternalId
         })
         
     } else {
@@ -172,10 +181,13 @@ angular.module("TheGiveawayBoxApp")
     $scope.attributeModel = [];
         
     $scope.submitListing = () => {
+
         $scope.item.categoryExternalId = $scope.selectedCategory.value
         $scope.item.subCategoryExternalId = $scope.selectedSubCategory.value
         if (!$scope.inUpdateMode()){
             AddListingFactory.addListing($scope.item, $scope.attributeModel, $scope.tags)
+            console.log("listing created")
+            $route.reload()
         } else {
             console.log("ready to update")
             const user = AuthFactory.getUser()

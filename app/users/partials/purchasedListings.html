@@ -1,0 +1,8 @@
+<div ng-controller="UserCtrl" data-ng-init="listingsInit()">
+    <h1>Requested Listings</h1>
+    <div ng-repeat="listing in user.listings | filter: greaterThan('requestedDate',0)| filter: {purchaseCompletedOn: 0}:true">
+        <div>{{listing.label}}</div>
+        <a href="#!/listings/detail/{{ listing.id }}">Update</a>
+        <button type="button" id="{{ listing.id }}" ng-click="closeListing($event)">CLOSE</button>
+    </div>
+</div>

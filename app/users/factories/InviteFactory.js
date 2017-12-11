@@ -29,7 +29,7 @@ angular
                     $http({
                         method: "POST",
                         url: `https://${firebasePath}/inviteGroups/.json?auth=${idToken}`,
-                        data: { groupId: g.id, groupName: g.text, inviteCode: inviteCode }
+                        data: { groupId: g.groupId, groupName: g.name, inviteCode: inviteCode }
                         })
                     })
                 })
