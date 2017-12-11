@@ -20,11 +20,16 @@
   <footer class="footer"></footer>
   <!-- <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-oRzn8b_eNCH5iCbQfkSVbH9UcuE-HSM&callback=initMap"></script> -->
-  <script src="./lib/node_modules/angular/angular.min.js"></script>
-  <script src="./lib/node_modules/firebase/firebase.js"></script>
-  <script src="./lib/node_modules/angular-route/angular-route.min.js"></script>
-  <script src="./app/app.js"></script>
-  <script src="./app/app.config.js"></script>
+      <script src="./lib/node_modules/angular/angular.min.js"></script>
+      <script src="./lib/node_modules/firebase/firebase.js"></script>
+      <script src="./lib/node_modules/angular-route/angular-route.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/sha256.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+      <script src="./app/app.js"></script>
+      <script src="./app/app.config.js"></script>
+      <script src="./lib/checklist-model.js"></script>
 
   <script src="./app/auth/factories/AuthFactory.js"></script>
   <script src="./app/auth/controllers/AuthCtrl.js"></script>
@@ -32,10 +37,17 @@
   <script src="./app/nav/factories/NavFactory.js"></script>
   <script src="./app/nav/controllers/NavCtrl.js"></script>
 
+  <script src="./app/users/factories/UserFactory.js"></script>
+  <script src="./app/users/factories/InviteFactory.js"></script>
+  <script src="./app/users/factories/GroupsFactory.js"></script>
+  <script src="./app/users/controllers/UserCtrl.js"></script>
+  <script src="./app/users/controllers/UserListingsCtrl.js"></script>
+  
   <script src="./app/admin/factories/adminFactory.js"></script>
   <script src="./app/admin/controllers/adminCtrl.js"></script>
-
+  
   <script src="./app/listings/factories/ListingsFactory.js"></script>
+  <script src="./app/listings/controllers/ListingDetailCtrl.js"></script>
   <script src="./app/listings/controllers/ListingsCtrl.js"></script>
   
   <script src="./app/masterData/factories/MasterDataFactory.js"></script>
@@ -44,6 +56,7 @@
   
   <script src="./app/users/factories/UserFactory.js"></script>
   <script src="./app/users/controllers/UserCtrl.js"></script>
+
 </body>
 
 </html>

@@ -1,8 +1,18 @@
 "use strict"
 
 angular.module("TheGiveawayBoxApp")
-.controller("AddListingCtrl", function($scope, $location, AddListingFactory) {
+.controller("AddListingCtrl", function($scope, $routeParams, $location, $timeout, AuthFactory, AddListingFactory, ListingsFactory) {
     
+    
+    $scope.inUpdateMode = () => {
+        if ($routeParams.listingId) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    let updateMode = $scope.inUpdateMode();
 
     $scope.addImage = (e) => 
         console.log(e.target.files)
@@ -54,24 +64,73 @@ angular.module("TheGiveawayBoxApp")
      * category objects
      */
     $scope.categories = []
+    
+    $scope.item = {}
+    if (updateMode) {
+       ListingsFactory.getSingleListing($routeParams.listingId).then(r=> {
+            const item = r
+            $scope.item = {
+                label: item.label,
+                desc: item.desc,
+                price: item.price,
+                image: item.image,
+                categoryExternalId: item.categoryExternalId,
+                subCategoryExternalId: item.subCategoryExternalId
+            }
+        })
+        
+    } else {
+        $scope.item = {
+            label: "",
+            desc: "",
+            price: "",
+            image: "",
+            categoryExternalId: "",
+            subCategoryExternalId: ""
+        }
+    }
 
-    $scope.item = {
-        label: "",
-        desc: "",
-        price: "",
-        image: "",
-        categoryExternalId: "",
-        subCategoryExternalId: ""
+    // Binding for the drop down boxes
+    $scope.selectedCategory = ""
+    $scope.selectedSubCategory = ""
+
+    const makeSelectedCategory = () => {
+        let i = 0
+        $scope.categories.forEach(cat => {
+            if (cat.value === $scope.item.categoryExternalId) {
+                $scope.selectedCategory = $scope.categories[i]
+                $timeout(()=> $scope.getSubCategories(), 50)
+                //$scope.getSubCategories()
+               return
+            }
+            i++
+        })
+    }
+
+    const makeSelectedSubCategory = () => {
+        let i = 0;
+        $scope.subCategories.forEach(cat => {
+            if (cat.value === $scope.item.subCategoryExternalId) {
+               $scope.selectedSubCategory = $scope.subCategories[i]
+               $scope.getAttributes()
+               return
+            }
+            i++
+        })
     }
 
     // use the cached view model otherwise pull a new one
     if (AddListingFactory.catgoryViewModel === undefined) {
         AddListingFactory.getCategories().then(r=> {
             $scope.categories = AddListingFactory.getCategoryViewModel()
+                makeSelectedCategory();
+            
         })
     } else {
         console.log("pulling from cache")
         $scope.categories = AddListingFactory.categoryViewModel()
+        makeSelectedCategory();
+
     }
     
     
@@ -79,12 +138,15 @@ angular.module("TheGiveawayBoxApp")
     $scope.subCategories = [];
 
     $scope.getSubCategories = function() {
+        $scope.item.categoryExternalId = $scope.selectedCategory.value
         if (AddListingFactory.subCategories.length === 0) {
             AddListingFactory.getSubCategories().then(r=>{
                 $scope.subCategories = AddListingFactory.getSubCategoryViewModel($scope.item.categoryExternalId);
+                makeSelectedSubCategory()
             })
         } else {
-                $scope.subCategories = AddListingFactory.getSubCategoryViewModel($scope.item.categoryExternalId);
+            $scope.subCategories = AddListingFactory.getSubCategoryViewModel($scope.item.categoryExternalId);
+            makeSelectedSubCategory();
         }
     }
 
@@ -93,6 +155,7 @@ angular.module("TheGiveawayBoxApp")
      * 
      */
     $scope.getAttributes = () => {
+        $scope.item.subCategoryExternalId = $scope.selectedSubCategory.value
         if (AddListingFactory.attributes.length === 0) {
             AddListingFactory.getAttributes().then(r=> {
                 $scope.attributeModel = AddListingFactory.getAttributeView($scope.item.subCategoryExternalId)
@@ -107,8 +170,17 @@ angular.module("TheGiveawayBoxApp")
 
     $scope.attributeModel = [];
         
-    $scope.submitListing = () => 
-        AddListingFactory.addListing($scope.item, $scope.attributeModel, $scope.tags)
+    $scope.submitListing = () => {
+        $scope.item.categoryExternalId = $scope.selectedCategory.value
+        $scope.item.subCategoryExternalId = $scope.selectedSubCategory.value
+        if (!$scope.inUpdateMode()){
+            AddListingFactory.addListing($scope.item, $scope.attributeModel, $scope.tags)
+        } else {
+            console.log("ready to update")
+            const user = AuthFactory.getUser()
+            ListingsFactory.getApprovedUsers(user).then(r=> console.log(r))
+        }   
+    }
 
 // end of module
 })

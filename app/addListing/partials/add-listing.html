@@ -6,7 +6,8 @@
         <h1>Base Data</h1>
         <div>
             <label>Item Label</label>
-            <input type="text" ng-model="item.label" placeholder="heading for your item" value="Baby stroller">
+            <input type="text" ng-model="item.label" placeholder="heading for your item" value="Baby stroller" required>
+            
         </div>
         <div>
             <label>Item Description</label>
@@ -25,15 +26,19 @@
         </div>
         <div>
             <label for="Category">Category</label>
-            <select ng-model="item.categoryExternalId" ng-change="getSubCategories()">
-                <option ng-repeat="cat in categories" value="{{cat.value}}" ng-selected='cat.isSelected'>{{cat.label}}</option>
-            </select>
+                <select ng-model="selectedCategory" ng-change="getSubCategories()" data-ng-options="cat as cat.label for cat in categories track by cat.value">
+                </select>
         </div>
         <div>
             <label>SubCategory</label>
-            <select ng-model="item.subCategoryExternalId" ng-change="getAttributes()">
-                <option ng-repeat="cat in subCategories" value="{{cat.value}}" ng-selected='cat.isSelected'>{{cat.label}}</option>
-            </select>
+            <!-- <span ng-if="inUpdateMode">
+                    {{selectedCategory}}
+            </span> -->
+            <!-- <span ng-if="!inUpdateMode"> -->
+                <select ng-model="selectedSubCategory" ng-change="getAttributes()" data-ng-options="cat as cat.label for cat in subCategories track by cat.value">
+                    <option ng-repeat="cat in subCategories" value="{{cat.value}}" ng-selected='cat.isSelected'>{{cat.label}}</option>
+                </select>
+            <!-- </span> -->
         </div>
         <h1>Attributes</h1>
         <div ng-repeat="field in attributeModel" ng-form='subForm'>
@@ -64,8 +69,14 @@
             </div>
             <input type="text" ng-model="newTag" ng-keydown="updateTags($event)" placeholder="tag" />
         </div>
-        <input type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
-
+        
+        <!-- <div ng-if="inUpdateMode">
+            <input type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
+        </div> -->
+        <div>
+            <input type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
+        </div>
+        </form>
     </form>
 
 </div>

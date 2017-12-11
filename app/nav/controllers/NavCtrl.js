@@ -19,7 +19,7 @@ function ($scope, $location, AuthFactory, ListingsFactory) {
 
     $scope.finder = event => {
         if (event.key === "Enter") {
-            const employee = Listing.find($scope.searchString)
+            const employee = ListingsFactory.find($scope.searchString)
         }
     }
 

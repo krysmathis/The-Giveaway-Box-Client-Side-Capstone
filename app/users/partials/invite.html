@@ -1,0 +1,16 @@
+<div ng-controller="UserCtrl" ng-init="groupsInit()">
+    <h1>Invite new users</h1>
+    <p>Generate an authentication code and send it to your friend</p>
+    <button type="button" ng-click="refresh()">REFRESH</button>
+    <label ng-repeat="group in groups track by $index">
+        <div>
+            <input type="checkbox" checklist-model="user.inviteGroups" checklist-value="group"> {{group.name}}
+        </div>
+    </label>
+    <span ng-repeat="ur in user.inviteGroups">{{ur}} </span>
+    <form name="authorizationForm">
+        <button type="button" ng-click="inviteUser()">Generate Code</button>
+        <input type="text" name="generateCode" required/>
+        <span ng-show="authorizationForm.generateCode.$touched && myForm.generateCode.$invalid">The name is required.</span>
+    </form>
+</div>

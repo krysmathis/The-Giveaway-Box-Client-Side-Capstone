@@ -1,1 +1,1 @@
-const app = angular.module("TheGiveawayBoxApp", ["ngRoute"]);
+const app = angular.module("TheGiveawayBoxApp", ["ngRoute","checklist-model"]);

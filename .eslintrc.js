@@ -4,7 +4,7 @@ module.exports = {
         "commonjs": true,
         "es6": true
     },
-    "extends": ["eslint:recommended","plugin:angular/johnpapa"],
+    "extends": ["eslint:recommended"],
     "parserOptions": {
         "sourceType": "module"
     },
@@ -23,22 +23,22 @@ module.exports = {
         "no-unused-vars": [
             "warn"
         ],
-        // "angular/controller-as":
-        // ["warn"],
-        // "angular/controller-name": [
-        //     "warn"
-        // ],
-        // "angular/controller-as-route": [
-        //     "none"
-        // ],
+        "angular/controller-as":
+        ["off"],
+        "angular/controller-name": [
+            "off"
+        ],
+        "angular/controller-as-route": [
+            "off"
+        ],
         "no-undef": [
             "warn"
         ],
         "angular/file-name": [
-            "none"
+            "off"
         ],
         "angular/module-setter": [
-            "none"
+            "off"
         ]
         
     },

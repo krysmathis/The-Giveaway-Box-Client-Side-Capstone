@@ -11,18 +11,21 @@ angular
             enumerable: true,
             writable: true
         },
-
+        "database": {
+            get: function() {
+                return { 
+                    categories: this.categories,
+                    subCategories: this.subCategories,
+                    attributes: this.attributes
+                }
+            }
+        },
         "subCategories": {
             value: [],
             enumerable: true,
             writable: true
         },
         "attributes": {
-            value: [],
-            enumerable: true,
-            writable: true
-        },
-        "tags": {
             value: [],
             enumerable: true,
             writable: true
@@ -39,7 +42,21 @@ angular
             enumerable: true,
             writable: true
         },
-
+        "init": {
+            value: function() {
+                return this.getCategories().then(cats => {
+                    this.categories = cats
+                    return this.getSubCategories().then(subs => {
+                        this.subCategories = subs
+                        return this.getAttributes().then(attrs =>{
+                            this.attributes = attrs
+                        }) 
+                    })
+                })
+                                 
+            },
+            enumerable: true
+        },
         "getCategories": {
                 value: function () {
                     return $http({
@@ -95,24 +112,7 @@ angular
                 })
             },
         },
-        "getTags": {
-            value: function () {
-                return $http({
-                    method: "GET",
-                    url: `https://${firebasePath}/tags/.json`
-                }).then(response => {
-                    const data = response.data
-
-                    // Make an array of objects so we can use filters
-                    this.tags = Object.keys(data).map(key => {
-                        data[key].id = key
-                        return data[key]
-                    })
-                    console.log("tags", this.tags);
-                    return this.tags
-                })
-            },
-        },
+        
         "getSubCategoryAttributes": {
             value: function () {
                 return $http({

@@ -29,10 +29,54 @@ angular
             writable: true
         },
         "find": {
-            value: [],
+            value: () => console.log("you found me!"),
             enumerable: true
         },
-        
+        "tags": {
+            value: [],
+            enumerable: true,
+            writable: true
+        },
+        "userGroups":{
+            value: [],
+            enumerable: true,
+            writable: true
+        },
+        "approvedUsers": {
+            value: [],
+            enumerable: true,
+            writable: true
+        },
+        "getApprovedUsers": {
+            value: function(user) {
+                
+                return $http({
+                    url: `https://${firebasePath}/userGroups/.json`,
+                    method: "GET"
+                }).then(r => {
+                    const data = r.data
+                    
+                        // Make an array of objects so we can use filters
+                        this.userGroups = Object.keys(data).map(key => {
+                            data[key].id = key
+                            return data[key]    
+                        })
+
+                        const activeGroups = this.userGroups.filter(g=> user.uid === g.userId)
+                        const approvedUsers = []
+                        activeGroups.forEach(g=> {
+                            this.userGroups.filter(ug=> ug.groupId === g.groupId)
+                            .forEach(ug => {
+                                if (approvedUsers.indexOf(ug.userId) == -1) {
+                                    approvedUsers.push(ug.userId);
+                                }
+                            })
+                        })
+                    return approvedUsers
+                })
+            },
+            enumerable: true
+        },
         "addAttributeLabels": {
             value: function(item,database) {
                 if (item.hasOwnProperty("attributes")){
@@ -48,8 +92,8 @@ angular
             enumerable: true
         },
         "addTags": {
-            value: function(item, database) {
-                item.tags = database.tags.filter(t=> t.listingId === item.id)
+            value: function(item) {
+                item.tags = this.tags.filter(t=> t.listingId === item.id)
                 return item
             }, 
             enumerable: true
@@ -70,6 +114,7 @@ angular
                             return data[key]    
                         })
 
+                        // here we need to filter it to the user's approved groups
                     return $http({
                         method: "GET",
                         url: `https://${firebasePath}/itemAttributes/.json`
@@ -83,22 +128,83 @@ angular
                                 return data[key]
                             })
 
-                            // return the enriched item display
-                            this.listings.forEach(item => {
-                                
-                                item.category = database.categories.find(c=> item.categoryExternalId === c.externalId)
-                                item.subCategory = database.subCategories.find(s=> item.subCategoryExternalId === s.externalId)
-                                // create the attributes
-                                item.attributes = this.itemAttributes.filter(a=> a.itemListingId === item.id)
-                                item = this.addAttributeLabels(item, database)
-                                item = this.addTags(item, database)
-                            })
+                            return this.getTags().then(result => {
+                                console.log("got tags")
+                                // return the enriched item display
+                                this.listings.forEach(item => {
+                                    
+                                    item.category = database.categories.find(c=> item.categoryExternalId === c.externalId)
+                                    item.subCategory = database.subCategories.find(s=> item.subCategoryExternalId === s.externalId)
+                                    // create the attributes
+                                    item.attributes = this.itemAttributes.filter(a=> a.itemListingId === item.id)
+                                    item = this.addAttributeLabels(item, database)
+                                    item = this.addTags(item, database)
+                                })
                             return this.listings
+                            })
                         })
                          
                     })
             },
             enumerable: true,
+        },
+        "getTags": {
+            value: function () {
+                return $http({
+                    method: "GET",
+                    url: `https://${firebasePath}/tags/.json`
+                }).then(response => {
+                    const data = response.data
+
+                    // Make an array of objects so we can use filters
+                    this.tags = Object.keys(data).map(key => {
+                        data[key].id = key
+                        return data[key]
+                    })
+                    console.log("tags", this.tags);
+                    return this.tags
+                })
+            },
+        },
+        "getCurrentUserListings":{
+            value: function(user) {
+                    return $http({
+                        method: "GET",
+                        url: `https://${firebasePath}/itemListings/.json?orderBy="userId"&equalTo="${user.uid}"`
+                    }).then(response => {
+                        const data = response.data
+                            // Make an array of objects so we can use filters
+                            return Object.keys(data).map(key => {
+                                data[key].id = key
+                                return data[key]    
+                            })
+                    })
+            }, enumerable: true
+        },
+        "getSingleListing":{
+            value: function(listingId) {
+                    return $http({
+                        method: "GET",
+                        url: `https://${firebasePath}/itemListings/${listingId}/.json`
+                    }).then(response => {
+                        const data = response.data
+                        data.id = listingId
+                            // Make an array of objects so we can use filters
+                            return data
+                    })
+            }, enumerable: true
+        },
+        "deleteListing": {
+            value: function(listingId) {
+                return firebase.auth().currentUser.getIdToken(true)
+                .then(idToken => {
+                    return $http({
+                        method: "DELETE",
+                        url: `https://${firebasePath}/itemListings/${listingId}/.json?auth=${idToken}`,
+                    })
+                })
+            },
+            enumerable: true
         },
         "makeEbaySearch": {
             value: function (userSearch) {
@@ -107,9 +213,20 @@ angular
                 return $http.jsonp(trustedUrl, 
                     {jsonpCallbackParam: 'callback'})
                     .then(response => {
-    
                         console.log(response)
                     })
+            }
+        },
+        "makeAmazonSearch": {
+            value: function (userSearch) {
+                const Crypto = CryptoJS
+                function getSignatureKey(Crypto, key, dateStamp, regionName, serviceName) {
+                    var kDate = Crypto.HmacSHA256(dateStamp, "AWS4" + key);
+                    var kRegion = Crypto.HmacSHA256(regionName, kDate);
+                    var kService = Crypto.HmacSHA256(serviceName, kRegion);
+                    var kSigning = Crypto.HmacSHA256("aws4_request", kService);
+                    return kSigning;
+                }
             }
         }
     })

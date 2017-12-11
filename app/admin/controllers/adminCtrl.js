@@ -1,5 +1,5 @@
 angular.module("TheGiveawayBoxApp")
-.controller("adminCtrl", function($scope, $location, adminFactory) {
+.controller("adminCtrl", function($scope, $location, adminFactory, GroupsFactory) {
 
 // controller for category data
 
@@ -7,6 +7,10 @@ $scope.addCategories = () => {
     $scope.categories.forEach(cat => {
         adminFactory.addCategories(cat)
     })
+}
+
+$scope.seedGroups = () => {
+    GroupsFactory.seedGroups()
 }
 
 $scope.addSubCategories = () => {

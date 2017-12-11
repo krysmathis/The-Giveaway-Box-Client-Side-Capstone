@@ -1,0 +1,7 @@
+<div ng-controller="UserListingsCtrl" data-ng-init="listingsInit()">
+    <h1>User Listings</h1>
+    <div ng-repeat="listing in user.listings">
+        <div>{{listing.label}}</div>
+        <a href="#!/listings/detail/{{ listing.id }}">Update</a>
+    </div>
+</div>

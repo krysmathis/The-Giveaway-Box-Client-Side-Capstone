@@ -61,7 +61,6 @@ angular
 
         "getCategoryViewModel": {
             value: function() {
-                
                 return this.categories.map(cat => {
                     return {
                         value: cat.externalId,
@@ -76,7 +75,7 @@ angular
             value: function(category) {
                 
                 const filteredSubCategories = this.subCategories.filter(s=> s.categoryExtId === parseInt(category))
-                
+                console.log("getting sub categories")
                 return filteredSubCategories.map(cat => {
                     return {
                         value: cat.externalId,
@@ -84,6 +83,7 @@ angular
                         isSelected: false,
                     }
                 })
+            
             }
         },
         "getAttributeView": {
