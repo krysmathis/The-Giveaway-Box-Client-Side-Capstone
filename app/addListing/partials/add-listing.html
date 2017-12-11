@@ -2,6 +2,7 @@
     HELLO, ADDLISTING</div>
 
 <div ng-controller="AddListingCtrl as filter">
+    <button type="button" ng-click="reload()">RELOAD</button>
     <form name='myForm'>
         <h1>Base Data</h1>
         <div>
@@ -27,7 +28,7 @@
         <div>
             <label for="Category">Category</label>
                 <select ng-model="selectedCategory" ng-change="getSubCategories()" data-ng-options="cat as cat.label for cat in categories track by cat.value">
-                </select>
+            </select>
         </div>
         <div>
             <label>SubCategory</label>

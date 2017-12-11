@@ -1,7 +1,7 @@
 "use strict"
 
 angular.module("TheGiveawayBoxApp")
-.controller("AddListingCtrl", function($scope, $routeParams, $location, $timeout, AuthFactory, AddListingFactory, ListingsFactory) {
+.controller("AddListingCtrl", function($scope, $route, $routeParams, $location, $timeout, AuthFactory, AddListingFactory, ListingsFactory) {
     
     
     $scope.inUpdateMode = () => {
@@ -11,6 +11,8 @@ angular.module("TheGiveawayBoxApp")
             return false
         }
     }
+
+    $scope.reload = () => $route.reload()
 
     let updateMode = $scope.inUpdateMode();
 
@@ -100,7 +102,6 @@ angular.module("TheGiveawayBoxApp")
             if (cat.value === $scope.item.categoryExternalId) {
                 $scope.selectedCategory = $scope.categories[i]
                 $timeout(()=> $scope.getSubCategories(), 50)
-                //$scope.getSubCategories()
                return
             }
             i++

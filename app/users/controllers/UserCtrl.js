@@ -1,6 +1,24 @@
 angular.module("TheGiveawayBoxApp")
-.controller("UserCtrl", function($scope, $routeParams, $timeout, $location, ListingsFactory, UserFactory, AuthFactory, InviteFactory, GroupsFactory) {
+.controller("UserCtrl", function($scope, $route, $routeParams, $timeout, $location, ListingsFactory, UserFactory, AuthFactory, InviteFactory, GroupsFactory) {
     
+    $scope.listingsInit = () => {
+        const user = AuthFactory.getUser()
+        ListingsFactory.getCurrentUserListings(user).then(r=> {
+            $scope.user.listings = r
+            
+        })
+    }
+
+    $scope.deleteListing = (e) => {
+        ListingsFactory.deleteListing(e.target.id).then(r=>{
+            console.log("record deleted", e.target.id)
+            $route.reload()
+            // $timeout(function () {
+            //     $location.url(`/users/${$scope.listing.userId}`)
+            // }, 100);
+        })
+    }
+
     $scope.refresh = () => $scope.groupsInit()
 
     $scope.groups = []
@@ -67,7 +85,8 @@ angular.module("TheGiveawayBoxApp")
             const userGroups = r
             // only add groups if they aren't already listed
             const groups = $scope.user.joinGroups.filter(g=> 
-               !userGroups.some(i=> 
+                // TODO: add the ! back in 
+               userGroups.some(i=> 
                     i.groupId === g.groupId))
 
             if (!groups || groups.length === 0) {
@@ -87,6 +106,7 @@ angular.module("TheGiveawayBoxApp")
                     GroupsFactory.getUsersGroups(AuthFactory.getUser()).then(r=> {
                         $scope.groups = r
                         console.log("init groups: ", $scope.groups)
+                        $route.reload()
                     })
                 })
             })

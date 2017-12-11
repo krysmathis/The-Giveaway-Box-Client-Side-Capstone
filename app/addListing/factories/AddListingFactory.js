@@ -122,7 +122,6 @@ angular
                         
                         // now map those to the view model of the attribute
                         attr.viewModel = attrVal.map(a=> {
-                            console.log(a)
                             return {
                                 value: a.value,
                                 label: a.value,
