@@ -30,7 +30,6 @@ angular.module("TheGiveawayBoxApp")
     // check if user has a profile set up already or not
     // if not redirect them to the profile set-up
     $scope.init = () => {
-            
             if (masterData.categories.length > 0) {
                 database = masterData.database
                 $scope.getListings(database)
@@ -100,6 +99,20 @@ angular.module("TheGiveawayBoxApp")
             }
         }
     }
+
+
+    /**
+     * MAP
+     */
+
+    $scope.mapOptions = {
+        zoom: 4,
+        center: new google.maps.LatLng(-25.363, 131.044),
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    }
+
+    $scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOptions);
+    
 
     /**
      * View Model for Categories

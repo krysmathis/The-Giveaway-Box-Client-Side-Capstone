@@ -24,6 +24,8 @@ app.filter('categoryMatch', function() {
     
     });
 
+
+
 angular.module("TheGiveawayBoxApp").config(function ($routeProvider) {
     /**
      * Configure all Angular application routes here
