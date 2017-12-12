@@ -1,7 +1,7 @@
 "use strict"
 
 angular.module("TheGiveawayBoxApp")
-.controller("ListingsCtrl", function($scope, $http, $location, FilterFactory, ListingsFactory, AuthFactory, AddListingFactory, MasterDataFactory) {
+.controller("ListingsCtrl", function($scope, $http, $location, FilterFactory, GroupsFactory, ListingsFactory, AuthFactory, AddListingFactory, MasterDataFactory) {
     
     $scope.listings = []
 
@@ -76,6 +76,15 @@ angular.module("TheGiveawayBoxApp")
         keywords: [],
         category: 0
     }
+
+    if (GroupsFactory.userGroups.length === 0) {
+        GroupsFactory.getUsersGroups(AuthFactory.getUser()).then(r =>{
+            $scope.filterGroups = r
+        })
+    } else {
+        $scope.filterGroups = GroupsFactory.userGroups
+    }
+
 
     $scope.filterSearchString = ""
     $scope.filterListings = () => {

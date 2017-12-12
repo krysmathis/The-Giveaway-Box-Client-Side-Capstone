@@ -9,10 +9,8 @@
 <div class="listings__filter-wrapper">
     <h1>FILTER</h1>
     <form name="filterForm">
-        <label>Search</label>
-        <input type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
         <div>
-            <label for="Category">Category</label>
+            <p for="Category">Category</p>
             <select ng-model="selectedCategory" ng-change="getSubCategories()">
                 <option value="">No Category Filter</option>
                 <option value="{{cat.externalId}}" ng-repeat="cat in categories">{{cat.label}}</option>
@@ -21,6 +19,15 @@
                     <option ng-repeat="cat in subCategories">{{cat.label}}</option>
             </select>
         </div>
+        <p>Search</p>
+        <input type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
+        <p>Group Filters</p>
+        <label ng-repeat="group in filterGroups track by $index">
+                <div>
+                    <input type="checkbox" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
+                </div>
+        </label>
+        
         <button type="button" ng-click="filterListings()">FILTER</button>
         <button type="button" ng-click="init()">CLEAR SEARCH</button>
     </form>
