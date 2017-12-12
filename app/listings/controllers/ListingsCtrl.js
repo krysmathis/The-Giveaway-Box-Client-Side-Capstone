@@ -72,8 +72,16 @@ angular.module("TheGiveawayBoxApp")
     /**
      * FILTER
      */
-    $scope.filter = {}
+    $scope.filter = {
+        keywords: [],
+        category: 0
+    }
+
     $scope.filterSearchString = ""
+    $scope.filterListings = () => {
+        $scope.listings = ListingsFactory.listings
+        $scope.listings = FilterFactory.getfilteredListings($scope.listings,$scope.filter)
+    }
 
     $scope.finder = (e) => {
         if (e.key === "Enter"){
@@ -104,6 +112,8 @@ angular.module("TheGiveawayBoxApp")
      */
     $scope.getSubCategories = function() {
         $scope.filter.categoryExternalId = parseInt($scope.selectedCategory)
+        $scope.filter.category = $scope.selectedCategory.label
+        $scope.filterListings()
         const category = $scope.filter.categoryExternalId
         const filteredSubCategories = database.subCategories.filter(s=> s.categoryExtId === parseInt(category))
         $scope.subCategories = filteredSubCategories.map(cat => {

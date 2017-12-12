@@ -11,10 +11,11 @@ app.filter('categoryMatch', function() {
         // Using the angular.forEach method, go through the array of data and perform the operation of figuring out if the language is statically or dynamically typed.
         angular.forEach(input, function(listing) {
     
-          if (listing.category.label.toLowerCase().includes(searchString.toLowerCase()) ||
-        listing.subCategory.label.toLowerCase().includes(searchString.toLowerCase())) {
+        //   if (listing.category.label.toLowerCase().includes(searchString.toLowerCase()) ||
+        // listing.subCategory.label.toLowerCase().includes(searchString.toLowerCase())) {
+        //     out.push(listing)
+        //   }
             out.push(listing)
-          }
     
         })
     

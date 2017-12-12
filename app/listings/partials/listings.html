@@ -21,7 +21,7 @@
                     <option ng-repeat="cat in subCategories">{{cat.label}}</option>
             </select>
         </div>
-        <button type="button">FILTER</button>
+        <button type="button" ng-click="filterListings()">FILTER</button>
         <button type="button" ng-click="init()">CLEAR SEARCH</button>
     </form>
 

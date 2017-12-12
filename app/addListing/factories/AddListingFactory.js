@@ -4,7 +4,6 @@ angular
 .module("TheGiveawayBoxApp")
 .factory("AddListingFactory", function ($http) {
 
-    //const categories = []
 
     return Object.create(null, {
         "categories": {
@@ -75,7 +74,6 @@ angular
             value: function(category) {
                 
                 const filteredSubCategories = this.subCategories.filter(s=> s.categoryExtId === parseInt(category))
-                console.log("getting sub categories")
                 return filteredSubCategories.map(cat => {
                     return {
                         value: cat.externalId,
@@ -149,7 +147,6 @@ angular
                             data[key].id = key
                             return data[key]
                         })
-                        console.log("categories", this.categories);
                         return this.categories
                     })
             },
@@ -168,7 +165,6 @@ angular
                         data[key].id = key
                         return data[key]
                     })
-                    console.log("subcategories", this.subCategories);
                     return this.subCategories
                 })
             },
@@ -186,7 +182,6 @@ angular
                         data[key].id = key
                         return data[key]
                     })
-                    console.log("attributes", this.attributes);
                     return this.attributes
                 }).then(() => 
                     this.getSubCategoryAttributes().then(() => 
@@ -208,7 +203,6 @@ angular
                         data[key].id = key
                         return data[key]
                     })
-                    console.log("subCategoryAttributes", this.subCategoryAttributes);
                     return this.subCategoryAttributes
                 })
             },
@@ -226,7 +220,6 @@ angular
                         data[key].id = key
                         return data[key]
                     })
-                    console.log("attributeValues", this.attributeValues);
                     return this.attributeValues
                 })
             },

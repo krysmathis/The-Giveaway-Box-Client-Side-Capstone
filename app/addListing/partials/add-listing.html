@@ -1,6 +1,4 @@
-<div>
-    HELLO, ADDLISTING</div>
-
+<h1>Add Listings</h1>
 <div ng-controller="AddListingCtrl as filter">
     <button type="button" ng-click="reload()">RELOAD</button>
     <form name='myForm'>
@@ -65,9 +63,9 @@
         </div>
         <h1>Enter Tags</h1>
         <div class="entry__tags">
-            <div ng-repeat="tag in tags track by $index">
+            <span ng-repeat="tag in tags track by $index">
                 <span ng-click="removeTag($event)">{{tag}}</span>
-            </div>
+            </span>
             <input type="text" ng-model="newTag" ng-keydown="updateTags($event)" placeholder="tag" />
         </div>
         

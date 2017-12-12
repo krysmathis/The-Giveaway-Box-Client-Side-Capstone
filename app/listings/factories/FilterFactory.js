@@ -24,8 +24,10 @@ angular
                 listings.forEach(
                     l=>{
                         if (this.searchKeywords(l)) {
+                            this.filteredListings.push(l)
                             return
-                        } else if (this.searchKeywords(l)) {
+                        } else if (this.searchCategories(l,filter)) {
+                            this.filteredListings.push(l)
                             return
                         }
                     })
@@ -36,6 +38,14 @@ angular
             },
             enumerable: true
         },
+
+        "searchCategories": {
+            value: function(item, filter) {
+                return item.category.externalId === filter.categoryExternalId
+            },
+            enumerable: true
+        },
+
         "searchTags": {
             value: function(item, word) {
                 return item.tags.some(t=> t.toLowerCase().includes(word))
@@ -57,29 +67,34 @@ angular
                 let matched = false
                 const l = listing
                 //
-                if (!matched) {
-                    this.filter.keywords.forEach(word => {
-                        // label
-                        // description
-                        // attribute values
-                        // tags
-                        // looking for lowercase
-                        word = word.toLowerCase()
-                        if (
-                            l.label.toLowerCase().includes(word) ||
-                            l.desc.toLowerCase().includes(word)  ||
-                            this.searchTags(l,word) ||
-                            this.searchAttributes(l, word)
-                        ) {
-                                this.filteredListings.push(l)
-                                matched = true
-                                return matched
-                            }
-                    })
-                } else {
-                    // end it here if it matched
+                try {
+                    if (!matched) {
+                        this.filter.keywords.forEach(word => {
+                            // label
+                            // description
+                            // attribute values
+                            // tags
+                            // looking for lowercase
+                            word = word.toLowerCase()
+                            if (
+                                l.label.toLowerCase().includes(word) ||
+                                l.desc.toLowerCase().includes(word)  ||
+                                this.searchTags(l,word) ||
+                                this.searchAttributes(l, word)
+                            ) {
+                                    this.filteredListings.push(l)
+                                    matched = true
+                                    return matched
+                                }
+                        })
+                    } else {
+                        // end it here if it matched
+                        return matched
+                    }
+                } catch (err) {
                     return matched
                 }
+                
                 return matched
             },
             enumerabele: true
