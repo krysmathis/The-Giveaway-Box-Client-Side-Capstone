@@ -1,5 +1,5 @@
     angular.module("TheGiveawayBoxApp")
-.controller("UserCtrl", function($scope, $route, $routeParams, $timeout, $location, ListingsFactory, UserFactory, AuthFactory, InviteFactory, GroupsFactory) {
+.controller("UserCtrl", function($scope, $route, $http, $routeParams, $timeout, $location, ListingsFactory, UserFactory, AuthFactory, InviteFactory, GroupsFactory) {
     
     $scope.listingsInit = () => {
         const user = AuthFactory.getUser()
@@ -134,9 +134,15 @@
         })
     }
 
+    
+    // handling if the user is editing their profile
+    $scope.editingProfile = false
+    $scope.editingUserKey = ""
+    
     $scope.userData = 
         {
-            userId: $routeParams.userId,
+            userId: 0,
+            email: "",
             firstName: "Krys",
             lastName: "Mathis",
             address: "1710 Long Ave",
@@ -148,13 +154,62 @@
             long: 0,
             aboutMe: "designer, builder",   
             image: ""
-        },
-    
+        }
+
+    $scope.createProfileInit = () => {
+        //get the data from the database
+        const user = AuthFactory.getUser()
+        
+        if (user) {
+            UserFactory.singleUser(user.uid).then(r=> {
+                $scope.editingUserKey = r[0].id
+                delete r.id
+                $scope.editingProfile = true
+                $scope.userData = r[0]
+                const indexOfState = $scope.statesList.findIndex(i=> i.abbreviation === r[0].state)
+                $scope.selectedState = $scope.statesList[indexOfState]
+                //$scope.statesList[0]
+                
+
+            })
+        }
+    }
     
     $scope.addUsers = () => {
-        UserFactory.add(user)
-    }
 
+        const user = AuthFactory.getUser()
+        $scope.userData.userId = user.uid,
+        $scope.userData.email = user.email
+
+        //format string for the date
+        let address = $scope.userData.address.split(" ").join("+")
+        address = address + "," + $scope.userData.city + "," + $scope.userData.state
+        console.log(address)
+
+        $http({
+            url: `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_API_KEY}`
+        }).then(r=> {
+            const location = r.data.results[0].geometry.location
+            $scope.userData.lat = location.lat
+            $scope.userData.long = location.lng
+            
+            console.log(r.data.results[0].geometry.location)
+            
+            if (!$scope.editingProfile) {
+                // Now upload the user data
+                UserFactory.add($scope.userData).then(r=> {
+                    console.log("user added")
+                })
+            } else {
+                delete $scope.userData.id
+                UserFactory.update($scope.userData, $scope.editingUserKey).then(r=> {
+                    console.log("user updated")
+                })
+            }
+        })
+        
+    }
+    // $scope.selectedState = $scope.statesList[0]
     $scope.statesList = [
         {
             "name": "Alabama",

@@ -24,15 +24,6 @@ angular.module("TheGiveawayBoxApp")
         }
     })
 
-    const updateNavBar = () => {
-        const navBar = document.querySelector(".nav__list")
-        if (navBar.hasChildNodes()){
-            const li = document.createElement("li")
-            li.innerHTML = currentUserData.email
-            navBar.appendChild(li)
-        }
-
-    }
 
     return Object.create(null, {
         currentUser: {
@@ -73,5 +64,6 @@ angular.module("TheGiveawayBoxApp")
                             user.password
                         )
         }
+        
     })
 })

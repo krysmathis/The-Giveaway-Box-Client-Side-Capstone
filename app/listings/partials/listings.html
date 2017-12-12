@@ -6,26 +6,48 @@
         <circle class="progress" r="40" cx="50" cy="50" fill="none"></circle>
     </g>
 </svg>
+<div class="listings__filter-wrapper">
+    <h1>FILTER</h1>
+    <form name="filterForm">
+        <label>Search</label>
+        <input type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
+        <div>
+            <label for="Category">Category</label>
+            <select ng-model="selectedCategory" ng-change="getSubCategories()">
+                <option value="">No Category Filter</option>
+                <option value="{{cat.externalId}}" ng-repeat="cat in categories">{{cat.label}}</option>
+            </select>
+            <select ng-model="selectedSubCategory" ng-change="getAttributesFilter()">
+                    <option ng-repeat="cat in subCategories">{{cat.label}}</option>
+            </select>
+        </div>
+        <button type="button">FILTER</button>
+        <button type="button" ng-click="init()">CLEAR SEARCH</button>
+    </form>
 
-<div ng-repeat="item in listings | filter: {requestedDate: 0}:true" ng-cloak>
-    <div>
-        <h3>{{item.label}}</h3>
-        <div>{{item.desc}}</div>
+</div>
+<div class="listings__listings-wrapper">
+    <div ng-repeat="item in listings | filter: {requestedDate: 0}:true" ng-cloak>
         <div>
-            <img src="{{item.image}}" style="width:150;height:auto" />
+            <h3>{{item.label}}</h3>
+            <div>{{item.desc}}</div>
+            <div>{{item.userId}}</div>
+            <div>
+                <img src="{{item.image}}" style="width:150;height:auto" />
+            </div>
+            <div>
+                <span>{{item.category.label}} > {{item.subCategory.label}}</span>
+            </div>
+            <h3>Attributes</h3>
+            <div ng-repeat="attr in item.attributes">
+                {{attr.attributeName}}: {{attr.value}}
+            </div>
+            <div class="listing__tag-container">
+                <span ng-repeat="tag in item.tags" class="listing__tag chip">
+                    {{tag.tag}}
+                </span>
+            </div>
+            <button type="button" id="{{item.id}}"ng-click="purchase($event)">I want this one</button>
         </div>
-        <div>
-            <span>{{item.category.label}} > {{item.subCategory.label}}</span>
-        </div>
-        <h3>Attributes</h3>
-        <div ng-repeat="attr in item.attributes">
-            {{attr.attributeName}}: {{attr.value}}
-        </div>
-        <div class="listing__tag-container">
-            <span ng-repeat="tag in item.tags" class="listing__tag chip">
-                {{tag.tag}}
-            </span>
-        </div>
-        <button type="button" id="{{item.id}}"ng-click="purchase($event)">I want this one</button>
     </div>
 </div>

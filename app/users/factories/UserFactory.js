@@ -32,7 +32,13 @@ angular
             value: function (key) {
                 return $http({
                     method: "GET",
-                    url: `https://${firebasePath}/users/${key}/.json`
+                    url: `https://${firebasePath}/users/.json?orderBy="userId"&equalTo="${key}"`
+                }).then(r=> {
+                    const data = r.data
+                    return Object.keys(data).map(key => {
+                        data[key].id = key
+                        return data[key]
+                    })
                 })
             }
         },
@@ -46,6 +52,19 @@ angular
                         method: "POST",
                         url: `https://${firebasePath}/users/.json?auth=${idToken}`,
                         data: user
+                    })
+                })
+            }
+        },
+        "update": {
+            value: function (record, id) {
+                return firebase.auth().currentUser.getIdToken(true)
+                .then(idToken => {
+                    // add the userId as a property
+                    return $http({
+                        method: "PUT",
+                        url: `https://${firebasePath}/users/${id}.json?auth=${idToken}`,
+                        data: record
                     })
                 })
             }

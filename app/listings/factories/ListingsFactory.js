@@ -63,16 +63,16 @@ angular
                         })
 
                         const activeGroups = this.userGroups.filter(g=> user.uid === g.userId)
-                        const approvedUsers = []
+                        this.approvedUsers = []
                         activeGroups.forEach(g=> {
                             this.userGroups.filter(ug=> ug.groupId === g.groupId)
                             .forEach(ug => {
-                                if (approvedUsers.indexOf(ug.userId) == -1) {
-                                    approvedUsers.push(ug.userId);
+                                if (this.approvedUsers.indexOf(ug.userId) == -1) {
+                                    this.approvedUsers.push(ug.userId);
                                 }
                             })
                         })
-                    return approvedUsers
+                    return this.approvedUsers
                 })
             },
             enumerable: true
@@ -146,6 +146,7 @@ angular
         },
         "getListings": {
             value: function(database) {
+            
                 return $http({
                     method: "GET",
                     url: `https://${firebasePath}/itemListings/.json`
@@ -153,14 +154,20 @@ angular
                 }).then(response => {
                     
                     const data = response.data
-                    
-                        // Make an array of objects so we can use filters
-                        this.listings = Object.keys(data).map(key => {
+                    // Make an array of objects so we can use filters
+                    const _listings =  Object.keys(data).map(key => {
                             data[key].id = key
                             return data[key]    
                         })
+                    
+                    if (this.approvedUsers.length > 0) {
+                        this.listings = _listings.filter(l=> {
+                            return this.approvedUsers.findIndex(x=> x === l.userId) > -1
+                        })
+                    } else {
+                        this.listings = _listings
+                    }
 
-                        // here we need to filter it to the user's approved groups
                     return $http({
                         method: "GET",
                         url: `https://${firebasePath}/itemAttributes/.json`

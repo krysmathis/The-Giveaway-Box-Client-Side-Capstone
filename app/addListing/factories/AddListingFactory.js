@@ -237,7 +237,7 @@ angular
                 const stamp = Date.now()
                 return firebase.storage().ref().child("images/"+ stamp + file.name).put(file).then(result => {
                     return firebase.storage().ref().child("images/"+ stamp + file.name).getDownloadURL()
-                        //return the url of the image you uploade
+                    //return the url of the image you uploaded
                 })
             }
         },
