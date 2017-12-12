@@ -97,8 +97,17 @@ angular
                 
                 return matched
             },
-            enumerabele: true
-        }
+            enumerable: true
+        },
+        "usersWithinBounds": {
+            value: function(bounds,listings) {
+                return listings.filter( l => {
+                    const latLng = {lat: l.user.lat, lng: l.user.long}
+                    return bounds.contains(latLng)
+                })  
+            },
+            enumerable: true
+        },
       
     })
 
