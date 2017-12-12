@@ -1,4 +1,4 @@
-<div ng-controller="UserCtrl" data-ng-init="listingsInit()">
+<div ng-controller="UserCtrl">
     <h1>Completed Listings</h1>
     <div ng-repeat="listing in user.listings | filter: greaterThan('purchaseCompletedOn', 0)">
         <div>{{listing.label}}</div>

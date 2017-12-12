@@ -5,6 +5,11 @@ angular
 .factory("InviteFactory", function ($http) {
 
     return Object.create(null, {
+        "inviteCode": {
+            value: "",
+            enumerable: true,
+            writable: true
+        },
         "getInviteCode": {
             value: function (request) {
                 return firebase.auth().currentUser.getIdToken(true)
@@ -16,6 +21,7 @@ angular
                             data: request
                         }).then(r => {
                             const id = r.data.name
+                            this.inviteCode = id
                             return id
                         })
             })

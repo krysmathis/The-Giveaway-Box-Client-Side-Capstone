@@ -28,7 +28,11 @@ angular
             enumerable: true,
             writable: true
         },
-
+        "userGroups": {
+            value: [],
+            enumerable: true,
+            writable: true
+        },
         // create the initial list of groups
         "seedGroups": {
             value: function() {
@@ -89,7 +93,7 @@ angular
                     url: `https://${firebasePath}/userGroups/.json?orderBy="userId"&equalTo="${userId.uid}"`
                 }).then(r => {
                     const data = r.data
-                    return Object.keys(data).map(key => {
+                    this.userGroups = Object.keys(data).map(key => {
                         const groupObj = {}
                         groupObj.name = data[key].groupName,
                         groupObj.groupId = data[key].groupId,
@@ -97,6 +101,7 @@ angular
                         //data[key].id = key
                         return groupObj
                     })
+                    return this.userGroups
                 })
             },
             enumerable: true

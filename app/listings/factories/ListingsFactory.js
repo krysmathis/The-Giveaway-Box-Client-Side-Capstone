@@ -22,7 +22,6 @@ angular
             enumerable: true,
             writable: true
         },
-
         "attributes": {
             value: [],
             enumerable: true,
@@ -86,6 +85,8 @@ angular
                     const item = response.data
                     // update item values based on what we're modifying
                     item.buyer = user.uid
+                    // update the cached listings
+                    this.listings.find(l=> l.id === listingId).buyer = user.uid
                     item.buyerEmail = user.name
                     item.requestedDate = Date.now()
 
@@ -97,6 +98,8 @@ angular
                                 data: item
                             })
                         })
+
+                    t
                 })
             },
             enumerable: true
@@ -168,34 +171,41 @@ angular
                         this.listings = _listings
                     }
 
-                    return $http({
-                        method: "GET",
-                        url: `https://${firebasePath}/itemAttributes/.json`
-                    
-                    }).then(r=> {
-                        const data = r.data
-                            
-                            //Make an array of objects so we can use filters
-                            this.itemAttributes = Object.keys(data).map(key => {
-                                data[key].id = key
-                                return data[key]
-                            })
+                    this.listings.map(l=> {
+                        l.user = database.users.find(u=> u.userId === l.userId)
+                        l.category = database.categories.find(c=> l.categoryExternalId === c.externalId)
+                        l.subCategory = database.subCategories.find(s=> l.subCategoryExternalId === s.externalId)
+                        return l
+                    })
 
-                            return this.getTags().then(result => {
-                                console.log("got tags")
-                                // return the enriched item display
-                                this.listings.forEach(item => {
+                    return this.listings
+                    // return $http({
+                    //     method: "GET",
+                    //     url: `https://${firebasePath}/itemAttributes/.json`
+                    
+                    // }).then(r=> {
+                    //     const data = r.data
+                            
+                    //         //Make an array of objects so we can use filters
+                    //         this.itemAttributes = Object.keys(data).map(key => {
+                    //             data[key].id = key
+                    //             return data[key]
+                    //         })
+
+                    //         return this.getTags().then(result => {
+                    //             console.log("got tags")
+                    //             // return the enriched item display
+                    //             this.listings.forEach(item => {
                                     
-                                    item.category = database.categories.find(c=> item.categoryExternalId === c.externalId)
-                                    item.subCategory = database.subCategories.find(s=> item.subCategoryExternalId === s.externalId)
-                                    // create the attributes
-                                    item.attributes = this.itemAttributes.filter(a=> a.itemListingId === item.id)
-                                    item = this.addAttributeLabels(item, database)
-                                    item = this.addTags(item, database)
-                                })
-                            return this.listings
-                            })
-                        })
+                    //                 
+                    //                 // create the attributes
+                    //                 item.attributes = this.itemAttributes.filter(a=> a.itemListingId === item.id)
+                    //                 item = this.addAttributeLabels(item, database)
+                    //                 item = this.addTags(item, database)
+                    //             })
+                    //         return this.listings
+                    //         })
+                    //     })
                          
                     })
             },

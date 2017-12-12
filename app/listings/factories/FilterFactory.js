@@ -18,6 +18,8 @@ angular
         "getfilteredListings": {
             value: function(listings,filter) {
                 this.filter = filter
+                // clear the filtered listings before proceeding
+                this.filteredListings = []
                 //go through keywords
                 listings.forEach(
                     l=>{
@@ -34,6 +36,22 @@ angular
             },
             enumerable: true
         },
+        "searchTags": {
+            value: function(item, word) {
+                return item.tags.some(t=> t.toLowerCase().includes(word))
+            },
+            enumerable: true
+        },
+        "searchAttributes": {
+            value: function(item, word) {
+                if (item.hasOwnProperty("attributes")){
+                    return item.attributes.some(a => a.value.toLowerCase().includes(word))
+                } else {
+                    return false
+                }
+            },
+            enumerable: true
+        },
         "searchKeywords": {
             value: function (listing){
                 let matched = false
@@ -41,8 +59,18 @@ angular
                 //
                 if (!matched) {
                     this.filter.keywords.forEach(word => {
-                        if (l.label.includes(word) ||
-                            l.desc.includes(word)) {
+                        // label
+                        // description
+                        // attribute values
+                        // tags
+                        // looking for lowercase
+                        word = word.toLowerCase()
+                        if (
+                            l.label.toLowerCase().includes(word) ||
+                            l.desc.toLowerCase().includes(word)  ||
+                            this.searchTags(l,word) ||
+                            this.searchAttributes(l, word)
+                        ) {
                                 this.filteredListings.push(l)
                                 matched = true
                                 return matched

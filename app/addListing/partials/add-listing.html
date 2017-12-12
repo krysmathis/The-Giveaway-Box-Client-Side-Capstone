@@ -59,7 +59,7 @@
             <div ng-if='field.data_type === "select"'>
                 <label>{{field.label}}</label>
                 <select ng-model='field.value'>
-                    <option ng-repeat='m in field.viewModel' value="{{m.value}}" ng-selected='m.isSelected'>{{m.label}}</option>
+                    <option ng-repeat='m in field.viewModel' value="{{m.value}}">{{m.value}}</option>
                 </select>
             </div>
         </div>

@@ -1,11 +1,13 @@
     angular.module("TheGiveawayBoxApp")
 .controller("UserCtrl", function($scope, $route, $http, $routeParams, $timeout, $location, ListingsFactory, UserFactory, AuthFactory, InviteFactory, GroupsFactory) {
     
+
+    console.log("User Controller is Initiated")
+
     $scope.listingsInit = () => {
         const user = AuthFactory.getUser()
         ListingsFactory.getCurrentUserListings(user).then(r=> {
             $scope.user.listings = r
-            
         })
     }
 
@@ -42,15 +44,15 @@
 
     $scope.refresh = () => $scope.groupsInit()
 
-    $scope.groups = []
+    // $scope.groups = []
 
-    $scope.groupsInit = () => {
-        GroupsFactory.getUsersGroups(AuthFactory.getUser()).then(r=> {
-            $scope.groups = []
-            r.forEach(val => $scope.groups.push(val))
-            console.log("init groups: ", $scope.groups)
-        })
-    }
+    // $scope.groupsInit = () => {
+    //     GroupsFactory.getUsersGroups(AuthFactory.getUser()).then(r=> {
+    //         $scope.groups = []
+    //         r.forEach(val => $scope.groups.push(val))
+    //         console.log("init groups: ", $scope.groups)
+    //     })
+    // }
 
     /**
      * INVITE NEW USERS

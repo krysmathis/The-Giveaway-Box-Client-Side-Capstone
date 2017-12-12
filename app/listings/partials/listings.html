@@ -27,25 +27,28 @@
 
 </div>
 <div class="listings__listings-wrapper">
-    <div ng-repeat="item in listings | filter: {requestedDate: 0}:true" ng-cloak>
+    <div ng-repeat="item in listings | filter: filterSearchString | categoryMatch: filterSearchString | filter: {requestedDate: 0}:true" ng-cloak>
         <div>
             <h3>{{item.label}}</h3>
             <div>{{item.desc}}</div>
             <div>{{item.userId}}</div>
             <div>
-                <img src="{{item.image}}" style="width:150;height:auto" />
+                <img src="{{item.image}}" style="width:150;height:auto"/>
             </div>
             <div>
                 <span>{{item.category.label}} > {{item.subCategory.label}}</span>
             </div>
             <h3>Attributes</h3>
             <div ng-repeat="attr in item.attributes">
-                {{attr.attributeName}}: {{attr.value}}
+                {{attr.label}}: {{attr.value}}
             </div>
             <div class="listing__tag-container">
                 <span ng-repeat="tag in item.tags" class="listing__tag chip">
-                    {{tag.tag}}
+                    {{tag}}
                 </span>
+            </div>
+            <div>
+                <span>{{item.user.email}}</span>
             </div>
             <button type="button" id="{{item.id}}"ng-click="purchase($event)">I want this one</button>
         </div>

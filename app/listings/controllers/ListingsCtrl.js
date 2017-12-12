@@ -41,6 +41,7 @@ angular.module("TheGiveawayBoxApp")
                     $scope.categories = database.categories
                 })                  
             }
+            console.log("listings: ", ListingsFactory.listings)
     } 
 
     /**

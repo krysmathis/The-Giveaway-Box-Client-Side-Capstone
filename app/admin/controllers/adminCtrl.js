@@ -191,11 +191,31 @@ $scope.subCategories = [
 $scope.attributes = [
     {
         externalId: 1,
-        label: "Price",
-        desc: "price paid for item",
-        inputType: "text",
-        inclusive: true,
-        valueType: 2
+        label: "Condition",
+        desc: "Item Condition",
+        inputType: "select",
+        inclusive: false,
+        valueType: 0,
+        viewModel: [
+            {
+                label: "got a lot of use, needs repair",
+                value: "got a lot of use, needs repair",
+                isSelected: false
+            },
+            {
+                isSelected: false,
+                label: "fair",
+                value: "fair"
+            },
+            // {
+            //     sequence: 3,
+            //     value: "good condition"
+            // },
+            // {
+            //     sequence: 4,
+            //     value: "new or like new"
+            // },
+        ]
     },
     {   externalId: 2,
         label: "Size",
@@ -245,6 +265,11 @@ $scope.attributes = [
 ]
 
 $scope.attributeValueList = [
+    {
+        attributeExternalId: 1,
+        sequence: 1,
+        value: "hello"
+    },
     {
         attributeExternalId: 2,
         sequence: 1,
@@ -386,10 +411,7 @@ $scope.subCategoryAttributes = [
         subCategoryExternalId: 8001,
         attributeExternalId: 3
     },
-    {
-        subCategoryExternalId: 8001,
-        attributeExternalId: 1
-    },
+
 ]
 
 

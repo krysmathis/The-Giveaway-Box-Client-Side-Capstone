@@ -103,7 +103,7 @@ angular
                         externalId: attr.externalId,
                         desc: attr.desc,
                         value: "",
-                        viewModel: []
+                        viewModel: attr.viewModel
                     }
                 })
                 this.addValuesToAttributeView();
@@ -112,9 +112,11 @@ angular
         },
         "addValuesToAttributeView": {
             value: function() {
-
+                //transition code once the attribute data model is up to date we can lose this  
                 this.attributeView.forEach(attr => {
-                    if (attr.data_type === "select") {
+                    const hasAttributeValues = attr.viewModel ? true : false
+                    if (attr.data_type === "select" && !hasAttributeValues) {
+                        
                         // get the sorted values that match that attribute
                         let attrVal = this.attributeValues.filter(
                             a=> a.attributeExternalId === attr.externalId
@@ -123,9 +125,7 @@ angular
                         // now map those to the view model of the attribute
                         attr.viewModel = attrVal.map(a=> {
                             return {
-                                value: a.value,
-                                label: a.value,
-                                isSelected: false,
+                                value: a.value
                             }
                         })
                     }
@@ -258,7 +258,16 @@ angular
                     item.buyerEmail = ""
                     item.requestedDate = 0
                     item.purchaseCompletedOn = 0
+                    item.attributes = attributes.map(a=>{
+                        return {
+                            label: a.label,
+                            value_type: a.value_type,
+                            value: a.value
+                        }
+                    })
+                    item.tags = tags
 
+                    // keep this as a backup until everything has been transitioned over
                     $http({
                         method: "POST",
                         url: `https://${firebasePath}/itemListings/.json?auth=${idToken}`,

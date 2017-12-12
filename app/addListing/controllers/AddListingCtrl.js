@@ -173,7 +173,7 @@ angular.module("TheGiveawayBoxApp")
             });
         } else {    
             console.log("pulling from cache")
-            $scope.attributeModel =AddListingFactory.getAttributeView($scope.item.subCategoryExternalId)
+            $scope.attributeModel = AddListingFactory.getAttributeView($scope.item.subCategoryExternalId)
         }
         
     }

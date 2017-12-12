@@ -11,12 +11,18 @@ angular
             enumerable: true,
             writable: true
         },
+        "users": {
+            value: [],
+            enumerable: true,
+            writable: true
+        },
         "database": {
             get: function() {
                 return { 
                     categories: this.categories,
                     subCategories: this.subCategories,
-                    attributes: this.attributes
+                    attributes: this.attributes,
+                    users: this.users
                 }
             }
         },
@@ -50,7 +56,10 @@ angular
                         this.subCategories = subs
                         return this.getAttributes().then(attrs =>{
                             this.attributes = attrs
-                        }) 
+                            return this.getUsers().then(users => {
+                                this.users = users
+                            })
+                        })
                     })
                 })
                                  
@@ -75,6 +84,23 @@ angular
                     })
             },
         },
+        "getUsers": {
+            value: function () {
+                return $http({
+                    method: "GET",
+                    url: `https://${firebasePath}/users/.json`
+                }).then(response => {
+                    const data = response.data
+
+                    // Make an array of objects so we can use filters
+                    return Object.keys(data).map(key => {
+                        data[key].id = key
+                        return data[key]
+                    })
+                
+                })
+        },
+    },
 
         "getSubCategories": {
             value: function () {
