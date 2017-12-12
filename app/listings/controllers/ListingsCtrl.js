@@ -98,6 +98,9 @@ angular.module("TheGiveawayBoxApp")
     $scope.selectedSubCategory = {}
     $scope.subCategories = []
 
+    /**
+     * View model for subcategories
+     */
     $scope.getSubCategories = function() {
         $scope.filter.categoryExternalId = parseInt($scope.selectedCategory)
         const category = $scope.filter.categoryExternalId
