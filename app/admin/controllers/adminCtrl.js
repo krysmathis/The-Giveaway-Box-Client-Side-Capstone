@@ -20,7 +20,7 @@ $scope.addSubCategories = () => {
 }
 
 $scope.addAttributes = () => {
-    $scope.attributes.forEach(attr => {
+    adminFactory.attributes.forEach(attr => {
         adminFactory.addAttributes(attr)
     })
 }
@@ -183,86 +183,21 @@ $scope.subCategories = [
     {
         externalId: 8001,
         categoryExtId: 800,
-        label: "Strollers"
+        label: "Umbrella"
     },
+    {
+        externalId: 8002,
+        categoryExtId: 800,
+        label: "Travel System"
+    },
+    {
+        externalId: 8003,
+        categoryExtId: 800,
+        label: "Jogger"
+    }
 ]
 
 // valueType 0 = text, 1 = num, 2 = dec
-$scope.attributes = [
-    {
-        externalId: 1,
-        label: "Condition",
-        desc: "Item Condition",
-        inputType: "select",
-        inclusive: false,
-        valueType: 0,
-        viewModel: [
-            {
-                label: "got a lot of use, needs repair",
-                value: "got a lot of use, needs repair",
-                isSelected: false
-            },
-            {
-                isSelected: false,
-                label: "fair",
-                value: "fair"
-            },
-            // {
-            //     sequence: 3,
-            //     value: "good condition"
-            // },
-            // {
-            //     sequence: 4,
-            //     value: "new or like new"
-            // },
-        ]
-    },
-    {   externalId: 2,
-        label: "Size",
-        desc: "Size based on age",
-        inputType: "select",
-        inclusive: false,
-        valueType: 0
-    },
-    {   externalId: 3,
-        label: "Brand",
-        desc: "Stroller brands",
-        inputType: "select",
-        inclusive: false,
-        valueType: 0
-    },
-    {   externalId: 4,
-        label: "Age",
-        desc: "Age groups",
-        inputType: "select",
-        inclusive: true,
-        valueType: 0
-    },
-    {
-        externalId: 5,
-        label: "Stroller Style",
-        desc: "Style of stroller",
-        inputType: "select",
-        inclusive: true,
-        valueType: 0
-    },
-    {
-        externalId: 6,
-        label: "Child Weight",
-        desc: "List of child weights",
-        inputType: "select",
-        inclusive: true,
-        valueType: 0
-    },
-    {
-        externalId: 7,
-        label: "Color",
-        desc: "Primary color",
-        inputType: "select",
-        inclusive: true,
-        valueType: 0
-    }
-]
 
 $scope.attributeValueList = [
     {
@@ -270,41 +205,7 @@ $scope.attributeValueList = [
         sequence: 1,
         value: "hello"
     },
-    {
-        attributeExternalId: 2,
-        sequence: 1,
-        value: "birth-12 months"
-    },
-    {
-        attributeExternalId: 2,
-        sequence: 2,
-        value: "12-24 months"
-    },
-    {
-        attributeExternalId: 2,
-        sequence: 3,
-        value: "2 years"
-    },
-    {
-        attributeExternalId: 2,
-        sequence: 4,
-        value: "3-4 years"
-    },
-    {
-        attributeExternalId: 2,
-        sequence: 5,
-        value: "5-7 years"
-    },
-    {
-        attributeExternalId: 2,
-        sequence: 6,
-        value: "8-11 years"
-    },
-    {
-        attributeExternalId: 2,
-        sequence: 7,
-        value: "12-14 years"
-    },
+    
     {
         attributeExternalId: 4,
         sequence: 1,
@@ -410,6 +311,34 @@ $scope.subCategoryAttributes = [
     {
         subCategoryExternalId: 8001,
         attributeExternalId: 3
+    },
+    {
+        subCategoryExternalId: 8002,
+        attributeExternalId: 1
+    },
+    {
+        subCategoryExternalId: 8002,
+        attributeExternalId: 2
+    },
+    {
+        subCategoryExternalId: 8002,
+        attributeExternalId: 3
+    },
+    {
+        subCategoryExternalId: 8003,
+        attributeExternalId: 1
+    },
+    {
+        subCategoryExternalId: 8003,
+        attributeExternalId: 2
+    },
+    {
+        subCategoryExternalId: 8003,
+        attributeExternalId: 3
+    },
+    {
+        subCategoryExternalId: 8003,
+        attributeExternalId: 9
     },
 
 ]

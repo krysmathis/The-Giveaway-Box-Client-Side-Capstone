@@ -41,7 +41,11 @@ angular
 
         "searchCategories": {
             value: function(item, filter) {
-                return item.category.externalId === filter.categoryExternalId
+                if (filter.categoryExternalId > 0){
+                    return item.category.externalId === filter.categoryExternalId
+                } else {
+                    return item
+                }
             },
             enumerable: true
         },

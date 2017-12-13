@@ -17,7 +17,7 @@ body {
   position: relative;
   background-color: #FAFAFA;
   text-align: left;
-  width: 800px;
+  width: 90%;
   margin: 0 auto;
   padding-bottom: var(--nav-footer-height);
   min-height: calc(100vh - (var(--nav-footer-height) * 2));
@@ -51,6 +51,7 @@ body {
 }
 
 .nav__list {
+  list-style: none;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

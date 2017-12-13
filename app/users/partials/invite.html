@@ -1,7 +1,7 @@
 <div ng-controller="InviteCtrl" ng-init="groupsInit()">
     <h1>Invite new users</h1>
-    <p>Generate an authentication code and send it to your friend</p>
-    <button type="button" ng-click="refresh()">REFRESH</button>
+    <p>Generate an authentication code and send it to your friends</p>
+    <p>Select groups to include in the invite:</p>
     <label ng-repeat="group in groups track by $index">
         <div>
             <input type="checkbox" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
@@ -9,9 +9,9 @@
     </label>
     <form name="authorizationForm">
         <button type="button" ng-click="inviteUser()">Generate Code</button>
+        <span>{{inviteCode}}</span>
         <!-- for debugging
         <button type="button" ng-click="seedGroups()">Seed Groups</button> -->
-        <span id="invite__code">{{inviteCode}}</span>
         <span ng-show="authorizationForm.generateCode.$touched && myForm.generateCode.$invalid">The name is required.</span>
     </form>
 </div>

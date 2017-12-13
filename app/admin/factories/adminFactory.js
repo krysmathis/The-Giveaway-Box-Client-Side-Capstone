@@ -94,6 +94,135 @@ angular
                 })
             }
         },
+        "attributes": {
+            value: [
+            {
+                externalId: 1,
+                label: "Condition",
+                desc: "Item Condition",
+                inputType: "select",
+                inclusive: false,
+                valueType: 0,
+                viewModel: [
+                    {value: "OK"},
+                    {value: "Still in good use"},
+                    {value: "Great - very little use"},
+                    {value: "New - never used"},
+                ]
+            },
+            {   externalId: 2,
+                label: "Size",
+                desc: "Size based on age",
+                inputType: "select",
+                inclusive: false,
+                valueType: 0,
+                viewModel: [
+                    {value: "birth-12 months"},
+                    {value: "12-24 months"},
+                    {value: "2 years"},
+                    {value: "3-4 years"},
+                    {value: "5-7 years"},
+                    { value: "8-11 years"},
+                    { value: "12-14 years"},
+                ]
+            },
+            {   externalId: 3,
+                label: "Brand",
+                desc: "Stroller brands",
+                inputType: "select",
+                inclusive: false,
+                valueType: 0,
+                viewModel: [
+                    {value: "Graco"},
+                    {value: "Baby Jogger"},
+                    {value: "Bugaboo"},
+                    {value: "Chicco"},
+                    {value: "Maclaren"},
+                    {value: "Stokke"},
+                    {value: "Unbranded or Other"},
+                ]
+            },
+            {   externalId: 4,
+                label: "Age",
+                desc: "Age groups",
+                inputType: "select",
+                inclusive: true,
+                valueType: 0,
+                viewModel: [
+                    {value: "birth-12 months"},
+                    {value: "12-24 months"},
+                    {value: "2 years"},
+                    {value: "3-4 years"},
+                    {value: "5-7 years"},
+                    { value: "8-11 years"},
+                    { value: "12-14 years"},
+                ]
+            },
+            {
+                externalId: 6,
+                label: "Child Weight",
+                desc: "List of child weights",
+                inputType: "select",
+                inclusive: true,
+                valueType: 0,
+                viewModel: [
+                    {value: "0-3 lbs"},
+                    {value: "4-20 lbs"},
+                    {value: "21-30 lbs"},
+                    {value: "31-40 lbs"},
+                    {value: "41-60 lbs"},
+                    {value: "61-80 lbs"},
+                    {value: "61-80 lbs"},
+                    {value: "81-100 lbs"},
+                ]
+            },
+            {
+                externalId: 7,
+                label: "Color",
+                desc: "Primary color",
+                inputType: "select",
+                inclusive: true,
+                valueType: 0,
+                viewModel: [
+                    {value: "black"},
+                    {value: "white"},
+                    {value: "red"},
+                    {value: "orange"},
+                    {value: "yellow"},
+                    {value: "green"},
+                    {value: "blue"},
+                    {value: "purble"},
+                    {value: "all the colors!"},
+                ]
+            },
+            {   externalId: 8,
+                label: "Stroller Size",
+                desc: "Size based on age",
+                inputType: "select",
+                inclusive: false,
+                valueType: 0,
+                viewModel: [
+                    {value: "birth-12 months"},
+                    {value: "12-24 months"},
+                    {value: "2 years & up"},
+                ]
+            },
+            {   externalId: 9,
+                label: "Stroller Speed",
+                desc: "Rough estimate of stroller speed",
+                inputType: "select",
+                inclusive: false,
+                valueType: 0,
+                viewModel: [
+                    {value: "Pokey"},
+                    {value: "Take some effort"},
+                    {value: "Speedy"},
+                ]
+            },
+        ],
+            enumerable: true,
+            writable: true
+        }
 
         //subCategoryAttributes
     // End of object.create    

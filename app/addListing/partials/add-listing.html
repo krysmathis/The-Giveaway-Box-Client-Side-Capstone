@@ -4,6 +4,22 @@
     <form name='myForm'>
         <h1>Base Data</h1>
         <div>
+                <label for="Category">Category</label>
+                    <select ng-model="selectedCategory" ng-change="getSubCategories()" data-ng-options="cat as cat.label for cat in categories track by cat.value">
+                </select>
+            </div>
+            <div>
+                <label>SubCategory</label>
+                <!-- <span ng-if="inUpdateMode">
+                        {{selectedCategory}}
+                </span> -->
+                <!-- <span ng-if="!inUpdateMode"> -->
+                    <select ng-model="selectedSubCategory" ng-change="getAttributes()" data-ng-options="cat as cat.label for cat in subCategories track by cat.value">
+                        <option ng-repeat="cat in subCategories" value="{{cat.value}}" ng-selected='cat.isSelected'>{{cat.label}}</option>
+                    </select>
+                <!-- </span> -->
+            </div>
+        <div>
             <label>Item Label</label>
             <input type="text" ng-model="item.label" placeholder="heading for your item" value="Baby stroller" required>
             
@@ -14,31 +30,18 @@
             <!-- <input type="text" ng-model="item.desc" placeholder="description" value="Baby stroller"> -->
         </div>
         <div>
-            <label for="Retail Price">Retail Price</label>
-            <input type="text" ng-model="item.price" placeholder="original retail" value="1.00">
+            <label for="Retail Price">Asking Price (if any)</label>
+            <input type="text" ng-model="item.price" placeholder="Leave blank if this is a donation" value="1.00">
         </div>
         <div>
             <label for="Image">Image</label>
+            <div class="addListing___image">
+                <img ng-src="{{item.image}}" style="width:150px;height:auto;"/>
+            </div>
             <input id="addListing__image" type="file" accept=".jpg,.png,.gif" ng-model="item.image" ng-change="saveImage()">
             <button type="button" ng-click="saveImage()">Upload</button>
-            <img ng-src="{{item.image}}" style="width:150px;height:auto;"/>
         </div>
-        <div>
-            <label for="Category">Category</label>
-                <select ng-model="selectedCategory" ng-change="getSubCategories()" data-ng-options="cat as cat.label for cat in categories track by cat.value">
-            </select>
-        </div>
-        <div>
-            <label>SubCategory</label>
-            <!-- <span ng-if="inUpdateMode">
-                    {{selectedCategory}}
-            </span> -->
-            <!-- <span ng-if="!inUpdateMode"> -->
-                <select ng-model="selectedSubCategory" ng-change="getAttributes()" data-ng-options="cat as cat.label for cat in subCategories track by cat.value">
-                    <option ng-repeat="cat in subCategories" value="{{cat.value}}" ng-selected='cat.isSelected'>{{cat.label}}</option>
-                </select>
-            <!-- </span> -->
-        </div>
+        
         <h1>Attributes</h1>
         <div ng-repeat="field in attributeModel" ng-form='subForm'>
             <div class="input-field inline" ng-if='field.data_type == "text"'>

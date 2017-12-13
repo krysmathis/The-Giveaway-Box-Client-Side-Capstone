@@ -6,60 +6,65 @@
         <circle class="progress" r="40" cx="50" cy="50" fill="none"></circle>
     </g>
 </svg>
-<div class="listings__filter-wrapper">
-    <h1>FILTER</h1>
-    <form name="filterForm">
-        <div>
-            <p for="Category">Category</p>
-            <select ng-model="selectedCategory" ng-change="getSubCategories()">
-                <option value="">No Category Filter</option>
-                <option value="{{cat.externalId}}" ng-repeat="cat in categories">{{cat.label}}</option>
-            </select>
-            <select ng-model="selectedSubCategory" ng-change="getAttributesFilter()">
+<div class="listings__main">
+    <div class="listings__filter-wrapper">
+        <h1>FILTER</h1>
+        <form name="filterForm">
+            <div>
+                <label for="Category">Category and Sub-Category</label>
+                <select ng-model="selectedCategory" ng-change="getSubCategories()">
+                    <option value="0">No Category Filter</option>
+                    <option value="{{cat.externalId}}" ng-repeat="cat in categories">{{cat.label}}</option>
+                </select>
+                <select ng-model="selectedSubCategory" ng-change="getAttributesFilter()">
                     <option ng-repeat="cat in subCategories">{{cat.label}}</option>
-            </select>
-        </div>
-        <p>Search</p>
-        <input type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
-        <p>Group Filters</p>
-        <div ng-repeat="group in filterGroups track by $index">
-            <div>
-                <input type="checkbox" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
+                </select>
             </div>
-        </div>
-        <button type="button" ng-click="filterListingsBasedOnGroups()">Filter By Groups</button>
-        <div id="map"></div>
-        <button type="button" ng-click="filterListings()">FILTER</button>
-        <button type="button" ng-click="init()">CLEAR SEARCH</button>
-        <button type="button" ng-click="checkMapBounds()">INBOUNDS?</button>
-    </form>
+            <p>Search</p>
+            <input type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
+            <p>Group Filters</p>
+            <div ng-repeat="group in filterGroups track by $index">
+                <div>
+                    <input type="checkbox" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
+                </div>
+            </div>
+            <button type="button" ng-click="filterListingsBasedOnGroups()">Filter By Groups</button>
+            <div id="map"></div>
+            <button type="button" ng-click="filterListings()">FILTER</button>
+            <button type="button" ng-click="init()">CLEAR SEARCH</button>
+            <button type="button" ng-click="checkMapBounds()">INBOUNDS?</button>
+        </form>
 
-</div>
-<div class="listings__listings-wrapper">
-    <div ng-repeat="item in listings | filter: filterSearchString | categoryMatch: filterSearchString | filter: {requestedDate: 0}:true" ng-cloak>
-        <div>
-            <h3>{{item.label}}</h3>
-            <div>{{item.desc}}</div>
-            <div>{{item.userId}}</div>
-            <div>
-                <img src="{{item.image}}" style="width:150;height:auto"/>
+    </div>
+    <div class="listings__listings-global-wrapper">
+        <div ng-repeat="item in listings | filter: filterSearchString | categoryMatch: filterSearchString | filter: {requestedDate: 0}:true | orderBy: 'timestamp':true"
+            ng-cloak>
+            <div class="card listing__card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="listing__image" src="{{item.image}}" />
+                </div>
+                <div>
+                    <h3 class="listing__label">{{item.label}}</h3><span>{{item.price}}</span>
+                    <div class="listing__desc">{{item.desc}}</div>
+                        <div>
+                                <span>{{item.category.label}} > {{item.subCategory.label}}</span>
+                        </div>
+                    <h3>Attributes</h3>
+                    <div ng-repeat="attr in item.attributes">
+                        {{attr.label}}: {{attr.value}}
+                    </div>
+                    <div class="listing__tag-container">
+                        <span ng-repeat="tag in item.tags" class="listing__tag chip">
+                            {{tag}}
+                        </span>
+                    </div>
+                    <div>
+                        <span>{{item.user.email}}</span>
+                    </div>
+                    <button type="button" id="{{item.id}}" ng-click="purchase($event)">I want this one</button>
+                </div>
             </div>
-            <div>
-                <span>{{item.category.label}} > {{item.subCategory.label}}</span>
-            </div>
-            <h3>Attributes</h3>
-            <div ng-repeat="attr in item.attributes">
-                {{attr.label}}: {{attr.value}}
-            </div>
-            <div class="listing__tag-container">
-                <span ng-repeat="tag in item.tags" class="listing__tag chip">
-                    {{tag}}
-                </span>
-            </div>
-            <div>
-                <span>{{item.user.email}}</span>
-            </div>
-            <button type="button" id="{{item.id}}"ng-click="purchase($event)">I want this one</button>
         </div>
     </div>
 </div>
+<!-- listings main end -->

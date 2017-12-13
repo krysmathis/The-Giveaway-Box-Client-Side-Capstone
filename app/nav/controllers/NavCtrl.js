@@ -1,7 +1,7 @@
 angular
 .module("TheGiveawayBoxApp")
 .controller("NavCtrl",
-function ($scope, $location, AuthFactory, ListingsFactory) {
+function ($scope, $location, AuthFactory, $rootScope, ListingsFactory) {
     /*
     Just a pass-through method to the AuthFactory method of the
     same name.
@@ -31,22 +31,14 @@ function ($scope, $location, AuthFactory, ListingsFactory) {
         AuthFactory.logout();
     }
 
-    const updateNavBar = (user) => {
-        const navBar = document.querySelector(".nav__list")
-        if (navBar.hasChildNodes()){
-            // clear out the existing element
-            const nodes = Array.from(navBar.childNodes)
-            nodes.forEach(el => {
-                if (el.className === "nav__user-email"){   
-                    navBar.removeChild(el)
-                }
-            })
-            // add the new one
-            const li = document.createElement("li")
-            li.className = "nav__user-email"
-            li.innerHTML = user.email
-                navBar.appendChild(li)
-            }
-        }
+    $scope.email = ""
+
+    $rootScope.$on("authenticationSuccess", function () {
+        $scope.logOut = "Logout"
+        $scope.email = AuthFactory.getUser().email
+        $scope.isAuthenticated = true
+        $scope.uid = AuthFactory.getUser().uid
+   })
+
 }
 )

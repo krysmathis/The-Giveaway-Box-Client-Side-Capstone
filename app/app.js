@@ -42,14 +42,9 @@ angular.module("TheGiveawayBoxApp").config(function ($routeProvider) {
         })
         .when('/users/:userId', {
             templateUrl: 'app/users/partials/profile.html',
-            controller: 'UserCtrl',
+            controller: 'ProfileCtrl',
             resolve: { isAuth }
         })
-        // .when('/users', {
-        //     templateUrl: 'app/users/partials/users.html',
-        //     controller: 'UserCtrl',
-        //     resolve: { isAuth }
-        // })
         .when('/admin', {
             templateUrl: 'app/admin/partials/admin.html',
             controller: 'adminCtrl',
@@ -62,7 +57,7 @@ angular.module("TheGiveawayBoxApp").config(function ($routeProvider) {
         })
         .when('/create-profile', {
             templateUrl: 'app/users/partials/create-profile.html',
-            controller: 'UserCtrl',
+            controller: 'ProfileCtrl',
             resolve: { isAuth }
         })
         .when('/listings/detail/:listingId', {

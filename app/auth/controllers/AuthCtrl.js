@@ -7,7 +7,7 @@ angular.module("TheGiveawayBoxApp")
             $scope.login = {}
             $scope.register = {}
             $location.url("/")
-            updateNavBar(AuthFactory.getUser())
+
 
         })
     }
@@ -21,25 +21,9 @@ angular.module("TheGiveawayBoxApp")
     $scope.logoutUser = function(){
       AuthFactory.logout()
       $location.url('/auth')
-      updateNavBar({user:{email: "Join Us!"}})
+
   }
 
 
-  const updateNavBar = (user) => {
-    const navBar = document.querySelector(".nav__list")
-    if (navBar.hasChildNodes()){
-        // clear out the existing element
-        const nodes = Array.from(navBar.childNodes)
-        nodes.forEach(el => {
-            if (el.className === "nav__user-email"){   
-                navBar.removeChild(el)
-            }
-        })
-        // add the new one
-        const li = document.createElement("li")
-        li.className = "nav__user-email"
-        li.innerHTML = user.email
-            navBar.appendChild(li)
-        }
-    }
+
 })

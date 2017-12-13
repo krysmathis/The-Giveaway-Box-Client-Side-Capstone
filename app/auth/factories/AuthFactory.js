@@ -1,5 +1,5 @@
 angular.module("TheGiveawayBoxApp")
-.factory("AuthFactory", function ($http, $route, $timeout, $location) {
+.factory("AuthFactory", function ($http, $rootScope, $route, $timeout, $location) {
     
     let currentUserData = null
 
@@ -9,12 +9,13 @@ angular.module("TheGiveawayBoxApp")
             if ($location.url() !== "/listings"){
                 $timeout(function () {
                     $location.url("/listings")
-                    updateNavBar()
                 }, 500);
             } else {
                 $route.reload();
             }
 
+            $rootScope.$broadcast("authenticationSuccess")
+            
         } else {
             currentUserData = null
             console.log("User is not authenticated")

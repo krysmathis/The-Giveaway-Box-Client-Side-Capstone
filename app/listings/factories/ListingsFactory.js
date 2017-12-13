@@ -179,6 +179,7 @@ angular
                     }
 
                     this.listings.map(l=> {
+                        if (!l.price > 0) { l.price = "FREE"}
                         l.user = database.users.find(u=> u.userId === l.userId)
                         l.category = database.categories.find(c=> l.categoryExternalId === c.externalId)
                         l.subCategory = database.subCategories.find(s=> l.subCategoryExternalId === s.externalId)

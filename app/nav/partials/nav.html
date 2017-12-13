@@ -1,17 +1,10 @@
 <div ng-controller="NavCtrl" class="nav__list">
-    
-    <button type="button" ng-click="navLogout()">Logout</button>
-    
+ 
     <li><a href="/#!/listings">Listings</a></li>
     <li><a href="/#!/add-listing">Add New</a></li>
-    <li><a ng-click="toUserProfile()">Me</a></li>
+    <li><a href="/#!/users/{{uid}}">Me</a></li>
     <li><a href="/#!/create-profile">Profile</a></li>
-    <li ng-include="'app/nav/partials/search.html'"></li>
-    <!-- <li>
-        <span ng-if="isAuthenticated()">
-            <a href="#!" ng-click="logout()">Logout</a>
-        </span>
-        <span ng-if="!isAuthenticated()"></span>
-    </li> -->
-    
+    <li><a href="#!" ng-click="navLogout()">{{logOut}}</a></li>
+    <li>{{email}}</li>
+   
 </div>
