@@ -34,16 +34,23 @@ angular.module("TheGiveawayBoxApp")
                 database = masterData.database
                 $scope.getListings(database)
                 $scope.categories = database.categories
+                $scope.selectedSubCategory = {}
+                $scope.selectedCategory = {}
             } else {
                 masterData.init().then(d => {
                     database = masterData.database
                     $scope.getListings(database)
                     $scope.categories = database.categories
+                    $scope.selectedCategory = {}
+                    $scope.selectedSubCategory = {}
                 })                  
             }
             console.log("listings: ", ListingsFactory.listings)
     } 
 
+    $scope.resetDropDown = () => {
+        $scope.selectedCategory = $scope.categories[0]
+    }
     /**
      * Get the listings
      * DECISION: Might be better to let this process get the full list
@@ -154,7 +161,7 @@ angular.module("TheGiveawayBoxApp")
         return {
             value: cat.externalId,
             label: cat.label,
-            isSelected: false,
+            isSelected: false
         }
     })
 

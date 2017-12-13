@@ -90,12 +90,18 @@ angular
                     url: `https://${firebasePath}/itemListings/${listingId}.json`
                 }).then(response => {
                     const item = response.data
+
                     // update item values based on what we're modifying
                     item.buyer = user.uid
-                    // update the cached listings
-                    this.listings.find(l=> l.id === listingId).buyer = user.uid
-                    item.buyerEmail = user.name
+                    item.buyerEmail = user.email
                     item.requestedDate = Date.now()
+
+                    // update the cached listings
+                    const cachedItem = this.listings.find(l=> l.id === listingId)
+                    cachedItem.buyer = user.uid
+                    cachedItem.requestedDate = Date.now()
+                    cachedItem.buyerEmail = user.email
+                    
 
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
@@ -106,7 +112,6 @@ angular
                             })
                         })
 
-                    t
                 })
             },
             enumerable: true

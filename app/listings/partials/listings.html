@@ -16,9 +16,9 @@
                     <option value="0">No Category Filter</option>
                     <option value="{{cat.externalId}}" ng-repeat="cat in categories">{{cat.label}}</option>
                 </select>
-                <select ng-model="selectedSubCategory" ng-change="getAttributesFilter()">
+                <!-- <select ng-model="selectedSubCategory" ng-change="getAttributesFilter()">
                     <option ng-repeat="cat in subCategories">{{cat.label}}</option>
-                </select>
+                </select> -->
             </div>
             <p>Search</p>
             <input type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
