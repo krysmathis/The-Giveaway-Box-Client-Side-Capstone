@@ -49,6 +49,16 @@ body {
   margin: 0 auto;
 
 }
+.nav a {
+  text-decoration: none;  
+}
+
+.nav a:visited {
+  color: white
+}
+.nav ul {
+
+}
 
 .nav__list {
   list-style: none;
@@ -60,6 +70,10 @@ body {
 
 }
 
+.nav__brand {
+  font-weight: bold;
+  color: blue;
+}
 .footer {
   background-color: black;
   width: 100%;

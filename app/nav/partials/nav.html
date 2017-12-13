@@ -1,10 +1,12 @@
-<div ng-controller="NavCtrl" class="nav__list">
- 
-    <li><a href="/#!/listings">Listings</a></li>
-    <li><a href="/#!/add-listing">Add New</a></li>
-    <li><a href="/#!/users/{{uid}}">Me</a></li>
-    <li><a href="/#!/create-profile">Profile</a></li>
-    <li><a href="#!" ng-click="navLogout()">{{logOut}}</a></li>
-    <li>{{email}}</li>
+<div ng-controller="NavCtrl">
+    <ul class="nav__list">
+        <li class="nav__brand">The Giveaway Box</li>
+        <li><a href="/#!/listings">Listings</a></li>
+        <li><a href="/#!/add-listing">Add New</a></li>
+        <li><a href="/#!/users/{{uid}}">My Stuff</a></li>
+        <li><a href="/#!/create-profile">Profile</a></li>
+        <li><a href="#!" ng-click="navLogout()">{{logOut}}</a></li>
+        <li>{{email}}</li>
+    </ul>
    
 </div>
