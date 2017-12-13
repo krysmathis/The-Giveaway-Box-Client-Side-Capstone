@@ -46,6 +46,20 @@ angular
             enumerable: true,
             writable: true
         },
+        "updateApprovedUsers": {
+            value: function(groups) {
+                this.approvedUsers = []
+                groups.forEach(g=> {
+                    this.userGroups.filter(ug=> ug.groupId === g.groupId)
+                    .forEach(ug => {
+                        if (this.approvedUsers.indexOf(ug.userId) == -1) {
+                            this.approvedUsers.push(ug.userId);
+                        }
+                    })
+                })
+            },
+            enumerable: true
+        },
         "getApprovedUsers": {
             value: function(user) {
                 
@@ -62,15 +76,8 @@ angular
                         })
 
                         const activeGroups = this.userGroups.filter(g=> user.uid === g.userId)
-                        this.approvedUsers = []
-                        activeGroups.forEach(g=> {
-                            this.userGroups.filter(ug=> ug.groupId === g.groupId)
-                            .forEach(ug => {
-                                if (this.approvedUsers.indexOf(ug.userId) == -1) {
-                                    this.approvedUsers.push(ug.userId);
-                                }
-                            })
-                        })
+                        this.updateApprovedUsers(activeGroups)
+                    
                     return this.approvedUsers
                 })
             },

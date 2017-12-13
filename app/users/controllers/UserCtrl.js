@@ -145,8 +145,8 @@
         {
             userId: 0,
             email: "",
-            firstName: "Krys",
-            lastName: "Mathis",
+            firstName: null,
+            lastName: null,
             address: "1710 Long Ave",
             city: "Nashville",
             state: "TN",
@@ -177,6 +177,16 @@
         }
     }
     
+    $scope.uploadImage = () => {
+        var filename = document.getElementById("userProfile__image");
+        let file = filename.files[0]
+        UserFactory.addImage(file).then(_url=> {
+            $scope.$apply(function() {
+                $scope.userData.image = _url
+            })
+        })
+    }
+
     $scope.addUsers = () => {
 
         const user = AuthFactory.getUser()

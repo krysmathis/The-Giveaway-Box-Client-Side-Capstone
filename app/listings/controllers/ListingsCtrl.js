@@ -84,6 +84,7 @@ angular.module("TheGiveawayBoxApp")
         })
     } else {
         $scope.filterGroups = GroupsFactory.userGroups
+        $scope.inviteGroups = angular.copy($scope.filterGroups);
     }
 
 
@@ -102,6 +103,16 @@ angular.module("TheGiveawayBoxApp")
         }
     }
 
+    // filter listings based on the selected groups
+    $scope.filterListingsBasedOnGroups = () => {
+        // reset the listings first
+        $scope.listings = ListingsFactory.listings
+        // update approved users
+        ListingsFactory.updateApprovedUsers($scope.inviteGroups)
+        const users = ListingsFactory.approvedUsers
+        $scope.listings = FilterFactory.usersInGroups(users, $scope.listings)
+
+    }
 
     /**
      * MAP

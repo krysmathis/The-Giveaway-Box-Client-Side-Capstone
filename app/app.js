@@ -45,11 +45,11 @@ angular.module("TheGiveawayBoxApp").config(function ($routeProvider) {
             controller: 'UserCtrl',
             resolve: { isAuth }
         })
-        .when('/users', {
-            templateUrl: 'app/users/partials/users.html',
-            controller: 'UserCtrl',
-            resolve: { isAuth }
-        })
+        // .when('/users', {
+        //     templateUrl: 'app/users/partials/users.html',
+        //     controller: 'UserCtrl',
+        //     resolve: { isAuth }
+        // })
         .when('/admin', {
             templateUrl: 'app/admin/partials/admin.html',
             controller: 'adminCtrl',

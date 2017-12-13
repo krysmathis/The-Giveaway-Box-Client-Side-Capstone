@@ -69,6 +69,16 @@ angular
                 })
             }
         },
+        "addImage": {
+            value: function(file) {
+                //upload an image
+                const stamp = Date.now()
+                return firebase.storage().ref().child("users/"+ stamp + file.name).put(file).then(result => {
+                    return firebase.storage().ref().child("users/"+ stamp + file.name).getDownloadURL()
+                    //return the url of the image you uploaded
+                })
+            }
+        },
         
     })
 })

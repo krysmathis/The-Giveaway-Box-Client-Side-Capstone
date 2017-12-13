@@ -108,6 +108,14 @@ angular
             },
             enumerable: true
         },
+        "usersInGroups": {
+            value: function(users,listings) {
+                return listings.filter(l=> {
+                    return users.findIndex(x=> x === l.userId) > -1
+                })
+            },
+            enumerable: true
+        },
       
     })
 
