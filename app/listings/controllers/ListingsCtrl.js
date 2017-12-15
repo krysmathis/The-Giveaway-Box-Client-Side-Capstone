@@ -1,7 +1,7 @@
 "use strict"
 
 angular.module("TheGiveawayBoxApp")
-.controller("ListingsCtrl", function($scope, $http, $location, FilterFactory, GroupsFactory, ListingsFactory, AuthFactory, AddListingFactory, MasterDataFactory) {
+.controller("ListingsCtrl", function($scope, $http, ngToast, $location, FilterFactory, GroupsFactory, ListingsFactory, AuthFactory, AddListingFactory, MasterDataFactory) {
     
     $scope.listings = []
 
@@ -17,6 +17,7 @@ angular.module("TheGiveawayBoxApp")
     $scope.purchase = (e) => {
         console.log("making purchase")
         const user = AuthFactory.getUser()
+        //ngToast.create('You got it!');
         ListingsFactory.purchase(e.target.id, user)
     }
     
@@ -58,19 +59,21 @@ angular.module("TheGiveawayBoxApp")
      * listings from users in the selected groups
      * @param {*} database 
      */
+    const progressInd = document.querySelector(".progress-circle.indefinite")
     $scope.getListings = (database) => {
         const user = AuthFactory.getUser()
         if (user) {
             ListingsFactory.getApprovedUsers(user).then(users=> {
                 f.getListings(database).then(r=>{
                     $scope.listings = r
-                    document.querySelector(".progress-circle.indefinite").style.display="none"
+                    if (progressInd) {progressInd.style.display="none"}
+                    // document.querySelector(".progress-circle.indefinite").style.display="none"
                 })
             })
         } else {
             f.getListings(database).then(r=>{
                 $scope.listings = r
-                document.querySelector(".progress-circle.indefinite").style.display="none"
+                if (progressInd) {progressInd.style.display="none"}
             })
         }
         
@@ -143,6 +146,8 @@ angular.module("TheGiveawayBoxApp")
         // console.log(bounds.contains($scope.centerMap))
         // console.log(bounds.contains({lat: -34, lng: 151}))
         $scope.listings = FilterFactory.usersWithinBounds(bounds, ListingsFactory.listings)
+        // create a simple toast:
+        //ngToast.create('a toast message...');
     }
 
     

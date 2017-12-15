@@ -25,7 +25,7 @@
             <p>Group Filters</p>
             <div ng-repeat="group in filterGroups track by $index">
                 <div>
-                    <input type="checkbox" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
+                    <input type="checkbox" class="filled-in" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
                 </div>
             </div>
             <button type="button" ng-click="filterListingsBasedOnGroups()">Filter By Groups</button>
@@ -39,17 +39,17 @@
     <div class="listings__listings-global-wrapper">
         <div ng-repeat="item in listings | filter: filterSearchString | categoryMatch: filterSearchString | filter: {requestedDate: 0}:true | orderBy: 'timestamp':true"
             ng-cloak>
-            <div class="card listing__card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="listing__image" src="{{item.image}}" />
-                </div>
-                <div>
-                    <h3 class="listing__label">{{item.label}}</h3><span>{{item.price}}</span>
+            <div class="card" style="width: 20rem">
+                <img class="listing__image card-img-top" src="{{item.image}}" />
+
+                <div class="card-body">
+                    <h3 class="listing__label">{{item.label}}</h3>
+                    <span>{{item.price}}</span>
                     <div class="listing__desc">{{item.desc}}</div>
-                        <div>
-                                <span>{{item.category.label}} > {{item.subCategory.label}}</span>
-                        </div>
-                    <h3>Attributes</h3>
+                    <div>
+                        <span>{{item.category.label}} > {{item.subCategory.label}}</span>
+                    </div>
+
                     <div ng-repeat="attr in item.attributes">
                         {{attr.label}}: {{attr.value}}
                     </div>
@@ -59,11 +59,14 @@
                         </span>
                     </div>
                     <div>
-                        <span>{{item.user.email}}</span>
+                        <span>{{item.user.city}}</span>
                     </div>
-                    <button type="button" id="{{item.id}}" ng-click="purchase($event)">I want this one</button>
+
+                    <button type="button" class="btn btn-primary" id="{{item.id}}" ng-click="purchase($event)">I want this one</button>
+
                 </div>
             </div>
+
         </div>
     </div>
 </div>

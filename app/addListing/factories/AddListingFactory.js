@@ -298,7 +298,8 @@ angular
             enumerable: true
             // add item and then retrieve data.name
             // then add the attribute values k
-        }
+        },
+        
         
     })
 

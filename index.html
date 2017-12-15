@@ -5,19 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>The Giveaway Box</title>
-   <!--Import Google Icon Font-->
-   <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <!-- Compiled and minified CSS -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
-  
+  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./lib/ngToast/ngToast.min.css">
+
   <link rel="stylesheet" href="styles/client-side-capstone.css">
+  <link rel="stylesheet" href="styles/auth.css">
   <link rel="stylesheet" href="styles/listings.css">
   <link rel="stylesheet" href="styles/users.css">
   <link rel="stylesheet" href="styles/map.css">
 </head>
 
 <body ng-app="TheGiveawayBoxApp">
-
+    <toast></toast>
     <nav class="nav" ng-include="'app/nav/partials/nav.html'"></nav>
  
 <main class="main-content">
@@ -26,30 +25,28 @@
   <footer class="footer"></footer>
    <!--Import jQuery before materialize.js-->
    
-   
-   <script async defer
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-oRzn8b_eNCH5iCbQfkSVbH9UcuE-HSM"></script>
-   <script src="./lib/node_modules/angular/angular.min.js"></script>
-   <script src="./lib/node_modules/firebase/firebase.js"></script>
-   <script src="./lib/node_modules/angular-route/angular-route.min.js"></script>
-   
-   <!-- jquery -->
-   <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
-   <!-- <script
-   src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-   integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-   crossorigin="anonymous"></script>  -->
-   <!-- Compiled and minified JavaScript -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
-    
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/sha256.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script> -->
-      <script src="./app/app.js"></script>
-      <script src="./app/app.config.js"></script>
-      <script src="./lib/checklist-model.js"></script>
-      <script src="./lib/moment.js"></script>
+  
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-oRzn8b_eNCH5iCbQfkSVbH9UcuE-HSM"></script>
+  <script src="./lib/node_modules/angular/angular.min.js"></script>
+  <script src="./lib/node_modules/firebase/firebase.js"></script>
+  <script src="./lib/node_modules/angular-route/angular-route.min.js"></script>
+  <script src="./lib/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+  
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/sha256.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script> -->
+  
+  <script src="./app/app.js"></script>
+  <script src="./app/app.config.js"></script>
+  <script src="./lib/checklist-model.js"></script>
+  <script src="./lib/ngToast/ngToast.min.js"></script>
+  <script src="./lib/moment.js"></script>
 
   <script src="./app/auth/factories/AuthFactory.js"></script>
   <script src="./app/auth/controllers/AuthCtrl.js"></script>

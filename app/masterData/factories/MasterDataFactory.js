@@ -79,7 +79,6 @@ angular
                             data[key].id = key
                             return data[key]
                         })
-                        console.log("categories", this.categories);
                         return this.categories
                     })
             },
@@ -115,7 +114,6 @@ angular
                         data[key].id = key
                         return data[key]
                     })
-                    console.log("subcategories", this.subCategories);
                     return this.subCategories
                 })
             },
@@ -133,7 +131,6 @@ angular
                         data[key].id = key
                         return data[key]
                     })
-                    console.log("attributes", this.attributes);
                     return this.attributes
                 })
             },
@@ -152,7 +149,6 @@ angular
                         data[key].id = key
                         return data[key]
                     })
-                    console.log("subCategoryAttributes", this.subCategoryAttributes);
                     return this.subCategoryAttributes
                 })
             },
@@ -170,7 +166,6 @@ angular
                         data[key].id = key
                         return data[key]
                     })
-                    console.log("attributeValues", this.attributeValues);
                     return this.attributeValues
                 })
             },

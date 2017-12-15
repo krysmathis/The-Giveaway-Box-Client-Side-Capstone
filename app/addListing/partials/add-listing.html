@@ -1,6 +1,6 @@
 <h1>Add Listings</h1>
 <div ng-controller="AddListingCtrl as filter">
-    <button type="button" ng-click="reload()">RELOAD</button>
+    <!-- <button type="button" ng-click="reload()">RELOAD</button> -->
     <form name='myForm'>
         <h1>Base Data</h1>
         <div>
@@ -43,7 +43,13 @@
         </div>
         
         <h1>Attributes</h1>
-        <div ng-repeat="field in attributeModel" ng-form='subForm'>
+        <!-- UPDATE MODE - JUST SHOW THE ATTRIBUTES UNLESS THE CATEGORY IS UPDATED -->
+        <div ng-if="inUpdateMode()">    
+            <div ng-repeat="field in item.attributes">
+                    {{field.label}}: {{field.value}}
+            </div>
+        </div>
+        <div ng-if="!inUpdateMode()" ng-repeat="field in attributeModel" ng-form='subForm'>
             <div class="input-field inline" ng-if='field.data_type == "text"'>
                 <label>{{field.label}}</label>
                 <input type='text' ng-model='field.value' placeholder='{{field.label}}' name='myText' />

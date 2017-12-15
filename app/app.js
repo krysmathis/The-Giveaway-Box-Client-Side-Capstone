@@ -1,4 +1,4 @@
-const app = angular.module("TheGiveawayBoxApp", ["ngRoute","checklist-model"]);
+const app = angular.module("TheGiveawayBoxApp", ["ngRoute","checklist-model","ngToast"]);
 
 // Setup the filter
 app.filter('categoryMatch', function() {

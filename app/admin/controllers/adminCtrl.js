@@ -306,7 +306,7 @@ $scope.subCategoryAttributes = [
     },
     {
         subCategoryExternalId: 8001,
-        attributeExternalId: 2
+        attributeExternalId: 8
     },
     {
         subCategoryExternalId: 8001,
@@ -318,7 +318,7 @@ $scope.subCategoryAttributes = [
     },
     {
         subCategoryExternalId: 8002,
-        attributeExternalId: 2
+        attributeExternalId: 8
     },
     {
         subCategoryExternalId: 8002,
@@ -330,7 +330,7 @@ $scope.subCategoryAttributes = [
     },
     {
         subCategoryExternalId: 8003,
-        attributeExternalId: 2
+        attributeExternalId: 8
     },
     {
         subCategoryExternalId: 8003,
@@ -340,6 +340,19 @@ $scope.subCategoryAttributes = [
         subCategoryExternalId: 8003,
         attributeExternalId: 9
     },
+    {
+        subCategoryExternalId: 4001,
+        attributeExternalId: 10
+    },
+    {
+        subCategoryExternalId: 4001,
+        attributeExternalId: 7
+    },
+    {
+        subCategoryExternalId: 4001,
+        attributeExternalId: 11
+    },
+    
 
 ]
 

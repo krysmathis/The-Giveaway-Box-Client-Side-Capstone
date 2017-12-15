@@ -6,6 +6,7 @@ angular.module("TheGiveawayBoxApp")
     
     $scope.inUpdateMode = () => {
         if ($routeParams.listingId) {
+
             return true
         } else {
             return false
@@ -88,6 +89,8 @@ angular.module("TheGiveawayBoxApp")
                 $scope.item.image= storedItem.image,
                 $scope.item.categoryExternalId= storedItem.categoryExternalId,
                 $scope.item.subCategoryExternalId= storedItem.subCategoryExternalId
+                $scope.item.attributes = storedItem.attributes
+                $scope.item.tags = storedItem.tags
         })
         
     } else {
@@ -190,8 +193,8 @@ angular.module("TheGiveawayBoxApp")
             $route.reload()
         } else {
             console.log("ready to update")
-            const user = AuthFactory.getUser()
-            ListingsFactory.getApprovedUsers(user).then(r=> console.log(r))
+            // send scope.item and have it update parts of the item before reloading
+            ListingsFactory.updateListing($routeParams.listingId, $scope.item)
         }   
     }
 

@@ -1,5 +1,5 @@
-<div ng-controller="UserCtrl" data-ng-init="listingsInit()">
-    <h1>Available Listings</h1>
+<div ng-controller="UserCtrl" data-ng-init="listingsInit()" class="user__widget">
+    <h1>In my giveaway box</h1>
     <div ng-repeat="listing in user.listings | filter: {requestedDate: 0}:true" >
         <div>{{listing.label}}</div>
         <a href="#!/listings/detail/{{ listing.id }}">Update</a>

@@ -192,6 +192,7 @@ angular
                     {value: "green"},
                     {value: "blue"},
                     {value: "purble"},
+                    {value: "pink"},
                     {value: "all the colors!"},
                 ]
             },
@@ -219,6 +220,36 @@ angular
                     {value: "Speedy"},
                 ]
             },
+            {   externalId: 10,
+                label: "Age",
+                desc: "Bike Age groups",
+                inputType: "select",
+                inclusive: true,
+                valueType: 0,
+                viewModel: [
+                    {value: "2 years"},
+                    {value: "3-4 years"},
+                    {value: "5-7 years"},
+                    { value: "8-11 years"},
+                    { value: "12-14 years"},
+                ]
+            },
+            {   externalId: 11,
+                label: "Wheel Size",
+                desc: "Bike Wheel Sizes",
+                inputType: "select",
+                inclusive: true,
+                valueType: 0,
+                viewModel: [
+                    {value: "12 inches"},
+                    {value: "14 inches"},
+                    {value: "16 inches"},
+                    { value: "18 inches"},
+                    { value: "20 inches"},
+                    { value: "24 inches"},
+                ]
+            },
+                
         ],
             enumerable: true,
             writable: true

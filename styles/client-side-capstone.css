@@ -72,7 +72,7 @@ body {
 
 .nav__brand {
   font-weight: bold;
-  color: blue;
+  color: white;
 }
 .footer {
   background-color: black;
@@ -128,3 +128,6 @@ label {
   display: block;
 }
 
+.user__widget {
+  border: 1px solid gray;
+}

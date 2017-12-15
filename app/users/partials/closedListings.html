@@ -1,5 +1,5 @@
-<div ng-controller="UserCtrl">
-    <h1>Completed Listings</h1>
+<div ng-controller="UserCtrl" class="user__widget">
+    <h1>Found a new home</h1>
     <div ng-repeat="listing in user.listings | filter: greaterThan('purchaseCompletedOn', 0)">
         <div>{{listing.label}}</div>
         <a href="#!/listings/detail/{{ listing.id }}">Update</a>

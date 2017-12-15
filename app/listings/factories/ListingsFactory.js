@@ -282,6 +282,43 @@ angular
             },
             enumerable: true
         },
+        "updateListing": {
+            value: function(listingId, item) {
+                return $http({
+                    method: "GET",
+                    url: `https://${firebasePath}/itemListings/${listingId}.json`
+                }).then(response => {
+                    const _item = response.data
+
+                    // update item values based on what we're modifying
+                    _item.label = item.label
+                    _item.desc= item.desc
+                    _item.price = item.price
+                    _item.attributes = item.attributes
+                    _item.tags = item.tags 
+
+                    // update the cached listings
+                    const cachedItem = this.listings.find(l=> l.id === listingId)
+                    cachedItem.label = item.label
+                    cachedItem.desc= item.desc
+                    cachedItem.price = item.price
+                    cachedItem.attributes = item.attributes
+                    cachedItem.tags = item.tags 
+                    
+
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "PUT",
+                                url: `https://${firebasePath}/itemListings/${listingId}.json?auth=${idToken}`,
+                                data: _item
+                            })
+                        })
+
+                })
+            },
+            enumerable: true
+        },
         "makeEbaySearch": {
             value: function (userSearch) {
                 let url = `http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findCompletedItems&SERVICE-VERSION=1.7.0&SECURITY-APPNAME=${EBAY_APP_ID}&RESPONSE-DATA-FORMAT=XML&categoryId(0)=33034&categoryId(1)=33021&categoryId(2)=4713&itemFilter(0).name=SoldItemsOnly&itemFilter(0).value(0)=true&itemFilter(1).name=Condition&itemFilter(1).value(0)=Used&itemFilter(1).value(1)=2500&itemFilter(1).value(2)=3000&itemFilter(1).value(3)=4000&itemFilter(1).value(4)=5000&itemFilter(1).value(5)=6000&itemFilter(2).name=ExcludeCategory&itemFilter(2).value(0)=181223&itemFilter(2).value(1)=47067&REST-PAYLOAD&keywords=${userSearch}`
