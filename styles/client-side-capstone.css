@@ -12,19 +12,26 @@ body {
   margin: 0;
   padding: 0;
 }
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+/* font-family: 'Pacifico', cursive; */
+
+.cursive {
+  font-family: 'Pacifico', cursive;
+}
+
 
 .main-content {
   position: relative;
   background-color: #FAFAFA;
   text-align: left;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding-bottom: var(--nav-footer-height);
   min-height: calc(100vh - (var(--nav-footer-height) * 2));
 
 }
 
-.header {
+/* .header {
   font-size: 2em;
   font-weight: bold;
   border-bottom: 1px solid rgba(0,0,0,.15);
@@ -33,13 +40,13 @@ body {
   margin-right:20px;
   margin-bottom: 10px;
 
-}
+} */
 
 .article {
   margin: 0 20px;
   padding: 10px 0;
 }
-
+/* 
 .nav {
   color: white;
   background-color: black;
@@ -73,7 +80,7 @@ body {
 .nav__brand {
   font-weight: bold;
   color: white;
-}
+} */
 .footer {
   background-color: black;
   width: 100%;

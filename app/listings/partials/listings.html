@@ -6,7 +6,28 @@
         <circle class="progress" r="40" cx="50" cy="50" fill="none"></circle>
     </g>
 </svg>
+<!-- accordian section -->
+<div ng-init="accordion=1">
+        <h6 class="accordion" ng-class="{active:accordion==1}">
+            <a href ng-click="accordion = 1">Section 1</a>
+        </h6>
+        <p class="accordion-content" ng-show="accordion==1">Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using</p>
+            
+        <h6 class="accordion" ng-class="{active:accordion==2}">
+            <a href ng-click="accordion = 2">Section 2</a>
+        </h6>
+        <p class="accordion-content" ng-show="accordion==2">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using</p>
+            
+        <h6 class="accordion" ng-class="{active:accordion==3}">
+            <a href ng-click="accordion = 3">Section 3</a>
+        </h6>
+        <p class="accordion-content" ng-show="accordion==3">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+    </div>
+<!-- end of accordian -->
 <div class="listings__main">
+    
+    
+    
     <div class="listings__filter-wrapper">
         <h1>FILTER</h1>
         <form name="filterForm">

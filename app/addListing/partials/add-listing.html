@@ -1,90 +1,141 @@
-<h1>Add Listings</h1>
 <div ng-controller="AddListingCtrl as filter">
-    <!-- <button type="button" ng-click="reload()">RELOAD</button> -->
-    <form name='myForm'>
-        <h1>Base Data</h1>
-        <div>
-                <label for="Category">Category</label>
-                    <select ng-model="selectedCategory" ng-change="getSubCategories()" data-ng-options="cat as cat.label for cat in categories track by cat.value">
-                </select>
+    <div class="container">
+    <h3>Add Listings</h3>
+    <div class="row"> <!-- main row -->
+        <div class="col-md-7"><!-- the form section -->
+             <!-- <button type="button" ng-click="reload()">RELOAD</button> -->
+            <form name='myForm'>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label font-weight-bold" >Item Label</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" type="text" ng-model="item.label" placeholder="heading for your item" value="Baby stroller" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label font-weight-bold">Item Description</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" ng-model="item.desc"></textarea>
+                        </div>
+                        <!-- <input type="text" ng-model="item.desc" placeholder="description" value="Baby stroller"> -->
+                    </div>
+                    <div class="form-group row">
+                        <label for="Category" class="col-sm-3 col-form-label font-weight-bold">Category</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" ng-model="selectedCategory" ng-change="getSubCategories()" data-ng-options="cat as cat.label for cat in categories track by cat.value"></select>
+                            <small id="addListing__category-help" class="form-text text-muted">Help other find your items by putting it into the right category.</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label font-weight-bold">SubCategory</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" ng-model="selectedSubCategory" ng-change="getAttributes()" data-ng-options="cat as cat.label for cat in subCategories track by cat.value">
+                                <!-- <option ng-repeat="cat in subCategories" value="{{cat.value}}" ng-selected='cat.isSelected'>{{cat.label}}</option> -->
+                            </select>
+                            <small id="addListing__subCategory-help" class="form-text text-muted">We'll provide you with a few more options after this...</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label font-weight-bold" for="Retail Price">Asking Price</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" type="text" ng-model="item.price" placeholder="Leave blank if this is a donation" value="1.00">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label font-weight-bold" for="Image">Image</label>
+                        <div class="col-sm-9">
+                            <div class="addListing___image">
+                                <!-- <img ng-src="{{item.image}}" style="width:150px;height:auto;"/> -->
+                            </div>
+                            <div>
+                                <label class="btn btn-primary btn-file">
+                                    Add Image
+                                    <input  hidden  id="addListing__image" custom-on-change="uploadFile" type="file" accept=".jpg,.png,.gif" ng-model="item.image" ng-change="saveImage()">
+                                </label>
+                                <span ng-if="displayProgress" class="progress-line"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- date picker -->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label font-weight-bold">Expiration</label>
+                        <div class="col-sm-9">
+                            <div class="input-group"
+                                moment-picker="ctrl.datepicker"
+                                format="YYYY-MM-DD"
+                                min-date="minDateString">
+                                <input class="form-control"
+                                placeholder="Select a date"
+                                ng-model="ctrl.datepicker"
+                                ng-model-options="{ updateOn: 'blur' }">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                                <small id="addListing__expiration-help" class="form-text text-muted">If you'd like, we can remove this listing on a set date</small>
+                        </div>
+                    </div>
+
+                    <h1>Attributes</h1>
+                    <!-- UPDATE MODE - JUST SHOW THE ATTRIBUTES UNLESS THE CATEGORY IS UPDATED -->
+                    <div ng-if="inUpdateMode()">    
+                        <div ng-repeat="field in item.attributes">
+                                {{field.label}}: {{field.value}}
+                        </div>
+                    </div>
+                    <div ng-if="!inUpdateMode()" ng-repeat="field in attributeModel" ng-form='subForm'>
+                        <div class="form-group row" ng-if='field.data_type == "text"'>
+                            <label class="col-sm-3 col-form-label">{{field.label}}</label>
+                            <div class="col-sm-9">
+                                <input class="form-control"  type='text' ng-model='field.value' placeholder='{{field.label}}' name='myText' />
+                                <span class='required' ng-show="subForm.myText.$error.required">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group row" ng-if='field.data_type == "email"'>
+                            <input class="form-control"  type='email' ng-model='field.value' placeholder='{{field.label}}' name='myEmail' />
+                            <span class='required' ng-show="subForm.myEmail.$error.required">*</span>
+                        </div>
+                        <div ng-if='field.data_type === "file"'>
+                            <label>{{field.label}}</label>
+                            <input class="form-control"  type="file" ng-model='field.value' placeholder='{{field.label}}' name="myImage" />
+                        </div>
+                        <div class="form-group row" ng-if='field.data_type === "select"'>
+                            <label class="col-sm-3">{{field.label}}</label>
+                            <div class="col-sm-9">
+                                <select class="form-control"  ng-model='field.value'>
+                                    <option ng-repeat='m in field.viewModel' value="{{m.value}}">{{m.value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><!-- end of attributes -->
+                    <h1>Enter Tags</h1>
+                    <div class="entry__tags">
+                        <span ng-repeat="tag in tags track by $index">
+                            <span ng-click="removeTag($event)">{{tag}}</span>
+                        </span>
+                        <input type="text" ng-model="newTag" ng-keydown="updateTags($event)" placeholder="tag" />
+                    </div>
+
+                    <div>
+                        <input type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
+                    </div>
+                    </form>
+                </form>
+        </div> <!-- end of form section -->
+        <div class="col-md-5"> <!-- the card section -->
+            <div class="card card-bottom-margin" style="width: 20rem;">
+                <!-- RIBBON -->
+                <!-- <div class="ribbon ribbon-top-left"><span>NEW!</span></div> -->
+                <img class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title text-truncate" ng-placeholder="nothing">{{item.label}}</h4>
+                    <p class="card-text ">{{item.desc}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
             </div>
-            <div>
-                <label>SubCategory</label>
-                <!-- <span ng-if="inUpdateMode">
-                        {{selectedCategory}}
-                </span> -->
-                <!-- <span ng-if="!inUpdateMode"> -->
-                    <select ng-model="selectedSubCategory" ng-change="getAttributes()" data-ng-options="cat as cat.label for cat in subCategories track by cat.value">
-                        <option ng-repeat="cat in subCategories" value="{{cat.value}}" ng-selected='cat.isSelected'>{{cat.label}}</option>
-                    </select>
-                <!-- </span> -->
-            </div>
-        <div>
-            <label>Item Label</label>
-            <input type="text" ng-model="item.label" placeholder="heading for your item" value="Baby stroller" required>
-            
-        </div>
-        <div>
-            <label>Item Description</label>
-            <textarea ng-model="item.desc"></textarea>
-            <!-- <input type="text" ng-model="item.desc" placeholder="description" value="Baby stroller"> -->
-        </div>
-        <div>
-            <label for="Retail Price">Asking Price (if any)</label>
-            <input type="text" ng-model="item.price" placeholder="Leave blank if this is a donation" value="1.00">
-        </div>
-        <div>
-            <label for="Image">Image</label>
-            <div class="addListing___image">
-                <img ng-src="{{item.image}}" style="width:150px;height:auto;"/>
-            </div>
-            <input id="addListing__image" type="file" accept=".jpg,.png,.gif" ng-model="item.image" ng-change="saveImage()">
-            <button type="button" ng-click="saveImage()">Upload</button>
-        </div>
-        
-        <h1>Attributes</h1>
-        <!-- UPDATE MODE - JUST SHOW THE ATTRIBUTES UNLESS THE CATEGORY IS UPDATED -->
-        <div ng-if="inUpdateMode()">    
-            <div ng-repeat="field in item.attributes">
-                    {{field.label}}: {{field.value}}
-            </div>
-        </div>
-        <div ng-if="!inUpdateMode()" ng-repeat="field in attributeModel" ng-form='subForm'>
-            <div class="input-field inline" ng-if='field.data_type == "text"'>
-                <label>{{field.label}}</label>
-                <input type='text' ng-model='field.value' placeholder='{{field.label}}' name='myText' />
-                <span class='required' ng-show="subForm.myText.$error.required">*</span>
-            </div>
-            <div class="input-field inline" ng-if='field.data_type == "email"'>
-                <input type='email' ng-model='field.value' placeholder='{{field.label}}' name='myEmail' />
-                <span class='required' ng-show="subForm.myEmail.$error.required">*</span>
-            </div>
-            <div ng-if='field.data_type === "file"'>
-                <label>{{field.label}}</label>
-                <input type="file" ng-model='field.value' placeholder='{{field.label}}' name="myImage" />
-            </div>
-            <div ng-if='field.data_type === "select"'>
-                <label>{{field.label}}</label>
-                <select ng-model='field.value'>
-                    <option ng-repeat='m in field.viewModel' value="{{m.value}}">{{m.value}}</option>
-                </select>
-            </div>
-        </div>
-        <h1>Enter Tags</h1>
-        <div class="entry__tags">
-            <span ng-repeat="tag in tags track by $index">
-                <span ng-click="removeTag($event)">{{tag}}</span>
-            </span>
-            <input type="text" ng-model="newTag" ng-keydown="updateTags($event)" placeholder="tag" />
-        </div>
-        
-        <!-- <div ng-if="inUpdateMode">
-            <input type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
-        </div> -->
-        <div>
-            <input type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
-        </div>
-        </form>
-    </form>
+
+        </div><!-- end of card section -->
+    </div> <!-- main row -->
+</div>
+   
 
 </div>

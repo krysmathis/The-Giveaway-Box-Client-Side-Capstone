@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>The Giveaway Box</title>
-  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="./lib/bootstrap-3/css/bootstrap.min.css">
+  <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="./lib/ngToast/ngToast.min.css">
+  <link rel="stylesheet" href="./lib/angular-moment-picker/dist/angular-moment-picker.css">
 
   <link rel="stylesheet" href="styles/client-side-capstone.css">
   <link rel="stylesheet" href="styles/auth.css">
@@ -18,7 +21,9 @@
 
 <body ng-app="TheGiveawayBoxApp">
     <toast></toast>
-    <nav class="nav" ng-include="'app/nav/partials/nav.html'"></nav>
+   
+  
+    <div ng-include="'app/nav/partials/nav.html'"></div>
  
 <main class="main-content">
   <section ng-view></section>
@@ -33,10 +38,12 @@
   <script src="./lib/node_modules/firebase/firebase.js"></script>
   <script src="./lib/node_modules/angular-route/angular-route.min.js"></script>
   <script src="./lib/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="./lib/node_modules/angular-animate/angular-animate.min.js"></script>
   
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script> -->
+  <!-- <script src="./lib/bootstrap/js/bootstrap.min.js"></script> -->
+  <script src="./lib/bootstrap/js/ui-bootstrap-custom-tpls-2.5.0.min.js"></script>
   
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/sha256.js"></script>
@@ -48,6 +55,8 @@
   <script src="./lib/checklist-model.js"></script>
   <script src="./lib/ngToast/ngToast.min.js"></script>
   <script src="./lib/moment.js"></script>
+  <script src="./lib/node_modules/angular-sticky-plugin/dist/angular-sticky.min.js"></script>
+  <script src="./lib/angular-moment-picker/dist/angular-moment-picker.js"></script>
 
   <script src="./app/auth/factories/AuthFactory.js"></script>
   <script src="./app/auth/controllers/AuthCtrl.js"></script>

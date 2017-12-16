@@ -12,6 +12,16 @@ angular.module("TheGiveawayBoxApp")
             return false
         }
     }
+    $scope.displayProgress = false
+
+    $scope.uploadFile = function(){
+        $scope.$apply(() => {
+            $scope.displayProgress = true
+            $scope.saveImage()
+        })
+    };
+
+    $scope.minDateString = moment().subtract(1,'day')
 
     $scope.reload = () => $route.reload()
 
@@ -28,6 +38,7 @@ angular.module("TheGiveawayBoxApp")
         AddListingFactory.addImage(file).then(_url=> {
             $scope.$apply(function() {
                 $scope.item.image = _url
+                $scope.displayProgress = false
             })
         })
 
@@ -95,7 +106,7 @@ angular.module("TheGiveawayBoxApp")
         
     } else {
         $scope.item = {
-            label: "",
+            label: "", //you won't believe this label
             desc: "",
             price: "",
             image: "",

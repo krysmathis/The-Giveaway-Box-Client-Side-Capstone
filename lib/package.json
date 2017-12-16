@@ -29,6 +29,8 @@
     "angular-animate": "^1.6.7",
     "angular-route": "^1.6.7",
     "angular-sanitize": "^1.6.7",
+    "angular-sticky-plugin": "^0.4.2",
+    "angular-ui-bootstrap": "^2.5.6",
     "crypto-js": "^3.1.9-1",
     "firebase": "^4.7.0",
     "grunt-contrib-sass": "^1.0.0"

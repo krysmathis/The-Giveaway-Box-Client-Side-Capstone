@@ -1,4 +1,4 @@
-const app = angular.module("TheGiveawayBoxApp", ["ngRoute","checklist-model","ngToast"]);
+const app = angular.module("TheGiveawayBoxApp", ["ngRoute","checklist-model","ngAnimate","hl.sticky","ngToast","moment-picker","ui.bootstrap"]);
 
 // Setup the filter
 app.filter('categoryMatch', function() {
@@ -25,6 +25,15 @@ app.filter('categoryMatch', function() {
     });
 
 
+app.directive('customOnChange', function() {
+    return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+        var onChangeFunc = scope.$eval(attrs.customOnChange);
+        element.bind('change', onChangeFunc);
+    }
+    };
+});
 
 angular.module("TheGiveawayBoxApp").config(function ($routeProvider) {
     /**
