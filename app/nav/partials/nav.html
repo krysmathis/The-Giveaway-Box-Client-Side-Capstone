@@ -21,35 +21,41 @@
 </div> -->
 
 <div ng-controller="NavCtrl">
-    <h1 class="cursive">The Giveaway Box</h1>
-    <nav hl-sticky="" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <!-- nav container -->
-    <div class="container">
-        <a ng-show="showBrand" class="navbar-brand order-1 mr-0 cursive" href="#">The Giveaway Box</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <!-- <img src="./images/svg/002-cards.svg"> -->
-                    <a class="nav-link" href="/#!/listings"><i class="fa fa-cubes" aria-hidden="true"></i> Listings
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">  
-                    <a class="nav-link" href="/#!/add-listing"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Something</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/#!/users/{{uid}}"><i class="fa fa-heart-o" aria-hidden="true"></i> My Box</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/#!/create-profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a>
-                </li>
-            </ul>
-        </div>
-    </div> <!-- nav container -->
+    <h1 class="navbar__header cursive">The Giveaway Box</h1>
+
+              <nav hl-sticky="" class="navbar navbar-default" role="navigation">
+                  
+                <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                          <!-- <span class="sr-only">Toggle navigation</span> -->
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                      </button>
+                      <a ng-show="showBrand" class="navbar-brand order-1 mr-0 cursive navbar-right" href="#">The Giveaway Box</a>
+                    </div>
+                  <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+                      <ul class="nav navbar-nav">
+                            <li class="nav-item active">
+                                    <a class="nav-link" href="/#!/listings"><i class="fa fa-cubes" aria-hidden="true"></i> Listings
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">  
+                                    <a class="nav-link" href="/#!/add-listing"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Something</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/#!/users/{{uid}}"><i class="fa fa-heart-o" aria-hidden="true"></i> My Box</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/#!/create-profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a>
+                                </li>
+                      </ul>
+                  </div>
+              </nav>
+                  
+          
+              
 </nav><!-- top nav -->
 
 

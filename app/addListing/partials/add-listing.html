@@ -1,6 +1,6 @@
 <div ng-controller="AddListingCtrl as filter">
     <div class="container">
-    <h3>Add Listings</h3>
+    <h1 class="section-header">Add Listings</h1>
     <div class="row"> <!-- main row -->
         <div class="col-md-7"><!-- the form section -->
              <!-- <button type="button" ng-click="reload()">RELOAD</button> -->
@@ -49,7 +49,7 @@
                             <div>
                                 <label class="btn btn-primary btn-file">
                                     Add Image
-                                    <input  hidden  id="addListing__image" custom-on-change="uploadFile" type="file" accept=".jpg,.png,.gif" ng-model="item.image" ng-change="saveImage()">
+                                    <input  class="hidden" id="addListing__image" custom-on-change="uploadFile" type="file" accept=".jpg,.png,.gif" ng-model="item.image" ng-change="saveImage()">
                                 </label>
                                 <span ng-if="displayProgress" class="progress-line"></span>
                             </div>
@@ -60,12 +60,12 @@
                         <label class="col-sm-3 col-form-label font-weight-bold">Expiration</label>
                         <div class="col-sm-9">
                             <div class="input-group"
-                                moment-picker="ctrl.datepicker"
+                                moment-picker="item.expirationDate"
                                 format="YYYY-MM-DD"
                                 min-date="minDateString">
                                 <input class="form-control"
                                 placeholder="Select a date"
-                                ng-model="ctrl.datepicker"
+                                ng-model="item.expirationDate"
                                 ng-model-options="{ updateOn: 'blur' }">
                                 <span class="input-group-addon">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -75,7 +75,7 @@
                         </div>
                     </div>
 
-                    <h1>Attributes</h1>
+                    <h1 class="section-header">Attributes</h1>
                     <!-- UPDATE MODE - JUST SHOW THE ATTRIBUTES UNLESS THE CATEGORY IS UPDATED -->
                     <div ng-if="inUpdateMode()">    
                         <div ng-repeat="field in item.attributes">
@@ -107,29 +107,33 @@
                             </div>
                         </div>
                     </div><!-- end of attributes -->
-                    <h1>Enter Tags</h1>
+                    <h1 class="section-header">Enter Tags</h1>
                     <div class="entry__tags">
                         <span ng-repeat="tag in tags track by $index">
                             <span ng-click="removeTag($event)">{{tag}}</span>
                         </span>
                         <input type="text" ng-model="newTag" ng-keydown="updateTags($event)" placeholder="tag" />
                     </div>
-
+                    <p></p>
                     <div>
-                        <input type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
+                        <input class="btn btn-primary" type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
                     </div>
                     </form>
                 </form>
         </div> <!-- end of form section -->
         <div class="col-md-5"> <!-- the card section -->
-            <div class="card card-bottom-margin" style="width: 20rem;">
-                <!-- RIBBON -->
-                <!-- <div class="ribbon ribbon-top-left"><span>NEW!</span></div> -->
-                <img class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title text-truncate" ng-placeholder="nothing">{{item.label}}</h4>
-                    <p class="card-text ">{{item.desc}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="container">
+                <div class="card card-bottom-margin" style="width: 20rem;">
+                    <!-- RIBBON -->
+                    <!-- <div class="ribbon ribbon-top-left"><span>NEW!</span></div> -->
+                    <img class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="text-truncate">
+                            <h4 class="card-title ng-placeholder="nothing">{{item.label}}</h4>
+                        </div>
+                        <p class="card-text ">{{item.desc}}</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
                 </div>
             </div>
 

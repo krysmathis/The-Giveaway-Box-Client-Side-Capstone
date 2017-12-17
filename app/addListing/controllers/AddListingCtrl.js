@@ -3,15 +3,21 @@
 angular.module("TheGiveawayBoxApp")
 .controller("AddListingCtrl", function($scope, $route, $routeParams, $location, $timeout, AuthFactory, AddListingFactory, ListingsFactory) {
     
-    
+    // check if the item is in update mode
     $scope.inUpdateMode = () => {
         if ($routeParams.listingId) {
-
             return true
         } else {
             return false
         }
     }
+    
+    let updateMode = $scope.inUpdateMode();
+    
+    /**
+     * File Upload workflow to control the progress bar
+     * 
+     */
     $scope.displayProgress = false
 
     $scope.uploadFile = function(){
@@ -20,12 +26,6 @@ angular.module("TheGiveawayBoxApp")
             $scope.saveImage()
         })
     };
-
-    $scope.minDateString = moment().subtract(1,'day')
-
-    $scope.reload = () => $route.reload()
-
-    let updateMode = $scope.inUpdateMode();
 
     $scope.addImage = (e) => 
         console.log(e.target.files)
@@ -43,6 +43,15 @@ angular.module("TheGiveawayBoxApp")
         })
 
     }
+    /**
+     * Controls for the new expiration date control
+     */
+    $scope.minDateString = moment().subtract(1,'day')
+
+    $scope.reload = () => $route.reload()
+
+
+    
 
     /**
      * tag objects
@@ -102,6 +111,7 @@ angular.module("TheGiveawayBoxApp")
                 $scope.item.subCategoryExternalId= storedItem.subCategoryExternalId
                 $scope.item.attributes = storedItem.attributes
                 $scope.item.tags = storedItem.tags
+                $scope.item.expirationDate = moment(storedItem.expirationDate)
         })
         
     } else {
@@ -109,12 +119,16 @@ angular.module("TheGiveawayBoxApp")
             label: "", //you won't believe this label
             desc: "",
             price: "",
-            image: "",
+            image: "http://via.placeholder.com/350x350",
             categoryExternalId: "",
-            subCategoryExternalId: ""
+            subCategoryExternalId: "",
+            expirationDate: moment().add(30,'day')
         }
     }
 
+    /**
+     * Subcategory controls
+     */
     // Binding for the drop down boxes
     $scope.selectedCategory = ""
     $scope.selectedSubCategory = ""

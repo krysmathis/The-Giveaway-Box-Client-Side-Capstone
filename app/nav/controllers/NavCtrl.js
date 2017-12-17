@@ -13,6 +13,9 @@ function ($scope, $location, $window, AuthFactory, $rootScope, ListingsFactory) 
 
     $scope.showBrand = false 
     
+    $scope.isNavCollapsed = true;
+    $scope.isCollapsed = false;
+    $scope.isCollapsedHorizontal = false;
 
     var windowEl = angular.element($window);
     var handler = function() {

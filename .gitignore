@@ -7,3 +7,5 @@ app/app.config.js
 app.config.js
 eslintrc.js
 ISSUE_TEMPLATE.md
+lib
+
