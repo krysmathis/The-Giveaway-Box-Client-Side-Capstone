@@ -7,5 +7,14 @@ app/app.config.js
 app.config.js
 eslintrc.js
 ISSUE_TEMPLATE.md
-lib
+lib/ngToast
+lib/angular-moment-picker
+lib/boostrap
+lib/bootstrap-3
+lib/font-awesome-4.7.0
+lib/materialize
+lib/.sass-cache
+lib/checklist-model.js
+lib/moment.js
+lib/xmlToJSON.min.js
 
