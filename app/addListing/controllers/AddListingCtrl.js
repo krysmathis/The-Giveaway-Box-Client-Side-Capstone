@@ -1,8 +1,11 @@
 "use strict"
 
 angular.module("TheGiveawayBoxApp")
-.controller("AddListingCtrl", function($scope, $route, $routeParams, $location, $timeout, AuthFactory, AddListingFactory, ListingsFactory) {
+.controller("AddListingCtrl", function($scope, $route, $routeParams, $location, $timeout, AuthFactory, AddListingFactory, MasterDataFactory, ListingsFactory) {
     
+
+
+
     // check if the item is in update mode
     $scope.inUpdateMode = () => {
         if ($routeParams.listingId) {
@@ -119,7 +122,7 @@ angular.module("TheGiveawayBoxApp")
             label: "", //you won't believe this label
             desc: "",
             price: "",
-            image: "http://via.placeholder.com/350x350",
+            image: "http://via.placeholder.com/500x500",
             categoryExternalId: "",
             subCategoryExternalId: "",
             expirationDate: moment().add(30,'day')

@@ -116,20 +116,21 @@
                     </div>
                     <p></p>
                     <div>
-                        <input class="btn btn-primary" type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
+                        <input class="btn btn-primary" style="width:100%;"type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
                     </div>
                     </form>
                 </form>
         </div> <!-- end of form section -->
-        <div class="col-md-5"> <!-- the card section -->
+        <div class="col-md-5 mt-4"> <!-- the card section -->
+            <!-- <"col-sm-6 col-md-4 col-lg-3 mt-4"> -->
             <div class="container">
-                <div class="card card-bottom-margin" style="width: 20rem;">
+                <div class="card card-bottom-margin">
                     <!-- RIBBON -->
                     <!-- <div class="ribbon ribbon-top-left"><span>NEW!</span></div> -->
                     <img class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
                     <div class="card-body">
                         <div class="text-truncate">
-                            <h4 class="card-title ng-placeholder="nothing">{{item.label}}</h4>
+                            <h4 class="card-title" ng-placeholder="nothing">{{item.label}}</h4>
                         </div>
                         <p class="card-text ">{{item.desc}}</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -138,6 +139,31 @@
             </div>
 
         </div><!-- end of card section -->
+        <!-- second card section -->
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card card-inverse card-info">
+                <img class="card-img-top" uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" ng-src="{{item.image}}" alt="Card image cap">
+                <div class="card-block">
+                    <div class="add-listing__user-info ">
+                        <figure class="profile">
+                            <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                        </figure>
+                        <span>Some text here</span>
+                    </div>
+                    <h4 class="card-title mt-3">Tawshif Ahsan Khan</h4>
+                    <div class="meta card-text">
+                        <a>Friends</a>
+                    </div>
+                    <div class="card-text">
+                        Tawshif is a web designer living in Bangladesh.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small>Last updated 3 mins ago</small>
+                    <button class="btn btn-info float-right btn-sm">Follow</button>
+                </div>
+            </div>
+        </div> <!-- second card section -->
     </div> <!-- main row -->
     
 </div>
