@@ -9,7 +9,7 @@ eslintrc.js
 ISSUE_TEMPLATE.md
 lib/ngToast
 lib/angular-moment-picker
-lib/boostrap
+lib/bootstrap
 lib/bootstrap-3
 lib/font-awesome-4.7.0
 lib/materialize
