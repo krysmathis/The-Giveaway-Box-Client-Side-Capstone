@@ -1,6 +1,6 @@
 .card {
     font-size: 1em;
-    width: 20em;
+    width: 25em;
     overflow: hidden;
     padding: 0;
     border: none;
@@ -8,6 +8,24 @@
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
 
+.add-listing__user {
+  position: absolute;
+  top: -6px;
+  width: 100%;
+  z-index: 50;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 50px 1fr;
+  align-items: center;
+  background-color: rgba(255, 255, 0, 0.735);
+  text-align: right;
+}
+
+.add-listing__user-info {
+  grid-column-start: 2;
+  text-align: left;
+  padding-left: 10px; 
+}
 .card-block {
   font-size: 1em;
   position: relative;
@@ -55,7 +73,7 @@
 
 .profile {
     position: absolute;
-    top: -32px;
+    top: -24px;
     display: inline-block;
     overflow: hidden;
     box-sizing: border-box;

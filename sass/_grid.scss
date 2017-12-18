@@ -1,0 +1,24 @@
+.dynamic-grid {
+    position: relative;
+    z-index: 1;
+    -webkit-columns: 240px;
+            columns: 240px;
+    -webkit-column-gap: 15px;
+            column-gap: 15px;
+}
+.dynamic-grid.container {
+padding-top: 6rem;
+
+}
+
+.grid-item {
+position: relative;
+display: inline-block;
+margin: 1rem;
+max-width: 100%;
+break-inside: avoid;
+-webkit-column-break-inside: avoid;
+}
+.grid-item .inner {
+padding: 1rem 1rem 1rem 1rem;
+}

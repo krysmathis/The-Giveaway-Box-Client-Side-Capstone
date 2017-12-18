@@ -118,32 +118,47 @@
                     <div>
                         <input class="btn btn-primary" style="width:100%;"type='button' ng-click="submitListing()" value='submit form' ng-disabled='myForm.$invalid' />
                     </div>
-                    </form>
                 </form>
+            </form>
         </div> <!-- end of form section -->
         <!-- second card section -->
-        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-            <div class="card card-inverse card-info">
-                <img class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
-                <div class="card-block">
-                    <div class="add-listing__user-info ">
-                        <figure class="profile" popover-append-to-body="true" uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" >
-                            <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
-                        </figure>
-                        <span>{{user.firstName}} {{user.lastName}}</span>
+        <div class="col-md-5 mt-4">
+            <div class="card card-inverse card-info flip-container" ontouchstart="this.classList.toggle('hover');">
+                <div class="flipper">
+                    <div class="front">
+                        <img class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
+                    </div><!-- end of card-front -->
+                    <div class="back">
                     </div>
-                    <div class="text-truncate">
-                        <h4 class="card-title mt-3">{{item.label}}</h4>
-                    </div>
-                    <div class="meta card-text">
-                        <a></a>
-                    </div>
-                    <div class="card-text">
-                        {{item.desc}}
-                    </div>
-                </div>
+                    </div> <!-- end of flipper -->
+                        <div class="card-block">
+                            <div class="add-listing__user ">
+                                <figure class="profile" popover-append-to-body="true" uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" >
+                                    <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                                </figure>
+                                <span class="add-listing__user-info">{{user.firstName}} {{user.lastName}}</span>
+                            </div>
+                            <div class="text-truncate">
+                                <h4 class="card-title mt-3">{{item.label}}</h4>
+                            </div>
+                            <div class="card__price">
+                                <span class="badge badge-info">{{getPrice()}}</span>
+                            </div>
+                            <div class="meta card-text">
+                                <a></a>
+                            </div>
+                            <div class="card-text">
+                                {{item.desc}}
+                            </div>
+                            <div class="listing__tag-container">
+                                <span ng-repeat="tag in tags" class="btn btn-default btn-xs">
+                                    {{tag}}
+                                </span>
+                            </div>
+                        </div>
+                    
                 <div class="card-footer">
-                    <small>something small</small>
+                    <small>Expiring in {{ daysUntilExpires() }} days</small>
                     <button class="btn btn-info float-right btn-sm">I want it!</button>
                 </div>
             </div>

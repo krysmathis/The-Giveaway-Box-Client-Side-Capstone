@@ -1,3 +1,7 @@
+<div class="container">
+
+
+
 <h1 ng-init="init()" ng-clone>listings</h1>
 {{currentUser}}
 <svg class="progress-circle indefinite" width="100" height="100">
@@ -6,29 +10,12 @@
         <circle class="progress" r="40" cx="50" cy="50" fill="none"></circle>
     </g>
 </svg>
-<!-- accordian section -->
-<div ng-init="accordion=1">
-        <h6 class="accordion" ng-class="{active:accordion==1}">
-            <a href ng-click="accordion = 1">Section 1</a>
-        </h6>
-        <p class="accordion-content" ng-show="accordion==1">Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using</p>
-            
-        <h6 class="accordion" ng-class="{active:accordion==2}">
-            <a href ng-click="accordion = 2">Section 2</a>
-        </h6>
-        <p class="accordion-content" ng-show="accordion==2">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using</p>
-            
-        <h6 class="accordion" ng-class="{active:accordion==3}">
-            <a href ng-click="accordion = 3">Section 3</a>
-        </h6>
-        <p class="accordion-content" ng-show="accordion==3">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-    </div>
-<!-- end of accordian -->
+
 <div class="listings__main">
     
     
     
-    <div class="listings__filter-wrapper">
+    <div hl-sticky="" class="listings__filter-wrapper">
         <h1>FILTER</h1>
         <form name="filterForm">
             <div>
@@ -54,13 +41,70 @@
             <button type="button" ng-click="filterListings()">FILTER</button>
             <button type="button" ng-click="init()">CLEAR SEARCH</button>
             <button type="button" ng-click="checkMapBounds()">INBOUNDS?</button>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
+            <p>more stuff</p>
         </form>
 
     </div>
-    <div class="listings__listings-global-wrapper">
+    
+    <div class="listings__listings-global-wrapper dynamic-grid">
         <div ng-repeat="item in listings | filter: filterSearchString | categoryMatch: filterSearchString | filter: {requestedDate: 0}:true | orderBy: 'timestamp':true"
             ng-cloak>
-            <div class="card" style="width: 20rem">
+            <!--- new card -->
+            <div class="card card-inverse card-info flip-container grid-item" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <img class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
+                        </div><!-- end of card-front -->
+                        <div class="back">
+                        </div>
+                        </div> <!-- end of flipper -->
+                            <div class="card-block">
+                                <div class="add-listing__user ">
+                                    <figure class="profile" popover-append-to-body="true" uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" >
+                                        <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                                    </figure>
+                                    <span class="add-listing__user-info">{{user.firstName}} {{user.lastName}}</span>
+                                </div>
+                                <div class="text-truncate">
+                                    <h4 class="card-title mt-3">{{item.label}}</h4>
+                                </div>
+                                <div class="card__price">
+                                    <span class="badge badge-info">{{getPrice()}}</span>
+                                </div>
+                                <div class="meta card-text">
+                                    <a></a>
+                                </div>
+                                <div class="card-text">
+                                    {{item.desc}}
+                                </div>
+                                <div class="listing__tag-container">
+                                    <span ng-repeat="tag in tags" class="btn btn-default btn-xs">
+                                        {{tag}}
+                                    </span>
+                                </div>
+                            </div>
+                        
+                    <div class="card-footer">
+                        <small>Expiring in {{ daysUntilExpires() }} days</small>
+                        <button class="btn btn-info float-right btn-sm">I want it!</button>
+                    </div>
+                </div> <!-- end of new card -->
+
+
+            <!-- <div class="card" style="width: 20rem">
                 <img class="listing__image card-img-top" src="{{item.image}}" />
 
                 <div class="card-body">
@@ -86,9 +130,11 @@
                     <button type="button" class="btn btn-primary" id="{{item.id}}" ng-click="purchase($event)">I want this one</button>
 
                 </div>
-            </div>
+            </div> -->
 
         </div>
+
     </div>
 </div>
 <!-- listings main end -->
+</div> <!-- end of main container -->

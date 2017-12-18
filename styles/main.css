@@ -23,12 +23,29 @@ h3.accordion {
 
 .card {
   font-size: 1em;
-  width: 20em;
+  width: 25em;
   overflow: hidden;
   padding: 0;
   border: none;
   border-radius: .28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5; }
+
+.add-listing__user {
+  position: absolute;
+  top: -6px;
+  width: 100%;
+  z-index: 50;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 50px 1fr;
+  align-items: center;
+  background-color: rgba(255, 255, 0, 0.735);
+  text-align: right; }
+
+.add-listing__user-info {
+  grid-column-start: 2;
+  text-align: left;
+  padding-left: 10px; }
 
 .card-block {
   font-size: 1em;
@@ -70,7 +87,7 @@ h3.accordion {
 
 .profile {
   position: absolute;
-  top: -32px;
+  top: -24px;
   display: inline-block;
   overflow: hidden;
   box-sizing: border-box;
@@ -151,6 +168,74 @@ h3.accordion {
   background-color: yellow;
   margin-bottom: 20px;
   margin-top: 0; }
+
+.badge {
+  padding: 3px 9px 2px;
+  font-size: 1.15em;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #ffffff;
+  background-color: #999999;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 3px; }
+
+.badge:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer; }
+
+.badge-error {
+  background-color: #b94a48; }
+
+.badge-error:hover {
+  background-color: #953b39; }
+
+.badge-warning {
+  background-color: #f89406; }
+
+.badge-warning:hover {
+  background-color: #c67605; }
+
+.badge-success {
+  background-color: #468847; }
+
+.badge-success:hover {
+  background-color: #356635; }
+
+.badge-info {
+  background-color: #3a87ad; }
+
+.badge-info:hover {
+  background-color: #2d6987; }
+
+.badge-inverse {
+  background-color: #333333; }
+
+.badge-inverse:hover {
+  background-color: #1a1a1a; }
+
+.dynamic-grid {
+  position: relative;
+  z-index: 1;
+  -webkit-columns: 240px;
+  columns: 240px;
+  -webkit-column-gap: 15px;
+  column-gap: 15px; }
+
+.dynamic-grid.container {
+  padding-top: 6rem; }
+
+.grid-item {
+  position: relative;
+  display: inline-block;
+  margin: 1rem;
+  max-width: 100%;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid; }
+
+.grid-item .inner {
+  padding: 1rem 1rem 1rem 1rem; }
 
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome

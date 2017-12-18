@@ -1,0 +1,50 @@
+/* --- FLIP TRANSFORM --- */
+/* entire container, keeps perspective */
+
+.flip-container,
+.flip-container-sm {
+    perspective: 1000px;
+}
+
+
+/* flip the pane when hovered */
+
+.flip-container:hover .flipper,
+.flip-container.hover .flipper,
+.flip-container-sm:hover .flipper-sm,
+.flip-container-sm.hover .flipper-sm {
+    transform: rotateY(180deg);
+}
+
+
+/* The container and front and back side match the size of the grid item */
+
+.flip-container,
+.front,
+.back {
+    width: 500px;
+    height: 500px;
+}
+
+.flip-container-sm,
+.front-sm,
+.back-sm {
+    width: 200px;
+    height: 200px;
+}
+
+
+/* flip speed goes here */
+
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.flipper-sm {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+

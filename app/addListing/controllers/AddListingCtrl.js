@@ -17,6 +17,7 @@ angular.module("TheGiveawayBoxApp")
     
     let updateMode = $scope.inUpdateMode();
     
+    $scope.getPrice = () => $scope.item.price ?  $scope.item.price : "FREE"
     /**
      * File Upload workflow to control the progress bar
      * 
@@ -56,7 +57,16 @@ angular.module("TheGiveawayBoxApp")
 
     $scope.reload = () => $route.reload()
 
-
+    $scope.daysUntilExpires = () =>  {
+        if (!$scope.item.expirationDate) {
+            return moment().add(30,'day').diff(moment(), 'days');
+        }
+        else {
+            return moment($scope.item.expirationDate).diff(moment(), 'days');
+        }
+        // console.log("expiration date: ", moment().add(30,'day').diff(moment(), 'days'))
+    }
+        
     
 
     /**
