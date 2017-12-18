@@ -30,8 +30,8 @@
  }
 
  .listings__main {
-   display: grid;
-   grid-template-columns: 30% 1fr;
+   /* display: grid;
+   grid-template-columns: 30% 1fr; */
  }
 
  .listing__card {

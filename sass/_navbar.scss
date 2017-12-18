@@ -1,3 +1,6 @@
+.navbar {
+    margin-bottom: 0px;
+}
 .navbar-flex {
     display: flex;
     width: 80%;
@@ -6,6 +9,7 @@
 
 .navbar__header {
     background-color: $primary-color;
-    margin-bottom: 20px;
     margin-top: 0;
+    margin-bottom: 0px;
+    height: 55px;
 }
