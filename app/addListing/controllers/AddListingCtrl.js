@@ -34,6 +34,9 @@ angular.module("TheGiveawayBoxApp")
         console.log(e.target.files)
         //AddListingFactory.addImage($scope.item.image)
 
+    $scope.currentUser = AuthFactory.getUser()
+    $scope.user = MasterDataFactory.users.find(u=> u.userId === $scope.currentUser.uid)
+    
     $scope.saveImage = () => {
 
         var filename = document.getElementById("addListing__image");
