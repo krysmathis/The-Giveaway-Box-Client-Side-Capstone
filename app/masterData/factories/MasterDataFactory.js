@@ -66,6 +66,19 @@ angular
             },
             enumerable: true
         },
+        "isReady": {
+            value: function() {
+                let ready = true
+                for (let key in this.database) {
+                    const currentObj = this.database[key]
+                    if (currentObj.length === 0) {
+                        ready = false
+                    }
+                }
+                return ready
+            },
+            enumerable: true
+        },
         "getCategories": {
                 value: function () {
                     return $http({

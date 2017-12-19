@@ -1,6 +1,43 @@
 
 
+<div class="container-fluid">
+ <div hl-sticky="">
+    <form name="filterForm">
+        <div  class="listings__filter-wrapper">
 
+            <div class="filter__category">
+                <label for="Category">Category and Sub-Category</label>
+                <select ng-model="selectedCategory" ng-change="getSubCategories()">
+                    <option value="0">No Category Filter</option>
+                    <option value="{{cat.externalId}}" ng-repeat="cat in categories">{{cat.label}}</option>
+                </select>
+                <!-- <select ng-model="selectedSubCategory" ng-change="getAttributesFilter()">
+                    <option ng-repeat="cat in subCategories">{{cat.label}}</option>
+                </select> -->
+            </div>
+            <div class="filter__search">
+                <p>Search</p>
+                <input type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
+            </div>
+            <div class="filter__groups">
+                <p>Group Filters</p>
+                <div ng-repeat="group in filterGroups track by $index">
+                    <div>
+                        <input type="checkbox" class="filled-in" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
+                    </div>
+                </div>
+                <button type="button" ng-click="filterListingsBasedOnGroups()">Filter By Groups</button>
+            </div>
+            <div id="map"></div>
+            <button type="button" ng-click="filterListings()">FILTER</button>
+            <button type="button" ng-click="init()">CLEAR SEARCH</button>
+            <button type="button" ng-click="checkMapBounds()">INBOUNDS?</button>
+        </div>
+            
+        </form>
+        
+    </div>
+</div>
 <div class="container">
 <h1 ng-init="init()" ng-clone>listings</h1>
 {{currentUser}}
@@ -15,47 +52,10 @@
     
     
     
-    <h1>FILTER</h1>
-    <div hl-sticky="">
-        <form name="filterForm">
-            <div  class="listings__filter-wrapper">
-
-                <div class="filter__category">
-                    <label for="Category">Category and Sub-Category</label>
-                    <select ng-model="selectedCategory" ng-change="getSubCategories()">
-                        <option value="0">No Category Filter</option>
-                        <option value="{{cat.externalId}}" ng-repeat="cat in categories">{{cat.label}}</option>
-                    </select>
-                    <!-- <select ng-model="selectedSubCategory" ng-change="getAttributesFilter()">
-                        <option ng-repeat="cat in subCategories">{{cat.label}}</option>
-                    </select> -->
-                </div>
-                <div class="filter__search">
-                    <p>Search</p>
-                    <input type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
-                </div>
-                <div class="filter__groups">
-                    <p>Group Filters</p>
-                    <div ng-repeat="group in filterGroups track by $index">
-                        <div>
-                            <input type="checkbox" class="filled-in" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
-                        </div>
-                    </div>
-                    <button type="button" ng-click="filterListingsBasedOnGroups()">Filter By Groups</button>
-                </div>
-                <div id="map"></div>
-                <button type="button" ng-click="filterListings()">FILTER</button>
-                <button type="button" ng-click="init()">CLEAR SEARCH</button>
-                <button type="button" ng-click="checkMapBounds()">INBOUNDS?</button>
-            </div>
-                
-            </form>
-            
-        </div>
-    
-    <div class="listings__listings-global-wrapper dynamic-grid">
+       
+    <div class="listings__listings-global-wrapper dynamic-grid ">
         <div ng-repeat="item in listings | filter: filterSearchString | categoryMatch: filterSearchString | filter: {requestedDate: 0}:true | orderBy: 'timestamp':true"
-            ng-cloak>
+            class="my-special-animation" ng-cloak>
             <!--- new card -->
             <div class="card card-inverse card-info flip-container grid-item" ontouchstart="this.classList.toggle('hover');">
                     <div class="flipper">
@@ -76,7 +76,7 @@
                                     <h4 class="card-title mt-3">{{item.label}}</h4>
                                 </div>
                                 <div class="card__price">
-                                    <span class="badge badge-info">{{getPrice()}}</span>
+                                    <span class="badge badge-info ">{{getPrice()}}</span>
                                 </div>
                                 <div class="meta card-text">
                                     <a></a>

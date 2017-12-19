@@ -5,6 +5,10 @@
   --nav-footer-height: 60px;
 }
 
+.nav-hidden {
+  visibility: hidden;
+}
+
 body {
   background: #FAFAFA;
   font-family: sans-serif;
@@ -135,6 +139,6 @@ label {
   display: block;
 }
 
-.user__widget {
-  border: 1px solid gray;
-}
+/* .user__widget {
+  border: 2px solid gray;
+} */

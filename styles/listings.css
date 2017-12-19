@@ -13,6 +13,28 @@
   
   }
 
+  .listings-enter.ng-enter {
+    -webkit-animation: fadeInRight 0.5s;
+    animation: fadeInRight 0.5s;
+}
+
+/* starting animations */
+.my-special-animation.ng-enter {
+  -webkit-animation: fadeInRight 0.5s;
+  animation: fadeInRight 0.5s;
+}
+
+/* starting animations */
+.fade-in-right.ng-enter {
+  -webkit-animation: fadeInRight 0.5s;
+  animation: fadeInRight 0.5s;
+}
+
+.uib-accordion-group {
+  border: none !important;
+}
+
+
   /* .listings__listings-global-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;

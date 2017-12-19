@@ -1,58 +1,38 @@
-<!-- <div ng-controller="NavCtrl">
-    <ul class="nav__list navbar">
-        <li class="nav__brand navbar-brand">The Giveaway Box</li>
-        <li class="nav-item">
-            <a class="nav-link" href="/#!/listings">Listings</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/#!/add-listing">Add New</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/#!/users/{{uid}}">My Box</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/#!/create-profile">Profile</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#!" ng-click="navLogout()">{{logOut}}</a>
-        </li>
-        <li class="nav-item">{{email}}</li>
-    </ul>
-</div> -->
-
 <div ng-controller="NavCtrl">
+<div>
     <h1 class="navbar__header cursive">The Giveaway Box</h1>
 
-              <nav hl-sticky="" class="navbar navbar-default" role="navigation">
-                  
-                <div class="navbar-header">
-                      <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
-                          <!-- <span class="sr-only">Toggle navigation</span> -->
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                      </button>
-                      <a ng-show="showBrand" class="navbar-brand order-1 mr-0 cursive navbar-right" href="#">The Giveaway Box</a>
-                    </div>
-                  <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
-                      <ul class="nav navbar-nav">
-                            <li class="nav-item active">
-                                    <a class="nav-link" href="/#!/listings"><i class="fa fa-cubes" aria-hidden="true"></i> Listings
-                                        <span class="sr-only">(current)</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">  
-                                    <a class="nav-link" href="/#!/add-listing"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Something</a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="/#!/users/{{uid}}"><i class="fa fa-heart-o" aria-hidden="true"></i> My Box</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/#!/create-profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a>
-                                </li>
-                      </ul>
-                  </div>
-              </nav>
+            <nav hl-sticky="" class="navbar navbar-default" role="navigation">
+                
+            <div class="navbar-header">
+                    <button type="button" class="navbar-toggle nav-hidden" ng-click="isNavCollapsed = !isNavCollapsed">
+                        <!-- <span class="sr-only">Toggle navigation</span> -->
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a ng-show="showBrand" class="navbar-brand order-1 mr-0 cursive navbar-right" href="#">The Giveaway Box</a>
+                </div>
+                <div class="collapse navbar-collapse hide" uib-collapse="isNavCollapsed">
+                    <ul class="nav navbar-nav nav-hidden">
+                        <li class="nav-item active">
+                                <a class="nav-link" href="/#!/listings"><i class="fa fa-cubes" aria-hidden="true"></i> Listings
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">  
+                                <a class="nav-link fade-in-right" href="/#!/add-listing"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Something</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/#!/users/{{uid}}"><i class="fa fa-heart-o" aria-hidden="true"></i> My Box</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/#!/create-profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a>
+                            </li>
+                    </ul>
+                </div>
+            </nav>
+</div>
                   
           
               

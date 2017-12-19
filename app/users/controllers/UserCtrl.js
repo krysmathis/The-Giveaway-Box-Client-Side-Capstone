@@ -1,6 +1,7 @@
     angular.module("TheGiveawayBoxApp")
 .controller("UserCtrl", function($scope, $route, $http, $routeParams, $timeout, $location, ListingsFactory, UserFactory, AuthFactory, InviteFactory, GroupsFactory) {
     
+    $scope.oneAtATime = true;
 
     console.log("User Controller is Initiated")
 

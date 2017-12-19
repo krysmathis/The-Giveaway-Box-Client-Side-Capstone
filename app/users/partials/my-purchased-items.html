@@ -1,8 +1,16 @@
 <div ng-controller="MyPurchasesCtrl" class="user__widget">
-    <h1>My Purchases</h1>
-    <div ng-repeat="purchase in myPurchases">
-        <div>{{purchase.label}} - {{purchase.requestedDate| date:'yyyy-MM-dd'}}
-            <button type="button" id="{{ listing.id }}" ng-click="closeListing($event)">CLOSE</button>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">My Purchases <span class="label label-default">New</span></h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="purchase in myPurchases">
+                    <span>{{purchase.label}} - {{purchase.requestedDate| date:'yyyy-MM-dd'}}
+                        <button type="button" id="{{ listing.id }}" ng-click="closeListing($event)">CLOSE</button>
+                    </span>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

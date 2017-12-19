@@ -13,6 +13,9 @@ angular.module("TheGiveawayBoxApp")
     //     //ListingsFactory.makeAmazonSearch("stroller")  
     // }
 
+    // find('#id')
+    let navContainer = document.querySelectorAll('.nav-hidden')
+    
     //purchase button
     $scope.purchase = (e) => {
         console.log("making purchase")
@@ -28,10 +31,11 @@ angular.module("TheGiveawayBoxApp")
         attributes: [],
     }
 
+    
     // check if user has a profile set up already or not
     // if not redirect them to the profile set-up
     $scope.init = () => {
-            if (masterData.categories.length > 0) {
+            if (masterData.isReady()) {
                 database = masterData.database
                 $scope.getListings(database)
                 $scope.categories = database.categories
@@ -40,10 +44,10 @@ angular.module("TheGiveawayBoxApp")
             } else {
                 masterData.init().then(d => {
                     database = masterData.database
-                    $scope.getListings(database)
                     $scope.categories = database.categories
                     $scope.selectedCategory = {}
                     $scope.selectedSubCategory = {}
+                    $scope.getListings(database)
                 })                  
             }
             console.log("listings: ", ListingsFactory.listings)
@@ -60,6 +64,7 @@ angular.module("TheGiveawayBoxApp")
      * @param {*} database 
      */
     const progressInd = document.querySelector(".progress-circle.indefinite")
+    
     $scope.getListings = (database) => {
         const user = AuthFactory.getUser()
         if (user) {
@@ -67,6 +72,8 @@ angular.module("TheGiveawayBoxApp")
                 f.getListings(database).then(r=>{
                     $scope.listings = r
                     if (progressInd) {progressInd.style.display="none"}
+                    $scope.unhideNav()
+                    //navContainer.removeClass("hide")
                     // document.querySelector(".progress-circle.indefinite").style.display="none"
                 })
             })
@@ -74,9 +81,15 @@ angular.module("TheGiveawayBoxApp")
             f.getListings(database).then(r=>{
                 $scope.listings = r
                 if (progressInd) {progressInd.style.display="none"}
+                $scope.unhideNav()
+                //navContainer.removeClass("hide")
             })
         }
         
+    }
+    
+    $scope.unhideNav = () => {
+        Array.from(navContainer).forEach(el => angular.element(el).removeClass("nav-hidden"))
     }
 
     /**
