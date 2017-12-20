@@ -2,7 +2,7 @@
 
 angular
 .module("TheGiveawayBoxApp")
-.factory("MasterDataFactory", function ($http) {
+.factory("MasterDataFactory", function ($http, $q) {
 
 
     return Object.create(null, {
@@ -50,18 +50,26 @@ angular
         },
         "init": {
             value: function() {
-                return this.getCategories().then(cats => {
-                    this.categories = cats
-                    return this.getSubCategories().then(subs => {
-                        this.subCategories = subs
-                        return this.getAttributes().then(attrs =>{
-                            this.attributes = attrs
-                            return this.getUsers().then(users => {
-                                this.users = users
-                            })
-                        })
-                    })
-                })
+
+                return $q.all([
+                    this.getCategories(),
+                    this.getSubCategories(),
+                    this.getAttributes(),
+                    this.getUsers()
+                ])
+
+                // return this.getCategories().then(cats => {
+                //     this.categories = cats
+                //     return this.getSubCategories().then(subs => {
+                //         this.subCategories = subs
+                //         return this.getAttributes().then(attrs =>{
+                //             this.attributes = attrs
+                //             return this.getUsers().then(users => {
+                //                 this.users = users
+                //             })
+                //         })
+                //     })
+                // })
                                  
             },
             enumerable: true
@@ -105,11 +113,11 @@ angular
                     const data = response.data
 
                     // Make an array of objects so we can use filters
-                    return Object.keys(data).map(key => {
+                    this.users = Object.keys(data).map(key => {
                         data[key].id = key
                         return data[key]
                     })
-                
+                    return this.users
                 })
         },
     },

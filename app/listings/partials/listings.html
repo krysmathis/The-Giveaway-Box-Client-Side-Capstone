@@ -1,134 +1,154 @@
-
-
 <div class="container-fluid">
- <div hl-sticky="">
-    <form name="filterForm">
-        <div  class="listings__filter-wrapper">
+    <div hl-sticky="">
+        <nav class="navbar navbar-default flex-between">
 
-            <div class="filter__category">
-                <label for="Category">Category and Sub-Category</label>
-                <select ng-model="selectedCategory" ng-change="getSubCategories()">
-                    <option value="0">No Category Filter</option>
-                    <option value="{{cat.externalId}}" ng-repeat="cat in categories">{{cat.label}}</option>
-                </select>
-                <!-- <select ng-model="selectedSubCategory" ng-change="getAttributesFilter()">
-                    <option ng-repeat="cat in subCategories">{{cat.label}}</option>
-                </select> -->
-            </div>
-            <div class="filter__search">
-                <p>Search</p>
-                <input type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
-            </div>
-            <div class="filter__groups">
-                <p>Group Filters</p>
-                <div ng-repeat="group in filterGroups track by $index">
-                    <div>
-                        <input type="checkbox" class="filled-in" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
-                    </div>
-                </div>
-                <button type="button" ng-click="filterListingsBasedOnGroups()">Filter By Groups</button>
-            </div>
-            <div id="map"></div>
-            <button type="button" ng-click="filterListings()">FILTER</button>
-            <button type="button" ng-click="init()">CLEAR SEARCH</button>
-            <button type="button" ng-click="checkMapBounds()">INBOUNDS?</button>
-        </div>
-            
-        </form>
+            <form name="filterForm">
+                <div class="listings__filter-wrapper">
+
+                        <div class="navbar-header">
+                                <button type="button" class="navbar-toggle nav-hidden" ng-click="isNavCollapsed = !isNavCollapsed">
+                                    <!-- <span class="sr-only">Toggle navigation</span> -->
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="filter__category form-group">
+                                    <label for="Category">Category and Sub-Category</label>
+                                    <select class="form-control" ng-model="selectedCategory" ng-change="getSubCategories()">
+                                        <option value="0">No Category Filter</option>
+                                        <option value="{{cat.externalId}}" ng-repeat="cat in categories">{{cat.label}}</option>
+                                    </select>
+                                    <!-- <select ng-model="selectedSubCategory" ng-change="getAttributesFilter()">
+                                <option ng-repeat="cat in subCategories">{{cat.label}}</option>
+                            </select> -->
+                            </div>
+                            <div class="filter__search form-group">
+                                    <label>Search</label>
+                                    <input class="form-control" type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
+                            </div>
+                            <div class="btn-group" uib-dropdown is-open="status.isopen" auto-close="outsideClick">
+                                <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                                        Group Filters <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" auto-close="outsideClick">
+                                    <li role="menuitem" ng-repeat="group in filterGroups track by $index">
+                                        <div>
+                                            <input auto-close="outsideClick" class="form-control" type="checkbox" class="filled-in" checklist-model="inviteGroups" checklist-value="group" > <span style="color:black;">{{group.name}}</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <button type="button" ng-click="filterListingsBasedOnGroups()">Filter By Groups</button>
+                            </div>
         
-    </div>
-</div>
-<div class="container">
-<h1 ng-init="init()" ng-clone>listings</h1>
-{{currentUser}}
-<svg class="progress-circle indefinite" width="100" height="100">
-    <g transform="rotate(-90,50,50)">
-        <circle class="bg" r="40" cx="50" cy="50" fill="none"></circle>
-        <circle class="progress" r="40" cx="50" cy="50" fill="none"></circle>
-    </g>
-</svg>
+                            <!-- Simple dropdown -->
+                            <div>
+                                <button class="btn btn-primary" type="button" ng-click="filterListings()">FILTER</button>
+                                <button class="btn btn-primary" type="button" ng-click="init()">CLEAR SEARCH</button>
+                                <button class="btn btn-primary" type="button" ng-click="checkMapBounds()">INBOUNDS?</button>
 
-<div class="listings__main">
-    
-    
-    
-       
-    <div class="listings__listings-global-wrapper dynamic-grid ">
-        <div ng-repeat="item in listings | filter: filterSearchString | categoryMatch: filterSearchString | filter: {requestedDate: 0}:true | orderBy: 'timestamp':true"
-            class="my-special-animation" ng-cloak>
-            <!--- new card -->
-            <div class="card card-inverse card-info flip-container grid-item" ontouchstart="this.classList.toggle('hover');">
+                            </div>
+                            
+                            <div class="btn-group" uib-dropdown auto-close="outsideClick">
+                                <button id="button-template-url" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" ng-click="initializeMap()">
+                                    Dropdown using template <span class="caret"></span>
+                                </button>
+                                <div  uib-dropdown-menu auto-close="outsideClick" template-url="dropdown.html" aria-labelledby="button-template-url">
+                                </div>
+                            </div>
+                            <script type="text/ng-template" id="dropdown.html">
+                                <div  id="map-dropdown" style="width:500px;left:-300px;" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="button-template-url">
+                                    <!-- <li role="menuitem"><a >Action in Template</a></li>
+                                    <li role="menuitem"><a >Another action in Template</a></li>
+                                    <li role="menuitem"><a >Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li role="menuitem"><a >Separated link in Template</a></li> -->
+                                    <h1>Limit by Location</h1>
+                                    <div id="map">
+                                        
+                                    </div>
+                            <input type="text" ng-click="$event.stopPropagation()">
+                            <button type="button">button</button>
+                                </div>
+                            </script>
+                                          
+
+                   
+                    
+                    
+                </div>
+
+            </form>
+        </nav>
+
+    </div>
+    <!-- filter sticky end -->
+</div>
+
+<div class="container listings__progress">
+    <h1 ng-init="init()" ng-clone>listings</h1>
+    {{currentUser}}
+    <svg class="progress-circle indefinite" width="100" height="100">
+        <g transform="rotate(-90,50,50)">
+            <circle class="bg" r="40" cx="50" cy="50" fill="none"></circle>
+            <circle class="progress" r="40" cx="50" cy="50" fill="none"></circle>
+        </g>
+    </svg>
+
+    <div class="listings__main">
+
+
+
+
+        <div class="listings__listings-global-wrapper dynamic-grid ">
+            <div ng-repeat="item in listings | filter: filterSearchString | categoryMatch: filterSearchString | filter: {requestedDate: 0}:true | orderBy: 'timestamp':true"
+                class="my-special-animation" ng-cloak>
+                <!--- new card -->
+                <div class="card card-inverse card-info flip-container grid-item" ontouchstart="this.classList.toggle('hover');">
                     <div class="flipper">
                         <div class="front">
                             <img class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
-                        </div><!-- end of card-front -->
+                        </div>
+                        <!-- end of card-front -->
                         <div class="back">
                         </div>
-                        </div> <!-- end of flipper -->
-                            <div class="card-block">
-                                <div class="add-listing__user ">
-                                    <figure class="profile" popover-append-to-body="true" uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" >
-                                        <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
-                                    </figure>
-                                    <span class="add-listing__user-info">{{user.firstName}} {{user.lastName}}</span>
-                                </div>
-                                <div class="text-truncate">
-                                    <h4 class="card-title mt-3">{{item.label}}</h4>
-                                </div>
-                                <div class="card__price">
-                                    <span class="badge badge-info ">{{getPrice()}}</span>
-                                </div>
-                                <div class="meta card-text">
-                                    <a></a>
-                                </div>
-                                <div class="card-text">
-                                    {{item.desc}}
-                                </div>
-                                <div class="listing__tag-container">
-                                    <span ng-repeat="tag in tags" class="btn btn-default btn-xs">
-                                        {{tag}}
-                                    </span>
-                                </div>
-                            </div>
-                        
+                    </div>
+                    <!-- end of flipper -->
+                    <div class="card-block">
+                        <div class="add-listing__user ">
+                            <figure class="profile" popover-append-to-body="true" uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'">
+                                <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                            </figure>
+                            <span class="add-listing__user-info">{{user.firstName}} {{user.lastName}}</span>
+                        </div>
+                        <div class="text-truncate">
+                            <h4 class="card-title mt-3">{{item.label}}</h4>
+                        </div>
+                        <div class="card__price">
+                            <span class="badge badge-info ">{{getPrice()}}</span>
+                        </div>
+                        <div class="meta card-text">
+                            <a></a>
+                        </div>
+                        <div class="card-text">
+                            {{item.desc}}
+                        </div>
+                        <div class="listing__tag-container">
+                            <span ng-repeat="tag in tags" class="btn btn-default btn-xs">
+                                {{tag}}
+                            </span>
+                        </div>
+                    </div>
+
                     <div class="card-footer">
                         <small>Expiring in {{ daysUntilExpires() }} days</small>
                         <button class="btn btn-info float-right btn-sm">I want it!</button>
                     </div>
-                </div> <!-- end of new card -->
-
-
-            <!-- <div class="card" style="width: 20rem">
-                <img class="listing__image card-img-top" src="{{item.image}}" />
-
-                <div class="card-body">
-                    <h3 class="listing__label">{{item.label}}</h3>
-                    <span>{{item.price}}</span>
-                    <div class="listing__desc">{{item.desc}}</div>
-                    <div>
-                        <span>{{item.category.label}} > {{item.subCategory.label}}</span>
-                    </div>
-
-                    <div ng-repeat="attr in item.attributes">
-                        {{attr.label}}: {{attr.value}}
-                    </div>
-                    <div class="listing__tag-container">
-                        <span ng-repeat="tag in item.tags" class="listing__tag chip">
-                            {{tag}}
-                        </span>
-                    </div>
-                    <div>
-                        <span>{{item.user.city}}</span>
-                    </div>
-
-                    <button type="button" class="btn btn-primary" id="{{item.id}}" ng-click="purchase($event)">I want this one</button>
-
                 </div>
-            </div> -->
+            </div>
 
         </div>
-
     </div>
+    <!-- listings main end -->
 </div>
-<!-- listings main end -->
-</div> <!-- end of main container -->
+<!-- end of main container -->

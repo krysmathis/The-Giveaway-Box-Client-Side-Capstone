@@ -29,6 +29,13 @@ h3.accordion {
   border-radius: .28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5; }
 
+.card:hover {
+  z-index: 1;
+  transition: transform .2s;
+  transform: translate3d(0, -5px, 0);
+  text-decoration: none;
+  box-shadow: 0 3px 10px 0 rgba(135, 135, 135, 0.2); }
+
 .add-listing__user {
   position: absolute;
   top: -6px;
@@ -88,7 +95,6 @@ h3.accordion {
   position: absolute;
   top: -24px;
   display: inline-block;
-  overflow: hidden;
   box-sizing: border-box;
   width: 50px;
   height: 50px;
@@ -163,8 +169,8 @@ h3.accordion {
 
 .navbar-flex {
   display: flex;
-  width: 80%;
-  justify-content: flex-end; }
+  width: 100%;
+  justify-content: space-between; }
 
 .navbar__header {
   background-color: yellow;
@@ -2569,5 +2575,9 @@ h3.accordion {
   margin: 0;
   overflow: visible;
   clip: auto; }
+
+.flex-between {
+  display: flex;
+  justify-content: space-between; }
 
 /*# sourceMappingURL=main.css.map */
