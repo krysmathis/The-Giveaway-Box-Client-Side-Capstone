@@ -141,31 +141,58 @@ angular.module("TheGiveawayBoxApp")
      * MAP
      */
     $scope.mapDisplayed = false
-    $scope.initializeMap = () => {
 
+    
+    $scope.initializeMap = () => {
         
+        
+        // if the map is already open then don't initilize it again
         if (!document.getElementById("map-dropdown")) {
-            console.log($scope.mapDisplayed)
             return
         }
-
+        
         $scope.centerMap = {lat: 36.1689027, lng: -86.73954520000001};
         $scope.mapOptions = {
-            zoom: 12,
+            zoom: 13,
             center: new google.maps.LatLng(36.1689027, -86.73954520000001),
+            disableDefaultUI: true
         }
+        // Create an array of alphabetical characters used to label the markers.
+        let labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $timeout(() => {
-                $scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOptions)
+            $scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOptions)
+            
+           
 
-                $scope.marker = new google.maps.Marker({
-                position: $scope.centerMap,
-                map: $scope.map
+            let locations = $scope.listings.filter(li=> li.requestedDate===0).map(l=> {
+                return {lat: l.user.lat, lng: l.user.long}
             })
-        },100)
-        
+                // $scope.marker = new google.maps.Marker({
+                // position: $scope.centerMap,
+                // map: $scope.map
+
+                // Add some markers to the map.
+            // Note: The code uses the JavaScript Array.prototype.map() method to
+            // create an array of markers based on a given "locations" array.
+            // The map() method here has nothing to do with the Google Maps API.
+            let markers = locations.map(function(location, i) {
+                return new google.maps.Marker({
+                    position: location,
+                    label: labels[i % labels.length]
+                });
+            });
+
+            var markerCluster = new MarkerClusterer($scope.map, markers,
+                {imagePath: "../../../images/markers/m"});
+
+        },200)
+
         
     } 
   
+    $scope.onClick = function onClick() {
+        console.log("click");}
+    
     
     $scope.checkMapBounds = () => {
         const bounds = $scope.map.getBounds()

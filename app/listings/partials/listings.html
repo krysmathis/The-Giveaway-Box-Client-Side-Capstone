@@ -27,55 +27,56 @@
                                     <label>Search</label>
                                     <input class="form-control" type="text" ng-keypress="finder($event)" ng-model="filterSearchString" placeholder="Search">
                             </div>
+                            <!-- group filter -->
                             <div class="btn-group" uib-dropdown is-open="status.isopen" auto-close="outsideClick">
                                 <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
                                         Group Filters <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" auto-close="outsideClick">
-                                    <li role="menuitem" ng-repeat="group in filterGroups track by $index">
-                                        <div>
-                                            <input auto-close="outsideClick" class="form-control" type="checkbox" class="filled-in" checklist-model="inviteGroups" checklist-value="group" > <span style="color:black;">{{group.name}}</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <button type="button" ng-click="filterListingsBasedOnGroups()">Filter By Groups</button>
+                                <div class="dropdown-menu group-dropdown" uib-dropdown-menu role="menu" aria-labelledby="single-button" auto-close="outsideClick">
+                                    <div class="flex-center flex-column ta-l">
+                                        <h4 style="text-align: left;color:black;">Limit to selected groups</h4>
+                                        <ul class="filter__group-list">
+                                            <li role="menuitem" ng-repeat="group in filterGroups track by $index" class="group-dropdown__list-item">
+                                                <div>
+                                                    <input auto-close="outsideClick" type="checkbox" class="filled-in" checklist-model="inviteGroups" checklist-value="group" > <span style="color:black;">{{group.name}}</span>
+                                                </div>
+                                            </li>
+                                            <li class="divider"></li>
+                                        </ul>
+                                        <button type="button" ng-click="filterListingsBasedOnGroups()">Filter By Groups</button>
+                                    </div>
+                                </div>
                             </div>
         
                             <!-- Simple dropdown -->
                             <div>
                                 <button class="btn btn-primary" type="button" ng-click="filterListings()">FILTER</button>
                                 <button class="btn btn-primary" type="button" ng-click="init()">CLEAR SEARCH</button>
-                                <button class="btn btn-primary" type="button" ng-click="checkMapBounds()">INBOUNDS?</button>
 
                             </div>
-                            
+
+                            <!-- map dropdown -->
                             <div class="btn-group" uib-dropdown auto-close="outsideClick">
                                 <button id="button-template-url" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" ng-click="initializeMap()">
                                     Dropdown using template <span class="caret"></span>
                                 </button>
-                                <div  uib-dropdown-menu auto-close="outsideClick" template-url="dropdown.html" aria-labelledby="button-template-url">
+                                <div  uib-dropdown-menu auto-close="outsideClick" template-url="map-dropdown.html" aria-labelledby="button-template-url">
                                 </div>
                             </div>
-                            <script type="text/ng-template" id="dropdown.html">
-                                <div  id="map-dropdown" style="width:500px;left:-300px;" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="button-template-url">
-                                    <!-- <li role="menuitem"><a >Action in Template</a></li>
-                                    <li role="menuitem"><a >Another action in Template</a></li>
-                                    <li role="menuitem"><a >Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li role="menuitem"><a >Separated link in Template</a></li> -->
-                                    <h1>Limit by Location</h1>
-                                    <div id="map">
-                                        
-                                    </div>
-                            <input type="text" ng-click="$event.stopPropagation()">
-                            <button type="button">button</button>
+
+                            <!-- map template -->
+                            <script type="text/ng-template" id="map-dropdown.html">
+                                <div ng-click="$event.stopPropagation()" id="map-dropdown" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="button-template-url">
+                                    <div class="dropdown-map">
+                                        <h4 class="map-dropdown__header">Limit items to the selected area </h4>
+                                        <div id="map" ng-click="onClick"></div>
+                                        <div class="dropdown__map-btn">
+                                            <button class="btn btn-primary" type="button" ng-click="checkMapBounds()">INBOUNDS?</button>
+                                        </div>
+                                    </div> 
                                 </div>
                             </script>
-                                          
 
-                   
-                    
-                    
                 </div>
 
             </form>
@@ -87,13 +88,16 @@
 
 <div class="container listings__progress">
     <h1 ng-init="init()" ng-clone>listings</h1>
-    {{currentUser}}
-    <svg class="progress-circle indefinite" width="100" height="100">
+    <div class="progress-circle indefinite" style="height:100vh;display:flex;top:200px;text-align:center">
+        <img style="width:300px;height:auto;"  src="../../../images/svg/box-logo.svg">
+        <div>Loading...</div>
+    </div>
+    <!-- <svg class="progress-circle indefinite" width="100" height="100">
         <g transform="rotate(-90,50,50)">
             <circle class="bg" r="40" cx="50" cy="50" fill="none"></circle>
             <circle class="progress" r="40" cx="50" cy="50" fill="none"></circle>
         </g>
-    </svg>
+    </svg> -->
 
     <div class="listings__main">
 

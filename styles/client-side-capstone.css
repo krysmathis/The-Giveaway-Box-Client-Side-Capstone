@@ -85,6 +85,58 @@ body {
   font-weight: bold;
   color: white;
 } */
+
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.ta-l {
+  text-align: left;
+}
+.dropdown-map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px;
+}
+
+.map-dropdown__header {
+  margin-bottom: 10px;
+}
+#map-dropdown {
+  width: 450px;
+  left: -250px;
+  color: black;
+}
+
+.dropdown__map-btn {
+  margin-top: 25px;
+}
+
+.group-dropdown {
+  width: 350px;
+  margin: 25px;
+
+}
+.filter__group-list {
+  padding-left: 0px;
+}
+.group-dropdown__list-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.card-svg {
+  background-image: url('../images/svg/002-cards.svg#cards-svg');
+}
+
 .footer {
   background-color: black;
   width: 100%;

@@ -17,4 +17,5 @@ lib/.sass-cache
 lib/checklist-model.js
 lib/moment.js
 lib/xmlToJSON.min.js
+lib/googleMarkerClusterer
 
