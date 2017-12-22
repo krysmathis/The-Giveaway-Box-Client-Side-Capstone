@@ -101,13 +101,6 @@ angular.module("TheGiveawayBoxApp")
     /**
      * FILTER
      */
-    $scope.filterInit = () => {
-        $scope.filter = {
-            keywords: [],
-            category: 0
-        }
-    }
-
     $scope.filter = {
         keywords: [],
         category: 0
@@ -135,10 +128,6 @@ angular.module("TheGiveawayBoxApp")
             if ($scope.filterSearchString.length > 0){
                 $scope.filter.keywords = $scope.filterSearchString.split(" ")
                 $scope.listings = FilterFactory.getfilteredListings($scope.listings,$scope.filter)
-            } else {
-                $scope.filterInit()
-                $scope.listings = ListingsFactory.listings
-
             }
         }
     }

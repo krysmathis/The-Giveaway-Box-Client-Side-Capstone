@@ -1,6 +1,69 @@
 .listings__filter-wrapper {
     display: flex;
     flex-direction: row;
-    background-color: blue;
     color: white;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
 }
+
+.filter__icon {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.filter__form {
+    width: 100%;
+}
+
+.filter__search {
+  width: 400px;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+}
+
+.filter__category {
+  width: 200px;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 25px;
+  }
+  
+  .map-dropdown__header {
+    margin-bottom: 10px;
+  }
+  #map-dropdown {
+    width: 450px;
+    left: -350px;
+    top: 50px;
+    color: black;
+  }
+  
+  .dropdown__map-btn {
+    margin-top: 25px;
+  }
+  
+  .group-dropdown {
+    width: 350px;
+    margin: 25px;
+    top: 25px;
+    left: -250%;
+  }
+  .filter__group-list {
+    padding-left: 0px;
+  }
+  .group-dropdown__list-item {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css?family=Pacifico|Zilla+Slab");
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
 body {
   margin: 0 auto;
   padding: 0; }
@@ -23,15 +23,18 @@ h3.accordion {
 
 .card {
   font-size: 1em;
-  width: 25em;
+  width: 20em;
   padding: 0;
   border: none;
   border-radius: .28571429rem;
-  box-shadow: 0 3px 10px 0 rgba(135, 135, 135, 0.2); }
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5; }
 
 .card:hover {
+  /* z-index: 1;
+  transition: transform .2s;
+  transform: translate3d(0, -5px, 0); */
   text-decoration: none;
-  box-shadow: 1px 1px 1px 1px rgba(135, 135, 135, 0.2); }
+  box-shadow: 0 3px 10px 0 rgba(135, 135, 135, 0.2); }
 
 .add-listing__user {
   position: absolute;
@@ -162,7 +165,6 @@ h3.accordion {
     max-width: 100%; }
 
 .navbar {
-  font-family: 'Zilla Slab', serif;
   margin-bottom: 0px; }
 
 .navbar-flex {
@@ -176,12 +178,6 @@ h3.accordion {
   margin-bottom: 0px;
   height: 55px; }
 
-.nav-item {
-  font-size: 1.25em; }
-
-@media (max-width: 768px) {
-  .navbar-flex {
-    display: inline-block; } }
 .badge {
   padding: 3px 9px 2px;
   font-size: 1.15em;
@@ -243,7 +239,6 @@ h3.accordion {
   position: relative;
   display: inline-block;
   margin-bottom: 1rem;
-  margin-right: 1rem;
   max-width: 100%;
   break-inside: avoid;
   -webkit-column-break-inside: avoid; }
@@ -254,31 +249,14 @@ h3.accordion {
 .listings__filter-wrapper {
   display: flex;
   flex-direction: row;
+  background-color: blue;
   color: white;
   width: 100%;
   justify-content: space-around;
-  align-items: center;
-  height: 60px; }
-
-.filter__icon {
-  width: 25px;
-  height: auto;
-  margin-right: 10px; }
+  align-items: center; }
 
 .filter__form {
   width: 100%; }
-
-.filter__search {
-  width: 400px;
-  margin-bottom: 0px;
-  display: flex;
-  align-items: center; }
-
-.filter__category {
-  width: 200px;
-  margin-bottom: 0px;
-  display: flex;
-  align-items: center; }
 
 .dropdown-map {
   display: flex;
@@ -317,8 +295,7 @@ h3.accordion {
   width: 150px;
   height: 150px;
   overflow: hidden;
-  position: absolute;
-  z-index: 1000; }
+  position: absolute; }
 
 .ribbon::before,
 .ribbon::after {
@@ -339,8 +316,7 @@ h3.accordion {
   font: 700 18px/1 'Lato', sans-serif;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   text-transform: uppercase;
-  text-align: center;
-  z-index: 1000; }
+  text-align: center; }
 
 /* top left*/
 .ribbon-top-left {

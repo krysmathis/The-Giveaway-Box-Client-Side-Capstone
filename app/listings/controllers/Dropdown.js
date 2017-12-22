@@ -1,3 +1,4 @@
+// TODO: verify if this is still needed
 
 app.directive("dropdown", function ($rootScope) {
     return {

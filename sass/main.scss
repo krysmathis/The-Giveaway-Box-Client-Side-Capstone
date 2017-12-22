@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Zilla+Slab');
 $primary-color: yellow;
 
 body {
@@ -14,9 +15,9 @@ body {
 @import 'badges';
 @import 'grid';
 @import 'filter';
+@import 'ribbon';
 // @import 'card-flipping';
 @import '../lib/font-awesome-4.7.0/scss/font-awesome.scss';
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 .flex-between {
     display: flex;

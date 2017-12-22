@@ -1,4 +1,5 @@
 .navbar {
+    font-family: 'Zilla Slab', serif;
     margin-bottom: 0px;
 }
 .navbar-flex {
@@ -12,4 +13,14 @@
     margin-top: 0;
     margin-bottom: 0px;
     height: 55px;
+}
+
+.nav-item {
+    font-size: 1.25em;
+}
+
+@media (max-width: 768px) {
+    .navbar-flex {
+        display:inline-block;
+    }
 }
