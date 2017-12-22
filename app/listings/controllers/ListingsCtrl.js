@@ -33,10 +33,10 @@ angular.module("TheGiveawayBoxApp")
     $scope.init = () => {
 
         // clear the search bar
+        document.querySelector(".filter__clear-wheel").style.visibility = "visible"
         document.querySelector(".filter__search-input").value = null
         $scope.filterSearchString = ""
-        $scope.filter.keywords = []
-        $scope.filter.category = 0
+        $scope.filterInit()
 
             if (masterData.isReady()) {
                 database = masterData.database
@@ -53,7 +53,7 @@ angular.module("TheGiveawayBoxApp")
                     $scope.getListings(database)
                 })                  
             }
-        
+            document.querySelector(".filter__clear-wheel").style.visibility = "hidden"
             console.log("listings: ", ListingsFactory.listings)
     } 
 
@@ -264,7 +264,8 @@ angular.module("TheGiveawayBoxApp")
   
     $ctrl.animationsEnabled = true;
   
-    $scope.open = function (size, parentSelector) {
+    $scope.open = function (size, item, parentSelector) {
+        console.log(item)
       var parentElem = parentSelector ? 
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
       var modalInstance = $uibModal.open({
@@ -277,60 +278,19 @@ angular.module("TheGiveawayBoxApp")
         size: size,
         appendTo: parentElem,
         resolve: {
-          items: function () {
-            return $ctrl.items;
+          item: function () {
+            return item;
           }
         }
       });
   
-      modalInstance.result.then(function (selectedItem) {
-        $ctrl.selected = selectedItem;
+      modalInstance.result.then(function (item) {
+        $ctrl.selected = item;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
   
-    $ctrl.openComponentModal = function () {
-      var modalInstance = $uibModal.open({
-        animation: $ctrl.animationsEnabled,
-        component: 'modalComponent',
-        resolve: {
-          items: function () {
-            return $ctrl.items;
-          }
-        }
-      });
-  
-      modalInstance.result.then(function (selectedItem) {
-        $ctrl.selected = selectedItem;
-      }, function () {
-        $log.info('modal-component dismissed at: ' + new Date());
-      });
-    };
-  
-    $ctrl.openMultipleModals = function () {
-      $uibModal.open({
-        animation: $ctrl.animationsEnabled,
-        ariaLabelledBy: 'modal-title-bottom',
-        ariaDescribedBy: 'modal-body-bottom',
-        templateUrl: 'stackedModal.html',
-        size: 'sm',
-        controller: function($scope) {
-          $scope.name = 'bottom';  
-        }
-      });
-  
-      $uibModal.open({
-        animation: $ctrl.animationsEnabled,
-        ariaLabelledBy: 'modal-title-top',
-        ariaDescribedBy: 'modal-body-top',
-        templateUrl: 'stackedModal.html',
-        size: 'sm',
-        controller: function($scope) {
-          $scope.name = 'top';  
-        }
-      });
-    };
   
     $ctrl.toggleAnimation = function () {
       $ctrl.animationsEnabled = !$ctrl.animationsEnabled;
@@ -341,15 +301,16 @@ angular.module("TheGiveawayBoxApp")
 // Please note that $uibModalInstance represents a modal window (instance) dependency.
 // It is not the same as the $uibModal service used above.
 
-angular.module("TheGiveawayBoxApp").controller('ModalInstanceCtrl', function ($uibModalInstance, items) {
+angular.module("TheGiveawayBoxApp").controller('ModalInstanceCtrl', function ($uibModalInstance, item) {
+    
     var $ctrl = this;
-    $ctrl.items = items;
+    $ctrl.item = item;
     $ctrl.selected = {
-      item: $ctrl.items[0]
+      item: $ctrl.item.label
     };
   
     $ctrl.ok = function () {
-      $uibModalInstance.close($ctrl.selected.item);
+      $uibModalInstance.close($ctrl.item);
     };
   
     $ctrl.cancel = function () {
@@ -357,31 +318,3 @@ angular.module("TheGiveawayBoxApp").controller('ModalInstanceCtrl', function ($u
     };
   });
   
-  // Please note that the close and dismiss bindings are from $uibModalInstance.
-  
-  angular.module("TheGiveawayBoxApp").component('modalComponent', {
-    templateUrl: 'myModalContent.html',
-    bindings: {
-      resolve: '<',
-      close: '&',
-      dismiss: '&'
-    },
-    controller: function () {
-      var $ctrl = this;
-  
-      $ctrl.$onInit = function () {
-        $ctrl.items = $ctrl.resolve.items;
-        $ctrl.selected = {
-          item: $ctrl.items[0]
-        };
-      };
-  
-      $ctrl.ok = function () {
-        $ctrl.close({$value: $ctrl.selected.item});
-      };
-  
-      $ctrl.cancel = function () {
-        $ctrl.dismiss({$value: 'cancel'});
-      };
-    }
-});

@@ -251,6 +251,11 @@ h3.accordion {
 .grid-item .inner {
   padding: 1rem 1rem 1rem 1rem; }
 
+.filter__navbar {
+  border: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 0px; }
+
 .listings__filter-wrapper {
   display: flex;
   flex-direction: row;
@@ -261,12 +266,18 @@ h3.accordion {
   height: 60px; }
 
 .filter__icon {
-  width: 25px;
+  width: 30px;
   height: auto;
   margin-right: 10px; }
 
 .filter__form {
-  width: 100%; }
+  width: 100%;
+  margin: 0 auto; }
+
+.filter__label {
+  margin-left: 5px;
+  margin-right: 10px;
+  color: #333; }
 
 .filter__search {
   width: 400px;

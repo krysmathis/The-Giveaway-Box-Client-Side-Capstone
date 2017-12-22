@@ -1,3 +1,10 @@
+.filter__navbar {
+  border: none;
+  box-shadow: 0 5px 10px rgba(0,0,0,.3);
+  border-radius: 0px;
+}
+
+
 .listings__filter-wrapper {
     display: flex;
     flex-direction: row;
@@ -6,6 +13,7 @@
     justify-content: space-around;
     align-items: center;
     height: 60px;
+    
 }
 
 .filter__icon {
@@ -16,6 +24,13 @@
 
 .filter__form {
     width: 100%;
+    margin: 0 auto; 
+}
+
+.filter__label {
+  margin-left: 5px;
+  margin-right: 10px;
+  color: #333;
 }
 
 .filter__search {
@@ -31,6 +46,10 @@
   display: flex;
   align-items: center;
 }
+
+// .filter__clear-wheel {
+//   visibility: hidden;
+// }
 
 .dropdown-map {
     display: flex;
