@@ -36,6 +36,7 @@ h3.accordion {
 .add-listing__user {
   position: absolute;
   top: -6px;
+  left: -2px;
   width: 100%;
   z-index: 50;
   display: grid;
