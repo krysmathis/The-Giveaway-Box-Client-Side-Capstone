@@ -31,7 +31,8 @@ function(
 
         $scope.closeListing = (e) => {    
                 ListingsFactory.closeListing(e.target.id).then(r=>{
-                    ListingsFactory.getListings(MasterDataFactory.database).then(r=> $scope.updatePurchasedListings())
+                    //ListingsFactory.getListings(MasterDataFactory.database).then(r=> $scope.updatePurchasedListings())
+                    $scope.updatePurchasedListings()
                 })
         }
 

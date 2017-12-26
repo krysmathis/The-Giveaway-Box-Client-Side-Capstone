@@ -125,7 +125,15 @@ angular
                     const item = response.data
                     // update item values based on what we're modifying
                     item.purchaseCompletedOn = Date.now()
-
+                    
+                    const cachedListing = 
+                        this.listings
+                            .find(l=> l.id === listingId)
+                            
+                    if (cachedListing) {
+                        cachedListing.purchaseCompletedOn = Date.now()
+                    }
+                    
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http({
