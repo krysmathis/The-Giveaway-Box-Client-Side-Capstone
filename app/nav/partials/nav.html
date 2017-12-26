@@ -34,7 +34,7 @@
                                 <a class="nav-link" href="/#!/create-profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a>
                             </li>
                             <li ng-if="isAuthenticated" class="nav-item">
-                                <a class="nav-link" href="/#!/create-profile"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+                                <a class="nav-link nav__logout" ng-click="navLogout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
                             </li>
                     </ul>
                 </div>

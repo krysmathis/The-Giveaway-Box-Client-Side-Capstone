@@ -42,11 +42,7 @@
         })
     }
 
-    $scope.closeListing = (e) => {
-        ListingsFactory.closeListing(e.target.id).then(r=>{
-            console.log("another successful listing")
-        })
-    }
+    
 
 
     $scope.refresh = () => $scope.groupsInit()

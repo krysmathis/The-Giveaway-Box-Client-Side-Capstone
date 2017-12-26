@@ -159,6 +159,20 @@ angular
             }, 
             enumerable: true
         },
+        "extractStreetFromUserAddress": {
+            value: function(user) {
+                try {
+                    let re = /^\d+\w*\s*(?:[\-\/]?\s*)?\d*\s*\d+\/?\s*\d*\s*/;
+                    let address = user.address
+                    let number = address.match(re)
+                    let street = address.split(number[0])[1]
+                    return street
+                } catch(err) {
+                    return user.address.split(" ")[1]
+                }
+            },
+            enumerable: true
+        },
         "getListings": {
             value: function(database) {
             
@@ -186,6 +200,8 @@ angular
                     this.listings.map(l=> {
                         if (!l.price > 0) { l.price = "FREE"}
                         l.user = database.users.find(u=> u.userId === l.userId)
+                        l.user.street = this.extractStreetFromUserAddress(l.user)
+
                         l.category = database.categories.find(c=> l.categoryExternalId === c.externalId)
                         l.subCategory = database.subCategories.find(s=> l.subCategoryExternalId === s.externalId)
                         
@@ -200,33 +216,6 @@ angular
                     })
 
                     return this.listings
-                    // return $http({
-                    //     method: "GET",
-                    //     url: `https://${firebasePath}/itemAttributes/.json`
-                    
-                    // }).then(r=> {
-                    //     const data = r.data
-                            
-                    //         //Make an array of objects so we can use filters
-                    //         this.itemAttributes = Object.keys(data).map(key => {
-                    //             data[key].id = key
-                    //             return data[key]
-                    //         })
-
-                    //         return this.getTags().then(result => {
-                    //             console.log("got tags")
-                    //             // return the enriched item display
-                    //             this.listings.forEach(item => {
-                                    
-                    //                 
-                    //                 // create the attributes
-                    //                 item.attributes = this.itemAttributes.filter(a=> a.itemListingId === item.id)
-                    //                 item = this.addAttributeLabels(item, database)
-                    //                 item = this.addTags(item, database)
-                    //             })
-                    //         return this.listings
-                    //         })
-                    //     })
                          
                     })
             },

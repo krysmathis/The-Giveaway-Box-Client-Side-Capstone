@@ -46,6 +46,10 @@ h3.accordion {
   background-color: rgba(255, 255, 0, 0.735);
   text-align: right; }
 
+.card-footer {
+  display: flex;
+  align-items: space-around; }
+
 .add-listing__user-info {
   grid-column-start: 2;
   text-align: left;
@@ -179,6 +183,9 @@ h3.accordion {
 
 .nav-item {
   font-size: 1.25em; }
+
+.nav__logout:hover {
+  cursor: pointer; }
 
 @media (max-width: 768px) {
   .navbar-flex {
@@ -445,6 +452,38 @@ h3.accordion {
   left: -25px;
   bottom: 30px;
   transform: rotate(-225deg); }
+
+.profile__container {
+  width: 60%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 40px;
+  margin-top: 25px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4); }
+
+.profile__control {
+  font-size: 1.25em; }
+
+.profile__image--div {
+  height: 75px; }
+
+.profile__img {
+  border-radius: 50%;
+  width: 75px;
+  height: auto;
+  position: absolute;
+  right: 40%; }
+
+.profile__button {
+  width: 25%; }
+
+.profile__progress {
+  width: 150px; }
+
+.profile__button-image {
+  left: 24%;
+  position: absolute;
+  width: 200px; }
 
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome

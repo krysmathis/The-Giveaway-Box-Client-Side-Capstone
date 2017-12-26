@@ -1,8 +1,7 @@
-<div ng-controller="UserCtrl" class="user__widget">
-    <h1>Somebody wants these</h1>
-    <div ng-repeat="listing in user.listings | filter: greaterThan('requestedDate',0)| filter: {purchaseCompletedOn: 0}:true">
+<div ng-controller="PurchasedListingsCtrl" class="user__widget">
+    <h1 class="section__header" >Somebody wants these</h1>
+    <div ng-repeat="listing in purchasedListings | filter: greaterThan('requestedDate',0)">
         <div>{{listing.label}}</div>
-        <a href="#!/listings/detail/{{ listing.id }}">Update</a>
         <button type="button" id="{{ listing.id }}" ng-click="closeListing($event)">CLOSE</button>
     </div>
 </div>

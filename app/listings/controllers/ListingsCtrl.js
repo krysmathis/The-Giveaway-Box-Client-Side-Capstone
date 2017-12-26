@@ -27,6 +27,7 @@ angular.module("TheGiveawayBoxApp")
         attributes: [],
     }
 
+
     
     // check if user has a profile set up already or not
     // if not redirect them to the profile set-up
@@ -92,6 +93,7 @@ angular.module("TheGiveawayBoxApp")
         }
         
     }
+    
     
     // unhide the nav elements so they are available once the data is loaded
     $scope.unhideNav = () => {

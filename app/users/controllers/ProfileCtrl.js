@@ -41,12 +41,20 @@ angular.module("TheGiveawayBoxApp")
             }
         }
         
-        $scope.uploadImage = () => {
+        $scope.uploadFile = function(){
+            $scope.$apply(() => {
+                $scope.displayProgress = true
+                $scope.saveImage()
+            })
+        };
+
+        $scope.saveImage = () => {
             var filename = document.getElementById("userProfile__image");
             let file = filename.files[0]
             UserFactory.addImage(file).then(_url=> {
                 $scope.$apply(function() {
                     $scope.userData.image = _url
+                    $scope.displayProgress = false
                 })
             })
         }

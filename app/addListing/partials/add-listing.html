@@ -1,6 +1,6 @@
 <div ng-controller="AddListingCtrl as filter">
     <div class="container">
-    <h1 class="section-header">Add Listings</h1>
+    <h1 class="section__header">Add Listings</h1>
     <div class="row"> <!-- main row -->
         <div class="col-md-7"><!-- the form section -->
              <!-- <button type="button" ng-click="reload()">RELOAD</button> -->
@@ -75,7 +75,7 @@
                         </div>
                     </div>
 
-                    <h1 class="section-header">Attributes</h1>
+                    <h1 class="section__header">Attributes</h1>
                     <!-- UPDATE MODE - JUST SHOW THE ATTRIBUTES UNLESS THE CATEGORY IS UPDATED -->
                     <div ng-if="inUpdateMode()">    
                         <div ng-repeat="field in item.attributes">
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                     </div><!-- end of attributes -->
-                    <h1 class="section-header">Enter Tags</h1>
+                    <h1 class="section__header">Enter Tags</h1>
                     <div class="entry__tags">
                         <span ng-repeat="tag in tags track by $index">
                             <span class="btn btn-default btn-sm" ng-click="removeTag($event)">{{tag}}</span>
@@ -142,7 +142,7 @@
                                 <h4 class="card-title mt-3">{{item.label}}</h4>
                             </div>
                             <div class="card__price">
-                                <span class="badge badge-info   ">{{getPrice()}}</span>
+                                <span class="badge badge-info badge-price">{{getPrice()}}</span>
                             </div>
                             <div class="meta card-text">
                                 <a></a>

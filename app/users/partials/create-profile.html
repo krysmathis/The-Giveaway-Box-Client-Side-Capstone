@@ -1,34 +1,57 @@
 <div ng-init="createProfileInit()">
-    <form class="users__form">
-        <div>
-            <label>First Name</label><input type="text" ng-model="userData.firstName"/>
+    <div class="container profile__container">
+        <form class="users__form">
+            <!-- <div class="form-group row" ng-if='field.data_type == "text"'>
+                <label class="col-sm-3 col-form-label">{{field.label}}</label>
+                <div class="col-sm-9">
+                    <input class="form-control"  type='text' ng-model='field.value' placeholder='{{field.label}}' name='myText' />
+                    <span class='required' ng-show="subForm.myText.$error.required">*</span>
+                </div>
+            </div> -->
+            
+            <div class="form-group row flex-center profile__control">
+                <label class="col-sm-3">First Name</label>
+                <input class="col-sm-9 form-control profile__control" type="text" ng-model="userData.firstName"/>
+            </div>
+            <div class="form-group row flex-center profile__control">
+                <label class="col-sm-3">Last Name</label>
+                <input class="col-sm-9 form-control profile__control" type="text" ng-model="userData.lastName"/>
+            </div>
+            <div class="form-group row flex-center profile__control">
+                <label class="col-sm-3">Address</label>
+                <input class="col-sm-9 form-control profile__control" type="text" ng-model="userData.address"/>
+            </div>
+            <div class="form-group row flex-center profile__control">
+                <label class="col-sm-6" style="width:340px">City</label>
+                <input class="col-sm-1 form-control profile__control" type="text" ng-model="userData.city"/>
+                <label class="col-sm-2">State</label>
+                <select class="col-sm-3 form-control profile__control" ng-model="selectedState" data-ng-options="state as state.name for state in statesList track by state.abbreviation">
+                </select>
+            </div>
+            
+            <div class="form-group row flex-center profile__control" >
+                <label class="col-sm-3">zip</label>
+                <input class="col-sm-3 form-control profile__control" type="text" ng-model="userData.zip"/>
+            </div>
+            <div class="form-group row flex-center profile__control profile__image--div">
+                <label class="btn btn-primary btn-file profile__button-image">
+                        Add Image
+                        <input  class="hidden" id="userProfile__image" custom-on-change="uploadFile" type="file" accept=".jpg,.png,.gif" ng-model="userData.image" ng-change="saveImage()">
+                </label>
+                <span  ng-if="displayProgress" class="progress-line profile__progress"></span>
+                <!-- <button type="button" ng-click="uploadImage()">Upload</button> -->
+                <img class="profile__img" ng-src="{{userData.image}}"/>            
+            </div>
+            <div class="form-group row flex-center profile__control">
+                <label class="col-sm-3">About Me</label class="col-sm-9">
+                <textarea class="form-control" ng-model="userData.aboutMe"/></textarea>
+            </div>
+        </form>
+        <div ng-if="!editingProfile" class="flex-center">
+            <button class="btn btn-primary profile__button" ng-click="addUsers()">Add User Data</button>
         </div>
-        <div>
-            <label>Last Name</label><input type="text" ng-model="userData.lastName"/>
+        <div ng-if="editingProfile" class="flex-center">
+            <button class="btn btn-primary profile__button" ng-click="addUsers()">Update User</button>
         </div>
-        <div>
-
-        <label>Address</label><input type="text" ng-model="userData.address"/>
-        <label>City</label><input type="text" ng-model="userData.city"/>
-        <label>State</label>
-        <select ng-model="selectedState" data-ng-options="state as state.name for state in statesList track by state.abbreviation">
-            <!-- <option ng-repeat="state in statesList" value="{{state.abbreviation}}">{{state.name}}</option> -->
-        </select>
-        </div>
-        <div class="input-field">
-            <label>zip</label>
-            <input type="text" ng-model="userData.zip"/>
-        </div>
-        <label>Profile Image</label>
-        <input type="file" ng-model="userData.image" id="userProfile__image"/>
-        <button type="button" ng-click="uploadImage()">Upload</button>
-        <img ng-src="{{userData.image}}" style="width:150px;height:auto;"/>            
-        <label>About Me</label><textarea ng-model="userData.aboutMe"/></textarea>
-    </form>
-    <div ng-if="!editingProfile">
-        <button ng-click="addUsers()">Add User Data</button>
-    </div>
-    <div ng-if="editingProfile">
-        <button ng-click="addUsers()">Update User</button>
     </div>
 </div>

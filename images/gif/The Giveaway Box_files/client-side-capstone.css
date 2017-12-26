@@ -94,6 +94,12 @@ body {
   justify-content: center;
 }
 
+.flex-start {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .flex-column {
   flex-direction: column;
 }

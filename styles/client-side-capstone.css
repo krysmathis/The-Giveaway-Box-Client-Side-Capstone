@@ -24,6 +24,17 @@ body {
   font-family: 'Pacifico', cursive;
 }
 
+.section__header {
+  font-family: 'Zilla Slab', serif;
+  margin-bottom: 25px;
+}
+
+.myBox__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 
 .main-content {
   position: relative;

@@ -31,6 +31,10 @@
   text-align: right;
   
 }
+.card-footer {
+  display: flex;
+  align-items: space-around;
+}
 
 .add-listing__user-info {
   grid-column-start: 2;

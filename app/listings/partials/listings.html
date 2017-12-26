@@ -1,5 +1,4 @@
 <div class="container-fluid">
-        
     <div hl-sticky="">
         <nav class="filter__navbar navbar navbar-default flex-between">
             <form name="filterForm" class="filter__form">
@@ -101,7 +100,7 @@
 </div>
 
 <div class="container listings__progress">
-    <h1 ng-init="init()" ng-clone>listings</h1>
+    <h1 class="section__header" ng-init="init()" ng-clone>listings</h1>
     <div class="progress-circle indefinite" style="height:100vh;display:flex;top:200px;text-align:center">
         <img class="listings__loading-img" style="width:300px;height:auto;"  src="../../../images/svg/box-logo.svg">
         <div>Loading...</div>
@@ -142,7 +141,7 @@
                 Having multiple modals open at once is probably bad UX but it's technically possible.
             </div>
         </script>
-
+       
         <div class="listings__listings-global-wrapper dynamic-grid ">
             <div ng-repeat="item in (filteredListings = (listings | filter: {requestedDate: 0}:true | orderBy: 'timestamp':true)) track by $index"
                 class="my-special-animation" ng-cloak>
@@ -163,15 +162,17 @@
                             </div>
                             <!-- end of flipper -->
                             <div class="card-block">
+                                
                                 <div class="add-listing__user ">
                                     <figure class="profile" popover-append-to-body="true" uib-popover="'Hi! I'm {{item.user.firstName}}'" popover-trigger="'mouseenter'">
                                         <img src="{{item.user.image}}" class="profile-avatar" alt="">
                                     </figure>
-                                    <span class="add-listing__user-info">{{item.user.firstName}} {{item.user.lastName}}</span>
+                                    <span class="add-listing__user-info">{{item.user.street}}, {{item.user.state}}</span>
                                 </div>
                                 <div class="text-truncate">
                                     <h4 class="card-title mt-3">{{item.label}}</h4>
                                 </div>
+                                
                                 <div class="card__price">
                                     <span class="badge badge-info ">{{getPrice()}}</span>
                                 </div>
@@ -182,7 +183,7 @@
                                     {{item.desc}}
                                 </div>
                                 <div class="listing__tag-container">
-                                    <span ng-repeat="tag in tags" class="btn btn-default btn-xs">
+                                    <span ng-repeat="tag in item.tags" class="btn btn-default btn-xs">
                                         {{tag}}
                                     </span>
                                 </div>
@@ -190,6 +191,7 @@
         
                             <div class="card-footer">
                                 <small>Expiring in {{ item.expiresInDays }} days</small>
+                                <span class="badge badge-info badge-price">{{item.price}}</span>
                                 <button class="btn btn-info float-right btn-sm" id="{{item.id}}" ng-click="purchase($event)">I want it!</button>
                             </div>
                         </div>
