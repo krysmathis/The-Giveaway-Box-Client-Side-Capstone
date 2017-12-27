@@ -7,7 +7,8 @@ function(
     ListingsFactory,
     InviteFactory,
     AuthFactory,
-    GroupsFactory
+    GroupsFactory,
+    $uibModal
 ) {
 
 
@@ -33,16 +34,26 @@ function(
     $scope.inviteCode = ""
 
     $scope.inviteUser = () =>  {
+        // clear the user code
+        document.querySelector(".user__invite-code").value = ""
+        
+
+        if ($scope.inviteGroups.length === 0) {
+            return
+        }
+
         const invite = {
             userId: AuthFactory.getUser().uid,
             created: Date.now(),
             redeemed: false
         }
+
         InviteFactory.getInviteCode(invite).then(outcome  => {
-            $scope.inviteCode = outcome
+            $scope.$apply(() => $scope.inviteCode = outcome)
             console.log($scope.inviteCode)
             InviteFactory.setGroupInviteCodes($scope.inviteCode, $scope.inviteGroups)
         })
     }
 
-    })
+   
+})

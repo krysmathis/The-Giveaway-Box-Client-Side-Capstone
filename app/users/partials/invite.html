@@ -1,17 +1,25 @@
 <div ng-controller="InviteCtrl" ng-init="groupsInit()">
-    <h1 class="section__header">Invite new users</h1>
-    <p>Generate an authentication code and send it to your friends</p>
-    <p>Select groups to include in the invite:</p>
-    <label ng-repeat="group in groups track by $index">
-        <div>
-            <input type="checkbox" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
+
+        <div class="panel panel-default box-shadow">
+            <div class="panel-heading">
+                <h3 class="panel-title section__header">Invite new users </h3>
+            </div>
+            <div class="panel-body">
+                <div class="list-group list-group__ul">
+                    <div ng-repeat="group in groups track by $index">
+                            <div>
+                                <input type="checkbox" checklist-model="inviteGroups" checklist-value="group"> {{group.name}}
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <form name="authorizationForm">
+                    <button class="btn btn-primary" type="button" ng-click="inviteUser()">Generate Code</button>
+                    <span class="user__invite-code">{{inviteCode}}</span>
+                    <span ng-show="authorizationForm.generateCode.$touched && myForm.generateCode.$invalid">The name is required.</span>
+                </form>
+            </div>
         </div>
-    </label>
-    <form name="authorizationForm">
-        <button type="button" ng-click="inviteUser()">Generate Code</button>
-        <span>{{inviteCode}}</span>
-        <!-- for debugging
-        <button type="button" ng-click="seedGroups()">Seed Groups</button> -->
-        <span ng-show="authorizationForm.generateCode.$touched && myForm.generateCode.$invalid">The name is required.</span>
-    </form>
+
 </div>

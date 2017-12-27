@@ -5,15 +5,11 @@ function(
     $scope, 
     $timeout,
     $routeParams, 
-    ListingsFactory,
-    MasterDataFactory
+    ListingsFactory
 ) {
 
-        $scope.user = {
-            invitegroups: [],
-            joinGroups: [],
-            listings: []
-        };
+        // function to control the 'new' label
+        $scope.daysElapsed = (item) =>  moment().diff(moment(item.requestedDate), "days")
         
         $scope.purchasedListings = []
         
@@ -31,12 +27,12 @@ function(
 
         $scope.closeListing = (e) => {    
                 ListingsFactory.closeListing(e.target.id).then(r=>{
-                    //ListingsFactory.getListings(MasterDataFactory.database).then(r=> $scope.updatePurchasedListings())
                     $scope.updatePurchasedListings()
                 })
         }
 
 
+        //utility function for filtering
         //utility function for filtering
         $scope.greaterThan = function(prop, val){
         return function(item){

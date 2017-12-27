@@ -1,7 +1,18 @@
 <div ng-controller="PurchasedListingsCtrl" class="user__widget">
-    <h1 class="section__header" >Somebody wants these</h1>
-    <div ng-repeat="listing in purchasedListings | filter: greaterThan('requestedDate',0)">
-        <div>{{listing.label}}</div>
-        <button type="button" id="{{ listing.id }}" ng-click="closeListing($event)">CLOSE</button>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title section__header">Somebody wants these (Pending Items) </div>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group list-group__ul">
+                <li class="list-group-item myBox__item" ng-repeat="listing in purchasedListings | filter: greaterThan('requestedDate',0)">
+                    <span>{{listing.label}} - {{listing.requestedDate| date:'yyyy-MM-dd'}}
+                            <span ng-if="daysElapsed(listing) < 7"class="label label-default">New</span>
+                            <span ng-if="daysElapsed(listing) >= 7"class="label label-danger">Late Response</span>
+                    </span>
+                    <button class="btn btn-default btn-sm" type="button" id="{{ listing.id }}" ng-click="closeListing($event)">CLOSE</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

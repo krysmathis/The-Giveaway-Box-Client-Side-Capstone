@@ -1,12 +1,13 @@
 <div ng-controller="MyPurchasesCtrl" class="user__widget">
-    <div class="panel panel-default">
+    <div class="panel panel-default box-shadow">
         <div class="panel-heading">
-            <h3 class="panel-title section__heading">My Purchases <span class="label label-default">New</span></h3>
+            <h3 class="panel-title section__header">My Purchases </h3>
         </div>
         <div class="panel-body">
             <ul class="list-group list-group__ul">
-                <li class="list-group-item myBox__item" ng-repeat="purchase in myPurchases">
-                    <span>{{purchase.label}} - {{purchase.requestedDate| date:'yyyy-MM-dd'}}
+                <li class="list-group-item myBox__item" ng-repeat="purchase in myPurchases | orderBy: 'purchaseCompletedOn' : true">
+                    <span>{{purchase.label}} - {{purchase.purchaseCompletedOn| date:'yyyy-MM-dd'}}
+                            <span ng-if="isNew(purchase)"class="label label-default">New</span>
                     </span>
                     <button class="btn btn-default btn-sm" type="button" id="{{ purchase.id }}" ng-click="deleteListing($event)">DELETE</button>
                 </li>

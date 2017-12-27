@@ -181,6 +181,31 @@ angular
             },
             enumerable: true
         },
+        "addAdditionalData": {
+            value: function(listing,database) {
+                // pricing
+                if (!listing.price > 0) { listing.price = "FREE"}
+
+                // user data
+                listing.user = database.users.find(u=> u.userId === listing.userId)
+                listing.user.street = this.extractStreetFromUserAddress(listing.user)
+
+                // category / subCategory data
+                listing.category = database.categories.find(c=> listing.categoryExternalId === c.externalId)
+                listing.subCategory = database.subCategories.find(s=> listing.subCategoryExternalId === s.externalId)
+                
+                // expiration date
+                if (listing.hasOwnProperty("expirationDate")) {
+                    //moment().add(30,'day').diff(moment(), 'days');
+                    listing.expiresInDays = moment(listing.expirationDate).diff(moment(),"days")
+                } else {
+                    listing.expiresInDays = 90
+                }
+
+                return listing
+            },
+            enumerable: true
+        },
         "getListings": {
             value: function(database) {
             
@@ -206,21 +231,7 @@ angular
                     }
 
                     this.listings.map(l=> {
-                        if (!l.price > 0) { l.price = "FREE"}
-                        l.user = database.users.find(u=> u.userId === l.userId)
-                        l.user.street = this.extractStreetFromUserAddress(l.user)
-
-                        l.category = database.categories.find(c=> l.categoryExternalId === c.externalId)
-                        l.subCategory = database.subCategories.find(s=> l.subCategoryExternalId === s.externalId)
-                        
-                        if (l.hasOwnProperty("expirationDate")) {
-                            //moment().add(30,'day').diff(moment(), 'days');
-                            l.expiresInDays = moment(l.expirationDate).diff(moment(),"days")
-                        } else {
-                            l.expiresInDays = 90
-                        }
-
-                        return l
+                        return this.addAdditionalData(l,database)
                     })
 
                     return this.listings
@@ -282,6 +293,10 @@ angular
                     return $http({
                         method: "DELETE",
                         url: `https://${firebasePath}/itemListings/${listingId}/.json?auth=${idToken}`,
+                    }).then(r=> {
+                        //delete from the cache
+                        const index = this.listings.findIndex(l=> l.id === listingId)
+                        this.listings.splice(index, 1)
                     })
                 })
             },

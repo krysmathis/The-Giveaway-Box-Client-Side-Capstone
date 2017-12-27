@@ -1,18 +1,24 @@
 <div class="container">
     <h1 class="section__header">My Details</h1>
-    <uib-accordion close-others="oneAtATime">
+    <!-- <uib-accordion close-others="oneAtATime">
         <div uib-accordion-group class="panel-default" is-open="status.open">
             <uib-accordion-heading>
                 I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
             </uib-accordion-heading>
             This is just some content to illustrate fancy headings.
         </div>
-    </uib-accordian>
-    <div ng-include="'app/users/partials/invite.html'"></div>
-    <div ng-include="'app/users/partials/redeem-invite.html'"></div>
-    <div ng-include="'app/users/partials/user-listings.html'"></div>
-    <div ng-include="'app/users/partials/purchasedListings.html'"></div>
-    <div ng-include="'app/users/partials/closedListings.html'"></div>
-    <div ng-include="'app/users/partials/my-purchased-items.html'"></div>
+    </uib-accordian> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" ng-include="'app/users/partials/invite.html'"></div>
+            <div class="col-md-6" ng-include="'app/users/partials/redeem-invite.html'"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" ng-include="'app/users/partials/user-listings.html'"></div>
+            <div class="col-md-6" ng-include="'app/users/partials/purchasedListings.html'"></div>
+        </div>
+        <div ng-include="'app/users/partials/closedListings.html'"></div>
+        <div ng-include="'app/users/partials/my-purchased-items.html'"></div>
+    </div>
 </div>
 

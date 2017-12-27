@@ -26,7 +26,8 @@ body {
 
 .section__header {
   font-family: 'Zilla Slab', serif;
-  margin-bottom: 25px;
+  font-weight: 500;
+  font-size: 2em;
 }
 
 .myBox__item {
@@ -34,6 +35,9 @@ body {
   justify-content: space-between;
 }
 
+.box-shadow {
+  box-shadow: 1px 3px 5px rgba(0,0,0,.3)
+}
 
 
 .main-content {

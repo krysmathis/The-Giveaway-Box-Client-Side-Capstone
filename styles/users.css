@@ -1,3 +1,7 @@
 .users__form {
     display: block;
 }
+
+.user__redeem-invite {
+    width: 250px;
+}
