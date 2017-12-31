@@ -339,6 +339,21 @@ angular
             },
             enumerable: true
         },
+        "distanceBetweenPoints": {
+            value: function(lat1, lon1, lat2, lon2) {
+               
+                    var radlat1 = Math.PI * lat1/180
+                    var radlat2 = Math.PI * lat2/180
+                    var theta = lon1-lon2
+                    var radtheta = Math.PI * theta/180
+                    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+                    dist = Math.acos(dist)
+                    dist = dist * 180/Math.PI
+                    dist = dist * 60 * 1.1515
+                    return dist
+            },
+            enumerable: true
+        },
         "makeEbaySearch": {
             value: function (userSearch) {
                 let url = `http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findCompletedItems&SERVICE-VERSION=1.7.0&SECURITY-APPNAME=${EBAY_APP_ID}&RESPONSE-DATA-FORMAT=XML&categoryId(0)=33034&categoryId(1)=33021&categoryId(2)=4713&itemFilter(0).name=SoldItemsOnly&itemFilter(0).value(0)=true&itemFilter(1).name=Condition&itemFilter(1).value(0)=Used&itemFilter(1).value(1)=2500&itemFilter(1).value(2)=3000&itemFilter(1).value(3)=4000&itemFilter(1).value(4)=5000&itemFilter(1).value(5)=6000&itemFilter(2).name=ExcludeCategory&itemFilter(2).value(0)=181223&itemFilter(2).value(1)=47067&REST-PAYLOAD&keywords=${userSearch}`

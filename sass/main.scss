@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Zilla+Slab|Roboto');
 $primary-color: #ffb500;
 $primary-font-family: 'Zilla Slab', serif;
+$blue:  #8bc4d0;
+$orange: #ffb500;
+$green: #00E673;
+
 body {
     margin: 0 auto;
     padding: 0;
 }
 
 
+@import 'listings';
+@import 'invite';
 @import 'accordion';
 @import 'cards';
 @import 'progress-line';
@@ -17,9 +23,9 @@ body {
 @import 'filter';
 @import 'ribbon';
 @import 'profile';
-@import '_user-listings';
-@import '_footer';
-@import '_loader';
+@import 'user-listings';
+@import 'footer';
+@import 'loader';
 // @import 'card-flipping';
 @import '../lib/font-awesome-4.7.0/scss/font-awesome.scss';
 

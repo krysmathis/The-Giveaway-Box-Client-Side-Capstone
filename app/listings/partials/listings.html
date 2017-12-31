@@ -47,10 +47,10 @@
                                     <div class="flex-center flex-column ta-l">
                                         <h4 style="text-align: left;color:black;">Limit to selected groups</h4>
                                         <ul class="filter__group-list">
-                                            <li role="menuitem" ng-repeat="group in filterGroups track by $index" class="group-dropdown__list-item">
+                                            <li role="menuitem" ng-repeat="group in filterGroups" class="group-dropdown__list-item">
                                                 <div>
                                                     <!-- <input auto-close="outsideClick" type="checkbox" class="filled-in"  checklist-model="inviteGroups" checklist-value="group" ng-click="checkGroup"> <span style="color:black;">{{group.name}}</span> -->
-                                                    <input auto-close="outsideClick" type="checkbox" checklist-model="inviteGroups" checklist-value="group" ng-click="checkGroup"> <span style="color:black;">{{group.name}}</span>
+                                                    <input auto-close="outsideClick" type="checkbox" checklist-model="filter.groups" checklist-value="group" ng-click="checkGroup"> <span style="color:black;">{{group.name}}</span>
                                                     <!-- <pre>{{inviteGroups | json}}</pre> -->
                                                 </div>
                                             </li>
@@ -188,14 +188,10 @@
                                     <figure class="profile" popover-append-to-body="true" uib-popover="'Hi! I'm {{item.user.firstName}}'" popover-trigger="'mouseenter'">
                                         <img src="{{item.user.image}}" class="profile-avatar" alt="">
                                     </figure>
-                                    <span class="add-listing__user-info">{{item.user.street}}, {{item.user.state}}</span>
+                                    <span class="add-listing__user-info">{{item.user.street}}, {{item.user.city}} {{item.user.state}}</span>
                                 </div>
                                 <div class="text-truncate">
                                     <h4 class="card-title mt-3 listing__label text-truncate">{{item.label}}</h4>
-                                </div>
-                                
-                                <div class="card__price">
-                                    <span class="badge badge-info ">{{getPrice()}}</span>
                                 </div>
                                 <div class="meta card-text">
                                     <a></a>

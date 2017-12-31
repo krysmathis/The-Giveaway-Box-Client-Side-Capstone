@@ -135,7 +135,7 @@ angular.module("TheGiveawayBoxApp")
             label: "", //you won't believe this label
             desc: "",
             price: "",
-            image: "http://via.placeholder.com/500x500",
+            image: "http://via.placeholder.com/600x600",
             categoryExternalId: "",
             subCategoryExternalId: "",
             expirationDate: moment().add(30,'day')

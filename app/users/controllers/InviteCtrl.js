@@ -28,6 +28,10 @@ function(
         })
     }
 
+    $scope.closeModal = (e) => {
+        document.querySelector(".invite__modal").style.display = "none"
+    }
+
     $scope.inviteGroups = []
     console.log("invite_groups", $scope.groups)
     
@@ -35,8 +39,8 @@ function(
 
     $scope.inviteUser = () =>  {
         // clear the user code
-        document.querySelector(".user__invite-code").value = ""
         
+        document.querySelector(".invite__modal").style.display = "block"
 
         if ($scope.inviteGroups.length === 0) {
             return
@@ -53,6 +57,7 @@ function(
             console.log($scope.inviteCode)
             InviteFactory.setGroupInviteCodes($scope.inviteCode, $scope.inviteGroups)
         })
+
     }
 
    

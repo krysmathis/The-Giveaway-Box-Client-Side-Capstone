@@ -16,10 +16,19 @@
             <div class="panel-footer">
                 <form name="authorizationForm">
                     <button class="btn btn-primary" type="button" ng-click="inviteUser()">Generate Code</button>
-                    <span class="user__invite-code">{{inviteCode}}</span>
                     <span ng-show="authorizationForm.generateCode.$touched && myForm.generateCode.$invalid">The name is required.</span>
                 </form>
             </div>
         </div>
-
+        <div class="invite__modal modal">
+            <div class="invite__header modal-content">
+                    <span class="close" ng-click="closeModal($event)">&times;</span>
+                <div class="modal-header">
+                    Invite Code
+                </div>
+                <div class="modal__inviteCode">
+                    {{inviteCode}}
+                </div>
+            </div>
+        </div>
 </div>

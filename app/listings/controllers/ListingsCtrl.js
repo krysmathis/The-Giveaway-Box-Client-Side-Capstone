@@ -2,7 +2,8 @@
 
 angular.module("TheGiveawayBoxApp")
 .controller("ListingsCtrl", function($scope, $route, $uibModal, $log, $document, $timeout, $http, ngToast, $location, FilterFactory, GroupsFactory, ListingsFactory, AuthFactory, AddListingFactory, MasterDataFactory) {
-    
+
+
     $scope.listings = []
 
     const f = ListingsFactory
@@ -119,7 +120,7 @@ angular.module("TheGiveawayBoxApp")
         $scope.filter = {
             keywords: [],
             category: 0,
-            groups: [],
+            groups: angular.copy($scope.filterGroups),
             mapBounds: {}
         }
     }
@@ -132,7 +133,7 @@ angular.module("TheGiveawayBoxApp")
     
     $scope.clearSearch = () => {
         //$route.reload() // this works to reset the group checkboxes once but not in total
-        $scope.init()
+            $scope.init()
         // $scope.filterInit()
         // $scope.listings = ListingsFactory.listings;
         // $scope.inviteGroups = angular.copy($scope.filterGroups)
@@ -154,11 +155,13 @@ angular.module("TheGiveawayBoxApp")
                 // $scope.groups = r
                 $scope.filterGroups = r
                 $scope.inviteGroups = angular.copy($scope.filterGroups)
+                $scope.filter.groups = angular.copy($scope.filterGroups)
             })
         } else {
             // $scope.groups = GroupsFactory.userGroups
             $scope.filterGroups = GroupsFactory.userGroups
             $scope.inviteGroups = angular.copy($scope.filterGroups)
+            $scope.filter.groups = angular.copy($scope.filterGroups)
         }
     }
 
@@ -186,7 +189,7 @@ angular.module("TheGiveawayBoxApp")
         // reset the listings first
         $scope.listings = ListingsFactory.listings
         // update approved users
-        ListingsFactory.updateApprovedUsers($scope.inviteGroups)
+        ListingsFactory.updateApprovedUsers($scope.filter.groups)
         const users = ListingsFactory.approvedUsers
         $scope.listings = FilterFactory.usersInGroups(users, $scope.listings,$scope.filter)
 

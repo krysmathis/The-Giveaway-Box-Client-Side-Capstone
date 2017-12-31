@@ -123,49 +123,80 @@
         </div> <!-- end of form section -->
         <!-- second card section -->
         <div class="col-md-5 mt-4">
-            <div class="card card-inverse card-info flip-container" ontouchstart="this.classList.toggle('hover');">
-                <div class="flipper">
-                    <div class="front">
-                        <img class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
-                    </div><!-- end of card-front -->
-                    <div class="back">
-                    </div>
-                    </div> <!-- end of flipper -->
-                        <div class="card-block">
-                            <div class="add-listing__user ">
-                                <figure class="profile" popover-append-to-body="true" uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" >
-                                    <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
-                                </figure>
-                                <span class="add-listing__user-info">{{user.firstName}} {{user.lastName}}</span>
+
+        <div class="card card-inverse card-info flip-container grid-item"  ontouchstart="this.classList.toggle('hover');">
+                <div ng-if="isNew(item)" class="ribbon ribbon-top-left"><span>NEW!</span></div>
+
+                <div class="listing__card">
+                    <div class="flipper">
+                        <div class="listing__img-container">
+                            <div class="front">
+                            <!-- <a href="#!/listings/review/{{item.id}}"> -->
+                                <img ng-click="open('lg',item)" class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
+                                <!-- </a> -->
                             </div>
-                            <div class="text-truncate">
-                                <h4 class="card-title mt-3">{{item.label}}</h4>
-                            </div>
-                            <div class="card__price">
-                                <span class="badge badge-info badge-price">{{getPrice()}}</span>
-                            </div>
-                            <div class="meta card-text">
-                                <a></a>
-                            </div>
-                            <div class="card-text">
-                                {{item.desc}}
-                            </div>
-                            <div class="listing__tag-container">
-                                <span ng-repeat="tag in tags" class="btn btn-default btn-xs">
-                                    {{tag}}
-                                </span>
+                            <div class="back">
+                                <div ng-repeat="attribute in attributeModel" class="listing__attributes">
+                                    <div class="attributes__box">
+                                        <div class="attributes__box-label">
+                                            <div class="attributes__label">
+                                                {{attribute.label}}
+                                            </div>
+                                        </div>
+                                        <div class="attributes__box-value">
+                                            <div class="attributes__value">
+                                                {{attribute.value}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
-                    
-                <div class="card-footer">
-                    <small>Expiring in {{ daysUntilExpires() }} days</small>
-                    <button class="btn btn-info float-right btn-sm">I want it!</button>
+                        <!-- end of card-front -->
+                        
+                    </div>
+                    <!-- end of flipper -->
+                    <div class="card-block">
+                        <!-- <div class="btn-circle flex-center listing__btn-circle">+</div> -->
+                        <div class="add-listing__user ">
+                            <figure class="profile" popover-append-to-body="true" uib-popover="'Hi! I'm {{user.firstName}}'" popover-trigger="'mouseenter'">
+                                <img src="{{user.image}}" class="profile-avatar" alt="">
+                            </figure>
+                            <span class="add-listing__user-info">{{user.street}}, {{user.city}} {{user.state}}</span>
+                        </div>
+                        <div class="text-truncate">
+                            <h4 class="card-title mt-3 listing__label text-truncate">{{item.label}}</h4>
+                        </div>
+
+                        <div class="meta card-text">
+                            <a></a>
+                        </div>
+                        <div class="card-text">
+                            {{item.desc}}
+                        </div>
+                        <div class="listing__tag-container">
+                            <span ng-repeat="tag in tags" class="btn listing__tag btn-default btn-xs">
+                                <span ng-click="tagClicked($event)">{{tag}}</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer listing__footer">
+                        <small>Expiring in {{ daysUntilExpires() }} days</small>
+                        <span class="badge badge-info badge-price">{{item.price}}</span>
+                        <button class="btn btn-info float-right btn-sm listing__btn-buy" id="{{item.id}}">I want it!<span class="listing__buy-icon"></span></button>
+                    </div>
                 </div>
-            </div>
-        </div> <!-- second card section -->
+
+        </div>
+    </div> <!-- second card section -->
+
+
+
     </div> <!-- main row -->
     
 </div>
    
 
 </div>
+
