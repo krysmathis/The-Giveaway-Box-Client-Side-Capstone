@@ -190,6 +190,9 @@ h3.accordion {
   border-color: #ffb500;
   border-radius: 0px; }
 
+.nav-hidden {
+  display: none; }
+
 .navbar-flex {
   display: flex;
   width: 100%;

@@ -39,29 +39,29 @@ angular.module("TheGiveawayBoxApp")
         
 
             if (masterData.isReady()) {
-                database = masterData.database
-                $scope.getListings(database)
-                $scope.categories = database.categories
-                $scope.selectedSubCategory = {}
-                $scope.selectedCategory = {}
-                $scope.filterInit()
-                $scope.groupsInit()
+                    initSharedFunctions()
 
             } else {
                 masterData.init().then(d => {
-                    database = masterData.database
-                    $scope.categories = database.categories
-                    $scope.selectedCategory = {}
-                    $scope.selectedSubCategory = {}
-                    $scope.getListings(database)
-                    $scope.filterInit()
-                    $scope.groupsInit()
+                    initSharedFunctions()
                 })                  
             }
-            
-            document.querySelector(".filter__clear-wheel").style.visibility = "hidden"
-            console.log("listings: ", ListingsFactory.listings)
+    
     } 
+
+    // jobs that are shared regardless of how the data is loaded
+    const initSharedFunctions = () => {
+        database = masterData.database
+        $scope.categories = database.categories
+        $scope.selectedCategory = {}
+        $scope.selectedSubCategory = {}
+        $scope.getListings(database)
+        $scope.filterInit()
+        $scope.groupsInit()
+        // display the listings
+        document.querySelector(".filter__clear-wheel").style.visibility = "hidden"
+        console.log("listings: ", ListingsFactory.listings)
+    }
 
     $scope.resetDropDown = () => {
         $scope.selectedCategory = $scope.categories[0]
