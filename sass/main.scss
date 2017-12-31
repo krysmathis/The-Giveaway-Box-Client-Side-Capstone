@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Pacifico|Zilla+Slab');
-$primary-color: yellow;
-
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Zilla+Slab|Roboto');
+$primary-color: #ffb500;
+$primary-font-family: 'Zilla Slab', serif;
 body {
     margin: 0 auto;
     padding: 0;
@@ -17,6 +17,9 @@ body {
 @import 'filter';
 @import 'ribbon';
 @import 'profile';
+@import '_user-listings';
+@import '_footer';
+@import '_loader';
 // @import 'card-flipping';
 @import '../lib/font-awesome-4.7.0/scss/font-awesome.scss';
 

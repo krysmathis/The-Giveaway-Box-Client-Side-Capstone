@@ -4,13 +4,25 @@
             <h3 class="panel-title section__header">In my giveaway box </h3>
         </div>
         <div class="panel-body">
-            <ul class="list-group list-group__ul">
-                <li class="list-group-item myBox__item" ng-repeat="listing in listings | filter: {requestedDate: 0}:true">
-                    <span>{{listing.label}} - expires in {{listing.expiresInDays}} days
-                            <span class="label label-default" ng-if="isNew(listing)">New</span>
-                    </span>
-                    <a href="#!/listings/detail/{{ listing.id }}">Update</a>
-                    <button class="btn btn-default btn-sm" type="button" id="{{ listing.id }}" ng-click="deleteListing($event)">DELETE</button>
+            <ul class="list-group list-group__ul" class="user-listings">
+                <li class="list-group-item user-listings" ng-repeat="listing in listings | filter: {requestedDate: 0}:true">
+                    <div class="giveaway-box__li">
+                        <img class="giveaway-box__img mini-img" src="{{listing.image}}" ng-click="display=!display">
+                        <div class="giveaway-box__img--big animate-show animate-hide" ng-show="display">
+                            <div class="giveawway-box__img--big-container">
+                                <img class="giveaway-box__img big-img" src="{{listing.image}}">
+                            </div>
+                            <button class="giveaway-box__img-close" ng-click="display=!display">close</button>
+                        </div>
+                        <div class="giveaway-box__desc">
+                            <span class="giveaway-box__label">{{listing.label}}
+                                    <span class="label label-default" ng-if="isNew(listing)">New</span>
+                            </span>
+                            <p class="giveaway-box__expiration">expires in {{listing.expiresInDays}} days</p>
+                        </div>
+                        <a class="giveaway-box__update" href="#!/listings/detail/{{ listing.id }}">Update</a>
+                        <button class="btn btn-default btn-sm" type="button" id="{{ listing.id }}" ng-click="deleteListing($event)">DELETE</button>
+                    </div>
                 </li>
             </ul>
         </div>

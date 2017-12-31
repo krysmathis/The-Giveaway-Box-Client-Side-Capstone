@@ -1,7 +1,7 @@
 "use strict"
 
 angular.module("TheGiveawayBoxApp")
-.controller("ListingsCtrl", function($scope, $uibModal, $log, $document, $timeout, $http, ngToast, $location, FilterFactory, GroupsFactory, ListingsFactory, AuthFactory, AddListingFactory, MasterDataFactory) {
+.controller("ListingsCtrl", function($scope, $route, $uibModal, $log, $document, $timeout, $http, ngToast, $location, FilterFactory, GroupsFactory, ListingsFactory, AuthFactory, AddListingFactory, MasterDataFactory) {
     
     $scope.listings = []
 
@@ -17,7 +17,7 @@ angular.module("TheGiveawayBoxApp")
         console.log("making purchase")
         const user = AuthFactory.getUser()
         ngToast.create('You got it!');
-        ListingsFactory.purchase(e.target.id, user)
+        //ListingsFactory.purchase(e.target.id, user)
     }
     
     // go ahead and store the master data once it's been updated
@@ -36,8 +36,7 @@ angular.module("TheGiveawayBoxApp")
         // clear the search bar
         document.querySelector(".filter__clear-wheel").style.visibility = "visible"
         document.querySelector(".filter__search-input").value = null
-        $scope.filterSearchString = ""
-        $scope.filterInit()
+        
 
             if (masterData.isReady()) {
                 database = masterData.database
@@ -45,6 +44,9 @@ angular.module("TheGiveawayBoxApp")
                 $scope.categories = database.categories
                 $scope.selectedSubCategory = {}
                 $scope.selectedCategory = {}
+                $scope.filterInit()
+                $scope.groupsInit()
+
             } else {
                 masterData.init().then(d => {
                     database = masterData.database
@@ -52,8 +54,11 @@ angular.module("TheGiveawayBoxApp")
                     $scope.selectedCategory = {}
                     $scope.selectedSubCategory = {}
                     $scope.getListings(database)
+                    $scope.filterInit()
+                    $scope.groupsInit()
                 })                  
             }
+            
             document.querySelector(".filter__clear-wheel").style.visibility = "hidden"
             console.log("listings: ", ListingsFactory.listings)
     } 
@@ -104,27 +109,58 @@ angular.module("TheGiveawayBoxApp")
      * FILTER
      */
     $scope.filterInit = () => {
+        // reset the filtered listings to the primary source of listings
+        FilterFactory.filteredListings = ListingsFactory.listings
+        // the drop down wasn't resetting after init
+        $scope.filterSearchString = ""
+        $scope.selectedSubCategory = {}
+        $scope.selectedCategory = {}
+        // reset the filter object
         $scope.filter = {
             keywords: [],
-            category: 0
+            category: 0,
+            groups: [],
+            mapBounds: {}
         }
     }
 
-    $scope.filter = {
-        keywords: [],
-        category: 0
+    $scope.tagClicked = (e) => {
+        $scope.filterInit()
+        $scope.filter.keywords = e.target.textContent.split(" ")
+        $scope.listings = FilterFactory.getfilteredListings(FilterFactory.filteredListings,$scope.filter)
+    }
+    
+    $scope.clearSearch = () => {
+        //$route.reload() // this works to reset the group checkboxes once but not in total
+        $scope.init()
+        // $scope.filterInit()
+        // $scope.listings = ListingsFactory.listings;
+        // $scope.inviteGroups = angular.copy($scope.filterGroups)
+    }
+    
+
+    $scope.checkGroup = () => {
+        console.log($scope.inviteGroups)
     }
 
-    if (GroupsFactory.userGroups.length === 0) {
-        GroupsFactory.getUsersGroups(AuthFactory.getUser()).then(r =>{
-            $scope.filterGroups = r
-            $scope.inviteGroups = angular.copy($scope.filterGroups);
-        })
-    } else {
-        $scope.filterGroups = GroupsFactory.userGroups
-        $scope.inviteGroups = angular.copy($scope.filterGroups);
-    }
+    $scope.uncheckAll = function() {
+        console.log($scope.inviteGroups)
+        $timeout($scope.inviteGroups = angular.copy($scope.filterGroups),200)
+    };
 
+    $scope.groupsInit = () => {
+        if (GroupsFactory.userGroups.length === 0) {
+            GroupsFactory.getUsersGroups(AuthFactory.getUser()).then(r =>{
+                // $scope.groups = r
+                $scope.filterGroups = r
+                $scope.inviteGroups = angular.copy($scope.filterGroups)
+            })
+        } else {
+            // $scope.groups = GroupsFactory.userGroups
+            $scope.filterGroups = GroupsFactory.userGroups
+            $scope.inviteGroups = angular.copy($scope.filterGroups)
+        }
+    }
 
     $scope.filterSearchString = ""
     $scope.filterListings = () => {
@@ -149,7 +185,6 @@ angular.module("TheGiveawayBoxApp")
     $scope.filterListingsBasedOnGroups = () => {
         // reset the listings first
         $scope.listings = ListingsFactory.listings
-        
         // update approved users
         ListingsFactory.updateApprovedUsers($scope.inviteGroups)
         const users = ListingsFactory.approvedUsers
@@ -187,14 +222,7 @@ angular.module("TheGiveawayBoxApp")
             let locations = $scope.filteredListings.filter(li=> li.requestedDate===0).map(l=> {
                 return {lat: l.user.lat, lng: l.user.long}
             })
-                // $scope.marker = new google.maps.Marker({
-                // position: $scope.centerMap,
-                // map: $scope.map
 
-                // Add some markers to the map.
-            // Note: The code uses the JavaScript Array.prototype.map() method to
-            // create an array of markers based on a given "locations" array.
-            // The map() method here has nothing to do with the Google Maps API.
             let markers = locations.map(function(location, i) {
                 return new google.maps.Marker({
                     position: location,
@@ -213,12 +241,14 @@ angular.module("TheGiveawayBoxApp")
     $scope.onClick = function onClick() {
         console.log("click");}
     
-    
+    /**
+     * Checking map bounds
+     * TODO: refactor to have the filter factory function ta
+     */
     $scope.checkMapBounds = () => {
         const bounds = $scope.map.getBounds()
-        $scope.listings = FilterFactory.usersWithinBounds(bounds, ListingsFactory.listings)
-        // create a simple toast:
-        //ngToast.create('a toast message...');
+        $scope.filter.mapBounds = bounds
+        $scope.listings = FilterFactory.usersWithinBounds(bounds, $scope.listings)
     }
 
 

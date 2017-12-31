@@ -5,16 +5,14 @@
   --nav-footer-height: 60px;
 }
 
-.nav-hidden {
-  visibility: hidden;
-}
 
-body {
-  background: #FAFAFA;
-  font-family: sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
+
+/* ================================= 
+  Base Element Styles
+==================================== */
+
+* {
+	box-sizing: border-box;
 }
 
 

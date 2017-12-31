@@ -8,6 +8,8 @@ function(
     ListingsFactory,
     AuthFactory
 ) {
+        // variable to toggle the large item view off and on
+       $scope.display = false
 
        $scope.listings = []
         

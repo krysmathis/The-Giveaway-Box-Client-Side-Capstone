@@ -73,7 +73,7 @@ angular.module("TheGiveawayBoxApp")
      * tag objects
      */
 
-    $scope.tags = ["test"]
+    $scope.tags = []
     $scope.getMaxTagId = () => Math.max.apply(Math,array.map(function(o){return o.y;}))
     $scope.newTag = "";
     

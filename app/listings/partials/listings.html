@@ -49,12 +49,15 @@
                                         <ul class="filter__group-list">
                                             <li role="menuitem" ng-repeat="group in filterGroups track by $index" class="group-dropdown__list-item">
                                                 <div>
-                                                    <input auto-close="outsideClick" type="checkbox" class="filled-in" checklist-model="inviteGroups" checklist-value="group" > <span style="color:black;">{{group.name}}</span>
+                                                    <!-- <input auto-close="outsideClick" type="checkbox" class="filled-in"  checklist-model="inviteGroups" checklist-value="group" ng-click="checkGroup"> <span style="color:black;">{{group.name}}</span> -->
+                                                    <input auto-close="outsideClick" type="checkbox" checklist-model="inviteGroups" checklist-value="group" ng-click="checkGroup"> <span style="color:black;">{{group.name}}</span>
+                                                    <!-- <pre>{{inviteGroups | json}}</pre> -->
                                                 </div>
                                             </li>
                                             <li class="divider"></li>
                                         </ul>
-                                        <button type="button" class="btn btn-primary" ng-click="filterListingsBasedOnGroups()">Filter By Groups</button>
+                                        <button type="button" class="btn btn-primary" ng-click="filterListingsBasedOnGroups()" style="margin-bottom:20px">Filter By Groups</button>
+                                        <!-- <button type="button" class="btn btn-primary" ng-click="uncheckAll()">Select All</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +90,8 @@
                             <!-- Simple dropdown -->
                             <div class="flex-center">
                                <img class="filter__clear-wheel" src="../../../images/gif/waiting.gif" style="width: 25px; height: auto;">
-                                <button class="btn btn-primary" type="button" ng-click="init()">CLEAR SEARCH</button>
+                                <button class="btn btn-primary" type="button" ng-click="clearSearch()">CLEAR SEARCH</button>
+                                <!-- <button class="btn btn-primary" type="button" ng-click="init()">CLEAR SEARCH</button> -->
                                 
                             </div>
 
@@ -103,7 +107,7 @@
     <h1 class="section__header" ng-init="init()" ng-clone>listings</h1>
     <div class="progress-circle indefinite" style="height:100vh;display:flex;top:200px;text-align:center">
         <img class="listings__loading-img" style="width:300px;height:auto;"  src="../../../images/svg/box-logo.svg">
-        <div>Loading...</div>
+        <div class="loader">Loading...</div>
     </div>
     <!-- <svg class="progress-circle indefinite" width="100" height="100">
         <g transform="rotate(-90,50,50)">
@@ -144,25 +148,42 @@
        
         <div class="listings__listings-global-wrapper dynamic-grid ">
             <div ng-repeat="item in (filteredListings = (listings | filter: {requestedDate: 0}:true | orderBy: 'timestamp':true)) track by $index"
-                class="my-special-animation" ng-cloak>
+                class="fade-in-right" ng-cloak>
                 <!--- new card -->
                 <div class="card card-inverse card-info flip-container grid-item"  ontouchstart="this.classList.toggle('hover');">
                         <div ng-if="isNew(item)" class="ribbon ribbon-top-left"><span>NEW!</span></div>
                 
-                        <div >
+                        <div class="listing__card">
                             <div class="flipper">
-                                <div class="front">
+                                <div class="listing__img-container">
+                                    <div class="front">
                                     <!-- <a href="#!/listings/review/{{item.id}}"> -->
                                         <img ng-click="open('lg',item)" class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
-                                    <!-- </a> -->
+                                        <!-- </a> -->
+                                    </div>
+                                    <div class="back">
+                                        <div ng-repeat="attribute in item.attributes" class="listing__attributes">
+                                            <div class="attributes__box">
+                                                <div class="attributes__box-label">
+                                                    <div class="attributes__label">
+                                                        {{attribute.label}}
+                                                    </div>
+                                                </div>
+                                                <div class="attributes__box-value">
+                                                    <div class="attributes__value">
+                                                        {{attribute.value}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
                                 </div>
                                 <!-- end of card-front -->
-                                <div class="back">
-                                </div>
+                                
                             </div>
                             <!-- end of flipper -->
                             <div class="card-block">
-                                
+                                <!-- <div class="btn-circle flex-center listing__btn-circle">+</div> -->
                                 <div class="add-listing__user ">
                                     <figure class="profile" popover-append-to-body="true" uib-popover="'Hi! I'm {{item.user.firstName}}'" popover-trigger="'mouseenter'">
                                         <img src="{{item.user.image}}" class="profile-avatar" alt="">
@@ -170,7 +191,7 @@
                                     <span class="add-listing__user-info">{{item.user.street}}, {{item.user.state}}</span>
                                 </div>
                                 <div class="text-truncate">
-                                    <h4 class="card-title mt-3">{{item.label}}</h4>
+                                    <h4 class="card-title mt-3 listing__label text-truncate">{{item.label}}</h4>
                                 </div>
                                 
                                 <div class="card__price">
@@ -183,16 +204,16 @@
                                     {{item.desc}}
                                 </div>
                                 <div class="listing__tag-container">
-                                    <span ng-repeat="tag in item.tags" class="btn btn-default btn-xs">
-                                        {{tag}}
+                                    <span ng-repeat="tag in item.tags" class="btn listing__tag btn-default btn-xs">
+                                        <span ng-click="tagClicked($event)">{{tag}}</span>
                                     </span>
                                 </div>
                             </div>
         
-                            <div class="card-footer">
+                            <div class="card-footer listing__footer">
                                 <small>Expiring in {{ item.expiresInDays }} days</small>
                                 <span class="badge badge-info badge-price">{{item.price}}</span>
-                                <button class="btn btn-info float-right btn-sm" id="{{item.id}}" ng-click="purchase($event)">I want it!</button>
+                                <button class="btn btn-info float-right btn-sm listing__btn-buy" id="{{item.id}}" ng-click="purchase($event)">I want it!<span class="listing__buy-icon"></span></button>
                             </div>
                         </div>
 

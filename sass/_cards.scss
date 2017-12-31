@@ -1,12 +1,13 @@
 .card {
     font-size: 1em;
-    width: 25em;
+    width: 30em;
     // overflow: hidden;
     padding: 0;
     border: none;
     border-radius: .28571429rem;
     box-shadow: 0 3px 10px 0 hsla(0,0,53%,.2);
-}
+    background-color: white;
+  }
 
 // hover property of card
 .card:hover {
@@ -17,20 +18,27 @@
   box-shadow: 1px 1px 1px 1px rgba(135, 135, 135, 0.2);
 }
 
-.add-listing__user {
-  position: absolute;
-  top: -6px;
-  left: -2px;
-  width: 100%;
-  z-index: 50;
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 50px 1fr;
-  align-items: center;
-  background-color: rgba(255, 255, 0, 0.735);
-  text-align: right;
-  
+.btn-circle {
+  background-color: #8bc4d0;
+  border-radius: 50%;
+  margin: 0 auto;
+  padding: 5px;
+  width: 45px;
+  height: 45px;
+  font-size: 1.1em;
+  font-weight: 300;
+  color: white;
+  z-index: 100;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, .25);
 }
+
+.listing__btn-circle {
+  position: absolute;
+  top: -20px;
+  right: 20px;
+}
+
+
 .card-footer {
   display: flex;
   align-items: space-around;
@@ -49,6 +57,7 @@
   border: none;
   border-top: 1px solid rgba(34, 36, 38, .1);
   box-shadow: none;
+  background-color: white;
 }
 
 .card-img-top {
@@ -61,6 +70,7 @@
   font-size: 1.28571429em;
   font-weight: 700;
   line-height: 1.2857em;
+  text-transform: uppercase;
 }
 
 .card-text {
@@ -79,6 +89,9 @@
   color: rgba(0, 0, 0, .4);
   border-top: 1px solid rgba(0, 0, 0, .05) !important;
   background: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .card-inverse .btn {
@@ -92,14 +105,20 @@
     display: inline-block;
     // overflow: hidden;
     box-sizing: border-box;
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     margin: 0;
     border: 1px solid #fff;
     border-radius: 50%;
     z-index: 100;
+    right: 25px;
+    transition: transform .6s cubic-bezier(.67,-0.45,.36,1.49);
   }
   
+  .profile:hover {
+    transform: scale(1.2) rotate(-2deg);
+}
+
   .profile-avatar {
     display: block;
     width: 100%;
