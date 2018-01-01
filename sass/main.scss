@@ -1,15 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Pacifico|Zilla+Slab|Roboto');
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Permanent+Marker|Zilla+Slab|Roboto');
 $primary-color: #ffb500;
 $primary-font-family: 'Zilla Slab', serif;
 $blue:  #00B6DA;
 $orange: #ffb500;
 $green: #00E673;
+$nav-footer-height: 71px;
 
 body {
     margin: 0 auto;
     padding: 0;
 }
 
+.cursive {
+    //font-family: 'Pacifico', cursive;
+    font-family: 'Permanent Marker', cursive;
+  }
 
 @import 'listings';
 @import 'invite';

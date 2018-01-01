@@ -9,8 +9,6 @@ angular.module("TheGiveawayBoxApp")
         const cardEl = angular.element(document.querySelector(".add-listing__card"))
         console.log(cardEl)
         cardEl.addClass("slide-out")
-        // don't need to remove this because the route is reloaded
-        //$timeout(()=> cardEl.removeClass("slide-out"),2000)
     }
 
     // check if the item is in update mode

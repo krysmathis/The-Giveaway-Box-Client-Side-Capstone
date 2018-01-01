@@ -1,7 +1,7 @@
 "use strict"
 
 angular.module("TheGiveawayBoxApp")
-.controller("ListingsCtrl", function($scope, $route, $uibModal, $log, $document, $timeout, $http, ngToast, $location, FilterFactory, GroupsFactory, ListingsFactory, AuthFactory, AddListingFactory, MasterDataFactory) {
+.controller("ListingsCtrl", function($scope, $route, $uibModal, $log, $document, $window, $timeout, $http, ngToast, $location, FilterFactory, GroupsFactory, ListingsFactory, AuthFactory, AddListingFactory, MasterDataFactory) {
 
 
     $scope.listings = []
@@ -18,8 +18,8 @@ angular.module("TheGiveawayBoxApp")
     $scope.purchase = (e) => {
         console.log("making purchase")
         const user = AuthFactory.getUser()
-        ngToast.create('You got it!');
-        //ListingsFactory.purchase(e.target.id, user)
+        ngToast.create("<strong>Congrats!</strong> You got it - you should hear from the seller soon!");
+        ListingsFactory.purchase(e.target.id, user)
     }
     
     // go ahead and store the master data once it's been updated

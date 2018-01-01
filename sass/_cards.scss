@@ -44,6 +44,19 @@
   align-items: space-around;
 }
 
+.add-listing__user {
+  position: absolute;
+  top: -6px;
+  width: 100%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  background-color: $orange;
+  text-align: right;
+  right: 0;  
+  border-top: 5px solid #fff;
+}
+
 .add-listing__user-info {
   grid-column-start: 2;
   text-align: left;
@@ -109,7 +122,7 @@
     width: 75px;
     height: 75px;
     margin: 0;
-    border: 1px solid #fff;
+    border: 5px solid #fff;
     border-radius: 50%;
     z-index: 100;
     right: 25px;
