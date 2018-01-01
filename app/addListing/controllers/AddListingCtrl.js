@@ -1,7 +1,7 @@
 "use strict"
 
 angular.module("TheGiveawayBoxApp")
-.controller("AddListingCtrl", function($scope, $route, $routeParams, $location, $timeout, AuthFactory, AddListingFactory, MasterDataFactory, ListingsFactory) {
+.controller("AddListingCtrl", function($scope, $route, $routeParams, $timeout, $location, AuthFactory, AddListingFactory, MasterDataFactory, ListingsFactory) {
     
 
 
@@ -240,11 +240,13 @@ angular.module("TheGiveawayBoxApp")
         if (!$scope.inUpdateMode()){
             AddListingFactory.addListing($scope.item, $scope.attributeModel, $scope.tags)
             animateCardComplete()
-            $route.reload()
+            $timeout(() => $route.reload(),2000)
         } else {
             console.log("ready to update")
             // send scope.item and have it update parts of the item before reloading
             ListingsFactory.updateListing($routeParams.listingId, $scope.item)
+            animateCardComplete()
+            $timeout(()=> $location.url("/listings"),2000)
         }   
     }
 

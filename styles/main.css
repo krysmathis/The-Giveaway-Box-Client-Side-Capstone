@@ -36,7 +36,6 @@ body {
 .add-listing__user {
   position: absolute;
   top: -6px;
-  left: -2px;
   width: 100%;
   z-index: 50;
   display: flex;
@@ -382,7 +381,7 @@ h3.accordion {
 
 .profile {
   position: absolute;
-  top: -24px;
+  top: -35px;
   display: inline-block;
   box-sizing: border-box;
   width: 75px;
