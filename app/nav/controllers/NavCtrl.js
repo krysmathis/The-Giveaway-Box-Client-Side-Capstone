@@ -30,7 +30,6 @@ function ($scope, $location, $window, AuthFactory, $rootScope, ListingsFactory) 
     $scope.toUserProfile = () => {
         const user = AuthFactory.getUser().uid;
         $location.url(`/users/${user}`)
-        //console.log(`users/${$scope.navUser}`)
     }
 
     $scope.finder = event => {
@@ -43,17 +42,21 @@ function ($scope, $location, $window, AuthFactory, $rootScope, ListingsFactory) 
     Unauthenticate the client.
     */
     $scope.navLogout = () => {
-        console.log("logging out")
         AuthFactory.logout();
+        const navEl = angular.element(document.getElementById("nav"))
+        navEl.addClass("nav-hidden")
     }
 
     $scope.email = ""
 
     $rootScope.$on("authenticationSuccess", function () {
+        const navEl = angular.element(document.getElementById("nav"))
+        navEl.removeClass("nav-hidden")
         $scope.logOut = "Logout"
         $scope.email = AuthFactory.getUser().email
         $scope.isAuthenticated = true
         $scope.uid = AuthFactory.getUser().uid
+        
    })
 
 }

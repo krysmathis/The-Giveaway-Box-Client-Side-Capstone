@@ -2,4 +2,29 @@
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
+    color: black;
+    z-index: 100;
+}
+
+.auth-form__container {
+    margin: 0 auto;
+    padding-bottom: 25px;
+    width: 300px;
+    background-color: white;
+    opacity: 1;
+    border-radius: 10px;
+}
+
+.auth-splash {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Full height */
+    height: 84vh; 
+
+    background-image: url("../images/jpg/insung-yoon-259475.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

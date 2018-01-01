@@ -45,6 +45,7 @@ angular.module("TheGiveawayBoxApp")
         logout: {
             value: () => {
                 firebase.auth().signOut()
+                $rootScope.$broadcast("loggedOut")
                 $location.url("/auth")
             }
 

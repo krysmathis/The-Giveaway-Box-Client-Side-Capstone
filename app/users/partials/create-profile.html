@@ -1,13 +1,10 @@
 <div ng-init="createProfileInit()">
-    <div class="container profile__container">
+    <div class="container">
+
+   
+    <h1 class="section__header profile__header">Manage Your Profile</h1>
+    <div class="profile__container">
         <form class="users__form">
-            <!-- <div class="form-group row" ng-if='field.data_type == "text"'>
-                <label class="col-sm-3 col-form-label">{{field.label}}</label>
-                <div class="col-sm-9">
-                    <input class="form-control"  type='text' ng-model='field.value' placeholder='{{field.label}}' name='myText' />
-                    <span class='required' ng-show="subForm.myText.$error.required">*</span>
-                </div>
-            </div> -->
             
             <div class="form-group row flex-center profile__control">
                 <label class="col-sm-3">First Name</label>
@@ -54,4 +51,5 @@
             <button class="btn btn-primary profile__button" ng-click="addUsers()">Update User</button>
         </div>
     </div>
+</div>
 </div>

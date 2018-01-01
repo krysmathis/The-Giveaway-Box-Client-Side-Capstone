@@ -5,6 +5,7 @@ angular.module("TheGiveawayBoxApp")
 
 
     $scope.listings = []
+    $scope.listingsCount = FilterFactory.filteredListings.length 
 
     const f = ListingsFactory
     const masterData = MasterDataFactory
@@ -127,16 +128,14 @@ angular.module("TheGiveawayBoxApp")
 
     $scope.tagClicked = (e) => {
         $scope.filterInit()
-        $scope.filter.keywords = e.target.textContent.split(" ")
+        const keywordsRaw = e.target.textContent.split(" ")
+        const keywordsProcessed = keywordsRaw.filter(k=> k.length > 2);
+        $scope.filter.keywords = keywordsProcessed
         $scope.listings = FilterFactory.getfilteredListings(FilterFactory.filteredListings,$scope.filter)
     }
     
     $scope.clearSearch = () => {
-        //$route.reload() // this works to reset the group checkboxes once but not in total
             $scope.init()
-        // $scope.filterInit()
-        // $scope.listings = ListingsFactory.listings;
-        // $scope.inviteGroups = angular.copy($scope.filterGroups)
     }
     
 
@@ -173,8 +172,10 @@ angular.module("TheGiveawayBoxApp")
 
     $scope.finder = (e) => {
         if (e.key === "Enter"){
-            if ($scope.filterSearchString.length > 0){
-                $scope.filter.keywords = $scope.filterSearchString.split(" ")
+            if ($scope.filterSearchString.length > 2){
+                const keywordsRaw = $scope.filterSearchString.split(" ")
+                const keywordsProcessed = keywordsRaw.filter(k=> k.length > 2);
+                $scope.filter.keywords = keywordsProcessed
                 $scope.listings = FilterFactory.getfilteredListings($scope.listings,$scope.filter)
             } else {
                 $scope.filterInit()

@@ -44,62 +44,15 @@
   text-align: left;
   width: 100%;
   margin: 0 auto;
-  padding-bottom: var(--nav-footer-height);
   min-height: calc(100vh - (var(--nav-footer-height) * 2));
 
 }
 
-/* .header {
-  font-size: 2em;
-  font-weight: bold;
-  border-bottom: 1px solid rgba(0,0,0,.15);
-  padding: 10px 0px 10px 0px;
-  margin-left: 20px;
-  margin-right:20px;
-  margin-bottom: 10px;
-
-} */
 
 .article {
   margin: 0 20px;
   padding: 10px 0;
 }
-/* 
-.nav {
-  color: white;
-  background-color: black;
-  height: var(--nav-footer-height);
-  width: 100%;
-  z-index: 101;
-  margin: 0 auto;
-
-}
-.nav a {
-  text-decoration: none;  
-}
-
-.nav a:visited {
-  color: white
-}
-.nav ul {
-
-}
-
-.nav__list {
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-content: center;
-  padding-top: 20px;
-
-}
-
-.nav__brand {
-  font-weight: bold;
-  color: white;
-} */
-
 
 .flex-center {
   display: flex;

@@ -1,13 +1,19 @@
-<div class="container">
-    <form action="" class="form-signin">
-            <h2 class="form-signin-heading signin__heading">Please sign in</h2>
-            <label for="" class="sr-only">Email address</label>
-            <input type="email" class="form-control" placeholder="Email address" ng-model="auth.email"  autofocus required>
-            <br>
-            <label for="" class="sr-only">Password</label>
-            <input type="password" class="form-control" placeholder="Password" ng-model="auth.password">
-            <br>
-            <button class="btn btn-lg btn-primary btn-block" ng-click="registerUser(auth)">Register</button>
-            <button class="btn btn-lg btn-primary btn-block" ng-click="logMeIn(auth)">Login</button>
-    </form>
+<div class="auth-splash">
+    <div class="container-fluid">
+        <div class="auth-form__container">
+            <div>
+            <form action="" class="form-signin">
+                    <h2 class="form-signin-heading signin__heading">Please sign in</h2>
+                    <label for="" class="col-form-label">Email address</label>
+                    <input type="email" class="form-control" placeholder="Email address" ng-model="auth.email"  autofocus required>
+                    <br>
+                    <label for="" class="col-form-label">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" ng-model="auth.password">
+                    <br>
+                    <button class="btn btn-lg btn-primary btn-block" ng-click="registerUser(auth)">Register</button>
+                    <button class="btn btn-lg btn-primary btn-block" ng-click="logMeIn(auth)">Login</button>
+            </form>
+        </div>
+        </div>
+    </div>
 </div>

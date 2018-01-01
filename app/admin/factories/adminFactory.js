@@ -249,6 +249,39 @@ angular
                     { value: "24 inches"},
                 ]
             },
+            {   externalId: 12,
+                label: "Scooter Brands",
+                desc: "Brands of Scooters",
+                inputType: "select",
+                inclusive: true,
+                valueType: 0,
+                viewModel: [
+                    {value: "District"},
+                    {value: "Envy"},
+                    {value: "Fuzion"},
+                    { value: "Lucky Brand"},
+                    { value: "MADD"},
+                    { value: "Razor"},
+                    { value: "Unbranded"}
+                ]
+            },
+            {   externalId: 13,
+                label: "Skateboard Brands",
+                desc: "Brands of Skateboards",
+                inputType: "select",
+                inclusive: true,
+                valueType: 0,
+                viewModel: [
+                    {value: "Alien Workshop"},
+                    {value: "Birdshop"},
+                    {value: "Blind"},
+                    { value: "Element"},
+                    { value: "Penny Skateboard"},
+                    { value: "Plan B"},
+                    { value: "Powell Peralta"},
+                    { value: "Santa Cruz"}
+                ]
+            },
                 
         ],
             enumerable: true,

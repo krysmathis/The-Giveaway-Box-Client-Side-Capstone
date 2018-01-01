@@ -5,6 +5,13 @@ angular.module("TheGiveawayBoxApp")
     
 
 
+    const animateCardComplete = () => {
+        const cardEl = angular.element(document.querySelector(".add-listing__card"))
+        console.log(cardEl)
+        cardEl.addClass("slide-out")
+        // don't need to remove this because the route is reloaded
+        //$timeout(()=> cardEl.removeClass("slide-out"),2000)
+    }
 
     // check if the item is in update mode
     $scope.inUpdateMode = () => {
@@ -37,7 +44,9 @@ angular.module("TheGiveawayBoxApp")
 
     $scope.currentUser = AuthFactory.getUser()
     $scope.user = MasterDataFactory.users.find(u=> u.userId === $scope.currentUser.uid)
-    
+    $scope.user.street = MasterDataFactory.extractStreetFromUserAddress($scope.user)
+
+
     $scope.saveImage = () => {
 
         var filename = document.getElementById("addListing__image");
@@ -230,7 +239,7 @@ angular.module("TheGiveawayBoxApp")
         $scope.item.subCategoryExternalId = $scope.selectedSubCategory.value
         if (!$scope.inUpdateMode()){
             AddListingFactory.addListing($scope.item, $scope.attributeModel, $scope.tags)
-            console.log("listing created")
+            animateCardComplete()
             $route.reload()
         } else {
             console.log("ready to update")

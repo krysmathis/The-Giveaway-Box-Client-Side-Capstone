@@ -78,6 +78,7 @@
   
   .listing__img-container:hover img {
     transition: transform .6s cubic-bezier(.67,-0.45,.36,1.49), z-index;
+    
   
   }
   .listing__img-container:hover img {
@@ -255,11 +256,11 @@
     color: rgba(0, 0, 0, .4);
   }
   
-  .meta a {
-    text-decoration: none;
-    color: rgba(0, 0, 0, .4);
-  }
+  // .meta a {
+  //   text-decoration: none;
+  //   color: rgba(0, 0, 0, .4);
+  // }
   
-  .meta a:hover {
-    color: rgba(0, 0, 0, .87);
-  }
+  // .meta a:hover {
+  //   color: rgba(0, 0, 0, .87);
+  // }

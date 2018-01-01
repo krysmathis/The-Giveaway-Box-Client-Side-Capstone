@@ -1,5 +1,5 @@
 angular.module("TheGiveawayBoxApp")
-.controller("ProfileCtrl", function($scope, $route, $http, $routeParams, $timeout, $location, ListingsFactory, UserFactory, AuthFactory, InviteFactory, GroupsFactory) {
+.controller("ProfileCtrl", function($scope, $route, $http, $routeParams, $timeout, $location, ngToast, ListingsFactory, UserFactory, AuthFactory, InviteFactory, GroupsFactory) {
 
         // handling if the user is editing their profile
         $scope.editingProfile = false
@@ -68,7 +68,7 @@ angular.module("TheGiveawayBoxApp")
             //format string for the date
             let address = $scope.userData.address.split(" ").join("+")
             address = address + "," + $scope.userData.city + "," + $scope.userData.state
-            console.log(address)
+            //console.log(address)
     
             $http({
                 url: `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_API_KEY}`
@@ -77,17 +77,21 @@ angular.module("TheGiveawayBoxApp")
                 $scope.userData.lat = location.lat
                 $scope.userData.long = location.lng
                 
-                console.log(r.data.results[0].geometry.location)
+                //console.log(r.data.results[0].geometry.location)
                 
                 if (!$scope.editingProfile) {
                     // Now upload the user data
                     UserFactory.add($scope.userData).then(r=> {
-                        console.log("user added")
+                        $scope.$apply(() => {
+                            ngToast.create("<i class='fa fa-check-circle-o'></i><strong> Done!</strong> Profile created!")
+                        })
                     })
                 } else {
                     delete $scope.userData.id
                     UserFactory.update($scope.userData, $scope.editingUserKey).then(r=> {
-                        console.log("user updated")
+                        $scope.$apply(() => {
+                            ngToast.create("<i class='fa fa-check-circle-o'></i><strong> Done!</strong> We have updated your profile.")
+                        })
                     })
                 }
             })

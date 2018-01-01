@@ -191,6 +191,20 @@ angular
                 })
             },
         },
+        "extractStreetFromUserAddress": {
+            value: function(user) {
+                try {
+                    let re = /^\d+\w*\s*(?:[\-\/]?\s*)?\d*\s*\d+\/?\s*\d*\s*/;
+                    let address = user.address
+                    let number = address.match(re)
+                    let street = address.split(number[0])[1]
+                    return street
+                } catch(err) {
+                    return user.address.split(" ")[1]
+                }
+            },
+            enumerable: true
+        },
         
         
     })

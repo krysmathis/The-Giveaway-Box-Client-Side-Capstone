@@ -1,3 +1,4 @@
+
 /* The ribbons */
 /* common */
 .ribbon {
@@ -5,7 +6,7 @@
     height: 150px;
     overflow: hidden;
     position: absolute;
-    z-index: 1000;
+    z-index: 0;
   }
   .ribbon::before,
   .ribbon::after {

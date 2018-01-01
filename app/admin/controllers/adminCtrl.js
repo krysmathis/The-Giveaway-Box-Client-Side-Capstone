@@ -352,6 +352,30 @@ $scope.subCategoryAttributes = [
         subCategoryExternalId: 4001,
         attributeExternalId: 11
     },
+    {
+        subCategoryExternalId: 4004,
+        attributeExternalId: 1 //condition
+    },
+    {
+        subCategoryExternalId: 4004,
+        attributeExternalId: 7 //color
+    },
+    {
+        subCategoryExternalId: 4004,
+        attributeExternalId: 12
+    },
+    {
+        subCategoryExternalId: 4005,
+        attributeExternalId: 7 //color
+    },
+    {
+        subCategoryExternalId: 4005,
+        attributeExternalId: 1 //condition
+    },
+    {
+        subCategoryExternalId: 4005,
+        attributeExternalId: 13 // skateboard brands
+    },
     
 
 ]

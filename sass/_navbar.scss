@@ -1,3 +1,5 @@
+
+
 .navbar {
     font-family: 'Zilla Slab', serif;
     margin-bottom: 0px;
@@ -7,6 +9,9 @@
     border-radius: 0px;
 }
 
+.navbar-brand {
+    color: black !important;
+}
 .nav-hidden {
     display: none;
 }

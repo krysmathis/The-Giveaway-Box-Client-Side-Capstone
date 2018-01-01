@@ -20,8 +20,8 @@
                             </span>
                             <p class="giveaway-box__expiration">expires in {{listing.expiresInDays}} days</p>
                         </div>
-                        <a class="giveaway-box__update" href="#!/listings/detail/{{ listing.id }}">Update</a>
-                        <button class="btn btn-default btn-sm" type="button" id="{{ listing.id }}" ng-click="deleteListing($event)">DELETE</button>
+                        <a class="giveaway-box__update" href="#!/listings/detail/{{ listing.id }}"><i class="fa fa-pencil-square-o fa-2x"></i></a>
+                        <button class="btn btn-default btn-sm giveaway-box__delete" type="button" id="{{ listing.id }}" ng-click="deleteListing($event)"><i class="fa fa-trash-o fa-2x"></i></button>
                     </div>
                 </li>
             </ul>

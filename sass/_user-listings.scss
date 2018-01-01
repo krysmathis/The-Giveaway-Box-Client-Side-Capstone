@@ -35,7 +35,7 @@ $user-listing-fonts: Roboto, sans-serif;
 .box__centered-listings {
     display: flex;
     justify-content: center;
-    width: 60%;
+    width: 80%;
 }
 
 .user__widget {
@@ -71,6 +71,12 @@ $user-listing-fonts: Roboto, sans-serif;
 
     .giveaway-box__update {
         margin-right: 10px;
+        color: black;
+    }
+
+    .giveaway-box__delete {
+        border-color: white;
+        color: black;
     }
 
     .giveaway-box__img--big {

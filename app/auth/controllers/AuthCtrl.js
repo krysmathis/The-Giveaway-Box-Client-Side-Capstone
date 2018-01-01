@@ -6,6 +6,8 @@ angular.module("TheGiveawayBoxApp")
         AuthFactory.authenticate(credentials).then(function (didLogin) {
             $scope.login = {}
             $scope.register = {}
+            console.log(document.getElementById("nav"))
+            //document.getElementById("nav").style.display = "block"
             $location.url("/")
 
 
@@ -20,7 +22,9 @@ angular.module("TheGiveawayBoxApp")
 
     $scope.logoutUser = function(){
       AuthFactory.logout()
+      //document.getElementById("nav").style.display = "block"
       $location.url('/auth')
+
 
   }
 

@@ -104,7 +104,7 @@
 </div>
 
 <div class="container listings__progress">
-    <h1 class="section__header" ng-init="init()" ng-clone>listings</h1>
+    <h1 class="section__header" ng-init="init()" ng-clone>{{filteredListings.length}} listings </h1>
     <div class="progress-circle indefinite" style="height:100vh;display:flex;top:200px;text-align:center">
         <img class="listings__loading-img" style="width:300px;height:auto;"  src="../../../images/svg/box-logo.svg">
         <div class="loader">Loading...</div>
@@ -151,12 +151,12 @@
                 class="fade-in-right" ng-cloak>
                 <!--- new card -->
                 <div class="card card-inverse card-info flip-container grid-item"  ontouchstart="this.classList.toggle('hover');">
-                        <div ng-if="isNew(item)" class="ribbon ribbon-top-left"><span>NEW!</span></div>
-                
-                        <div class="listing__card">
-                            <div class="flipper">
-                                <div class="listing__img-container">
-                                    <div class="front">
+                    
+                    <div class="listing__card">               
+                        <div class="flipper">
+                            <div class="listing__img-container">
+                                <div ng-if="isNew(item)" class="ribbon ribbon-top-right"><span>NEW!</span></div>
+                                <div class="front">
                                     <!-- <a href="#!/listings/review/{{item.id}}"> -->
                                         <img ng-click="open('lg',item)" class="card-img-top" ng-src="{{item.image}}" alt="Card image cap">
                                         <!-- </a> -->
