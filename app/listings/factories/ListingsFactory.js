@@ -288,17 +288,20 @@ angular
         },
         "deleteListing": {
             value: function(listingId) {
-                return firebase.auth().currentUser.getIdToken(true)
-                .then(idToken => {
-                    return $http({
-                        method: "DELETE",
-                        url: `https://${firebasePath}/itemListings/${listingId}/.json?auth=${idToken}`,
-                    }).then(r=> {
-                        //delete from the cache
-                        const index = this.listings.findIndex(l=> l.id === listingId)
-                        this.listings.splice(index, 1)
+                if (listingId) {
+                    return firebase.auth().currentUser.getIdToken(true)
+                    .then(idToken => {
+                        debugger
+                        return $http({
+                            method: "DELETE",
+                            url: `https://${firebasePath}/itemListings/${listingId}/.json?auth=${idToken}`,
+                        }).then(r=> {
+                            //delete from the cache
+                            const index = this.listings.findIndex(l=> l.id === listingId)
+                            this.listings.splice(index, 1)
+                        })
                     })
-                })
+                }
             },
             enumerable: true
         },

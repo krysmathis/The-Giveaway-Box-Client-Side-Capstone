@@ -24,7 +24,7 @@
 
 .mini-img {
     width: 45px;
-    height: auto;
+    height: 45px;
     border-radius: 50%;
     border: 2px solid gray;
     margin-right: 20px;
@@ -92,6 +92,7 @@ $user-listing-fonts: Roboto, sans-serif;
         justify-content: center;
         margin: auto;
         background-color: #fff;
+        top: 0px;
     
     }
 

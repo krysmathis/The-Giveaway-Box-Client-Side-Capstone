@@ -8,11 +8,11 @@
                 <li class="list-group-item user-listings" ng-repeat="listing in listings | filter: {requestedDate: 0}:true">
                     <div class="giveaway-box__li">
                         <img class="giveaway-box__img mini-img" src="{{listing.image}}" ng-click="display=!display">
-                        <div class="giveaway-box__img--big animate-show animate-hide" ng-show="display">
+                        <div class="giveaway-box__img--big animate-show animate-hide" ng-click="display=!display" ng-show="display">
                             <div class="giveawway-box__img--big-container">
                                 <img class="giveaway-box__img big-img" src="{{listing.image}}">
                             </div>
-                            <button class="giveaway-box__img-close" ng-click="display=!display">close</button>
+                            <!-- <button class="giveaway-box__img-close" ng-click="display=!display">close</button> -->
                         </div>
                         <div class="giveaway-box__desc">
                             <span class="giveaway-box__label">{{listing.label}}
@@ -21,7 +21,7 @@
                             <p class="giveaway-box__expiration">expires in {{listing.expiresInDays}} days</p>
                         </div>
                         <a class="giveaway-box__update" href="#!/listings/detail/{{ listing.id }}"><i class="fa fa-pencil-square-o fa-2x"></i></a>
-                        <button class="btn btn-default btn-sm giveaway-box__delete" type="button" id="{{ listing.id }}" ng-click="deleteListing($event)"><i class="fa fa-trash-o fa-2x"></i></button>
+                        <button class="btn btn-default btn-sm giveaway-box__delete" type="button"  ng-click="deleteListing($event)"><i id="{{ listing.id }}" class="fa fa-trash-o fa-2x"></i></button>
                     </div>
                 </li>
             </ul>

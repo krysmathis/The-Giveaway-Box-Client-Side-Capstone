@@ -173,7 +173,9 @@ angular.module("TheGiveawayBoxApp")
         $scope.subCategories.forEach(cat => {
             if (cat.value === $scope.item.subCategoryExternalId) {
                $scope.selectedSubCategory = $scope.subCategories[i]
-               $scope.getAttributes()
+               if ($scope.inUpdateMode) {
+                $scope.getAttributes()
+               }
                return
             }
             i++
@@ -216,15 +218,15 @@ angular.module("TheGiveawayBoxApp")
      * 
      */
     $scope.getAttributes = () => {
-        $scope.item.subCategoryExternalId = $scope.selectedSubCategory.value
-        if (AddListingFactory.attributes.length === 0) {
-            AddListingFactory.getAttributes().then(r=> {
+        if ($scope.selectedSubCategory) {
+            $scope.item.subCategoryExternalId = $scope.selectedSubCategory.value
+            if (AddListingFactory.attributes.length === 0) {
+                AddListingFactory.getAttributes().then(r=> {
+                    $scope.attributeModel = AddListingFactory.getAttributeView($scope.item.subCategoryExternalId)
+                });
+            } else {    
                 $scope.attributeModel = AddListingFactory.getAttributeView($scope.item.subCategoryExternalId)
-                console.log("view", AddListingFactory.attributeView)
-            });
-        } else {    
-            console.log("pulling from cache")
-            $scope.attributeModel = AddListingFactory.getAttributeView($scope.item.subCategoryExternalId)
+            }
         }
         
     }

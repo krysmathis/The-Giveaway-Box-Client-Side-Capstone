@@ -12,7 +12,7 @@ angular.module("TheGiveawayBoxApp")
 
     let navContainer = document.querySelectorAll('.nav-hidden')
     
-    $scope.isNew = (item) => moment().diff(moment(item.timestamp), "days") < 2
+    $scope.isNew = (item) => moment().diff(moment(item.timestamp), "days") < 1
     
     //purchase button
     $scope.purchase = (e) => {

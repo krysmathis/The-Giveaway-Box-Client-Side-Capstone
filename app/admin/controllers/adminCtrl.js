@@ -105,6 +105,11 @@ $scope.categories = [
         externalId: 800,
         label: "Strollers",
         desc: "Toddler & Preschool Learning Toys"
+    },
+    {
+        externalId: 999,
+        label: "Other",
+        desc: "Anything else"
     }
 ]
 
@@ -151,6 +156,11 @@ $scope.subCategories = [
         label: "Toddler & Preschool Learning"
     },
     {
+        externalId: 3003,
+        categoryExtId: 300,
+        label: "Feeding Time"
+    },
+    {
         externalId: 4001,
         categoryExtId: 400,
         label: "Bicycles"
@@ -179,6 +189,11 @@ $scope.subCategories = [
         externalId: 4006,
         categoryExtId: 400,
         label: "Helmets, Pads & Safety"
+    },
+    {
+        externalId: 5001,
+        categoryExtId: 500,
+        label: "Hiking/Camping"
     },
     {
         externalId: 8001,
@@ -375,6 +390,22 @@ $scope.subCategoryAttributes = [
     {
         subCategoryExternalId: 4005,
         attributeExternalId: 13 // skateboard brands
+    },
+    {
+        subCategoryExternalId: 5001,
+        attributeExternalId: 1 // condition
+    },
+    {
+        subCategoryExternalId: 5001,
+        attributeExternalId: 14 // safe for air travel
+    },
+    {
+        subCategoryExternalId: 3003,
+        attributeExternalId: 1 // condition
+    },
+    {
+        subCategoryExternalId: 3003,
+        attributeExternalId: 15 // condition
     },
     
 

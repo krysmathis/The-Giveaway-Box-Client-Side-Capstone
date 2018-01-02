@@ -104,10 +104,10 @@ angular
                 inclusive: false,
                 valueType: 0,
                 viewModel: [
-                    {value: "OK"},
-                    {value: "Still in good use"},
-                    {value: "Great - very little use"},
-                    {value: "New - never used"},
+                    {value: "New/Never Used"},
+                    {value: "Still in good shape"},
+                    {value: "Shows wear"},
+                    {value: "Ragged and rough"},
                 ]
             },
             {   externalId: 2,
@@ -280,6 +280,30 @@ angular
                     { value: "Plan B"},
                     { value: "Powell Peralta"},
                     { value: "Santa Cruz"}
+                ]
+            },
+            {   externalId: 14,
+                label: "Safe for Air Travel",
+                desc: "Can I travel with this",
+                inputType: "select",
+                inclusive: true,
+                valueType: 0,
+                viewModel: [
+                    {value: "Yes"},
+                    {value: "No"},
+                    {value: "Not sure"},
+                ]
+            },
+            {   externalId: 15,
+                label: "Baby Furniture Ages",
+                desc: "Size based on age",
+                inputType: "select",
+                inclusive: false,
+                valueType: 0,
+                viewModel: [
+                    {value: "birth-12 months"},
+                    {value: "12-24 months"},
+                    {value: "2 years & up"},
                 ]
             },
                 

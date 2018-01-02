@@ -20,7 +20,7 @@ function(
         
         $scope.updateClosedListings = () => {
             $scope.closedListings = ListingsFactory.listings.filter(l=> {
-                return l.buyer === $routeParams.userId && l.purchaseCompletedOn > 0
+                return l.userId === $routeParams.userId && l.purchaseCompletedOn > 0
             })
         }
         

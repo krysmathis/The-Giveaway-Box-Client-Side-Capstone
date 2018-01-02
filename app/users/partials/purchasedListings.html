@@ -1,7 +1,7 @@
 <div ng-controller="PurchasedListingsCtrl" class="user__widget">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="panel-title section__header">Somebody wants these (Pending Items) </div>
+            <div class="panel-title section__header">Pending items </div>
         </div>
         <div class="panel-body">
             <ul class="list-group list-group__ul">
@@ -10,7 +10,7 @@
                             <span ng-if="daysElapsed(listing) < 7"class="label label-default">New</span>
                             <span ng-if="daysElapsed(listing) >= 7"class="label label-danger">Late Response</span>
                     </span>
-                    <button class="btn btn-default btn-sm" type="button" id="{{ listing.id }}" ng-click="closeListing($event)"><i class="fa fa-times fa-2x"></i></button>
+                    <button class="btn btn-default btn-sm" type="button"  ng-click="closeListing($event)"><i id="{{ listing.id }}" class="fa fa-times fa-2x"></i></button>
                 </li>
             </ul>
         </div>
