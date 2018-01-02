@@ -3,7 +3,21 @@
 angular.module("TheGiveawayBoxApp")
 .controller("AddListingCtrl", function($scope, $route, $routeParams, $timeout, $location, AuthFactory, AddListingFactory, MasterDataFactory, ListingsFactory) {
     
+    /**
+     * For demo purposes only
+     */
 
+    $scope.fillLabel = (e) => {
+        e.target.value = "Bike With Training Wheels "
+    }
+
+    $scope.fillTextArea = (e) => {
+        e.target.textContent = "Our kid used this while he was learning to ride a bike. Too little now. We are moving on to something bigger. This bike served us well and we will miss it. Our son called it Skipper, but I do not know why. "
+    }
+
+    /**
+     * END OF DEMO CODE
+     */
 
     const animateCardComplete = () => {
         const cardEl = angular.element(document.querySelector(".add-listing__card"))

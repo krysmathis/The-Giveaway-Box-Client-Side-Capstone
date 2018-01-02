@@ -375,7 +375,8 @@ h3.accordion {
   font-size: 1.28571429em;
   font-weight: 700;
   line-height: 1.2857em;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  padding-top: 8px; }
 
 .card-text {
   clear: both;
@@ -511,7 +512,7 @@ h3.accordion {
 
 .nav__email {
   opacity: .75;
-  font-size: .85em; }
+  font-size: .5em; }
 
 .nav-item {
   font-size: 1.5em; }
@@ -971,13 +972,13 @@ h3.accordion {
       width: 50px;
       text-align: center;
       text-decoration: none;
-      color: white; }
+      color: black; }
     .footer .social-links .fa:hover {
       opacity: 0.7; }
     .footer .social-links .fa-facebook {
-      color: white; }
+      color: black; }
     .footer .social-links .fa-twitter {
-      color: white; }
+      color: black; }
 
 .loader {
   color: #ffb500;

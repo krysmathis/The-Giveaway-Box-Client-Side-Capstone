@@ -8,13 +8,13 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label font-weight-bold" >Item Label</label>
                         <div class="col-sm-9">
-                            <input class="form-control" type="text" ng-model="item.label" placeholder="heading for your item" value="Baby stroller" required>
+                            <input class="form-control" type="text" ng-model="item.label" ng-click="fillLabel($event)" placeholder="heading for your item" value="Baby stroller" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label font-weight-bold">Item Description</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" ng-model="item.desc"></textarea>
+                            <textarea class="form-control" ng-model="item.desc" ng-click="fillTextArea($event)"></textarea>
                         </div>
                         <!-- <input type="text" ng-model="item.desc" placeholder="description" value="Baby stroller"> -->
                     </div>
@@ -111,7 +111,7 @@
                     <h1 class="section__header">Enter Tags</h1>
                     <div class="entry__tags">
                         <span ng-repeat="tag in tags track by $index">
-                            <span class="btn btn-default btn-sm" ng-click="removeTag($event)">{{tag}}</span>
+                            <span class="btn btn-default btn-sm" ng-dblclick="removeTag($event)">{{tag}}</span>
                         </span>
                         <input class="add-listing__tag-input" type="text" ng-model="newTag" ng-keydown="updateTags($event)" placeholder="tag" />
                     </div>
