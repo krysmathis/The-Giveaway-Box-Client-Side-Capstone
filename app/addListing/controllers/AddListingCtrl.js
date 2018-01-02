@@ -53,6 +53,7 @@ angular.module("TheGiveawayBoxApp")
             $scope.$apply(function() {
                 $scope.item.image = _url
                 $scope.displayProgress = false
+                
             })
         })
 

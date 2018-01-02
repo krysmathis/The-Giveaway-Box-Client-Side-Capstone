@@ -26,7 +26,8 @@ function(
         $scope.init()
 
         $scope.closeListing = (e) => {    
-                ListingsFactory.closeListing(e.target.id).then(r=>{
+                const id = e.target.dataset.id
+                ListingsFactory.closeListing(id).then(r=>{
                     $scope.updatePurchasedListings()
                 })
         }

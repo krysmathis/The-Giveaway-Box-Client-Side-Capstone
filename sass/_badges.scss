@@ -11,14 +11,15 @@
   }
 
   .badge-price {
-    background-color:$blue !important;
+    background-color: black !important;
   }
   
   .badge:hover {
     color: #ffffff;
     text-decoration: none;
-    cursor: pointer;
+    cursor: default;
   }
+  
   .badge-error {
     background-color: #b94a48;
   }

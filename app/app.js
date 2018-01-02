@@ -50,7 +50,7 @@ angular.module("TheGiveawayBoxApp").config(function ($routeProvider) {
             resolve: { isAuth }
         })
         .when('/users/:userId', {
-            templateUrl: 'app/users/partials/profile.html',
+            templateUrl: 'app/users/partials/box.html',
             controller: 'ProfileCtrl',
             resolve: { isAuth }
         })

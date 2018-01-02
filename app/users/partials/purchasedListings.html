@@ -10,7 +10,10 @@
                             <span ng-if="daysElapsed(listing) < 7"class="label label-default">New</span>
                             <span ng-if="daysElapsed(listing) >= 7"class="label label-danger">Late Response</span>
                     </span>
-                    <button class="btn btn-default btn-sm" type="button"  ng-click="closeListing($event)"><i id="{{ listing.id }}" class="fa fa-times fa-2x"></i></button>
+                    <div class="pending__close">
+                        <button class="btn btn-default btn-sm pending__close-btn" type="button" data-id="{{listing.id}}" ng-click="closeListing($event)"><i data-id="{{ listing.id }}" class="fa fa-times fa-2x"></i></button>
+                        <span>Once the deal is done, close the listing</span>
+                    </div>
                 </li>
             </ul>
         </div>

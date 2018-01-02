@@ -41,12 +41,13 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label font-weight-bold" for="Image">Image</label>
+                        <label class="col-sm-3 col-form-label font-weight-bold" for="Image">Image<i ng-class="displayProgress ? 'flash' : ''" id="camera-icon" class="camera-icon infinite"></i></label>
                         <div class="col-sm-9">
                             <div class="addListing___image">
                                 <!-- <img ng-src="{{item.image}}" style="width:150px;height:auto;"/> -->
                             </div>
                             <div>
+                                
                                 <label class="btn btn-primary btn-file">
                                     Add Image
                                     <input  class="hidden" id="addListing__image" custom-on-change="uploadFile" type="file" accept=".jpg,.png,.gif" ng-model="item.image" ng-change="saveImage()">

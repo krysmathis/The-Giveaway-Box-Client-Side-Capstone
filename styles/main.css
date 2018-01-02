@@ -161,6 +161,7 @@ body {
   height: 300px; }
 
 .listings__main {
+  min-height: 100vh;
   /* display: grid;
   grid-template-columns: 30% 1fr; */ }
 
@@ -174,7 +175,7 @@ body {
 .attributes__label {
   font-family: 'Zilla Slab', serif;
   font-weight: 800;
-  font-size: .85em;
+  font-size: 1em;
   border-bottom: 1px solid gray;
   padding-bottom: 3px;
   text-transform: uppercase; }
@@ -182,12 +183,12 @@ body {
 .attributes__value {
   font-family: 'Zilla Slab', serif;
   font-weight: 100;
-  font-size: 1.1em;
+  font-size: 1.3em;
   text-transform: lowercase; }
 
 .attributes__box {
   width: 100%;
-  font-size: 1.2em;
+  font-size: 1.3em;
   padding: 10px;
   margin-bottom: 5px;
   border-radius: 5px; }
@@ -211,6 +212,20 @@ body {
 .meta {
   font-size: 1em;
   color: rgba(0, 0, 0, 0.4); }
+
+.flash {
+  animation: flash 1s; }
+
+.camera-icon {
+  opacity: 1;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: url("../../../images/svg/camera.svg");
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 65px;
+  top: 0; }
 
 .invite__modal {
   display: none;
@@ -494,6 +509,10 @@ h3.accordion {
 .navbar-collapse {
   text-align: center; }
 
+.nav__email {
+  opacity: .75;
+  font-size: .85em; }
+
 .nav-item {
   font-size: 1.5em; }
 
@@ -538,12 +557,12 @@ h3.accordion {
   border-radius: 3px; }
 
 .badge-price {
-  background-color: #00B6DA !important; }
+  background-color: black !important; }
 
 .badge:hover {
   color: #ffffff;
   text-decoration: none;
-  cursor: pointer; }
+  cursor: default; }
 
 .badge-error {
   background-color: #b94a48; }
@@ -905,6 +924,27 @@ h3.accordion {
 @media (max-width: 768px) {
   .box__centered-listings {
     width: 100%; } }
+.pending__close:hover span {
+  visibility: visible;
+  opacity: 1; }
+
+.pending__close {
+  position: relative; }
+  .pending__close span {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    left: -270px;
+    top: 3px;
+    width: auto;
+    background-color: #00B6DA;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: opacity .5s, visibility 0s;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25); }
+
 .footer {
   font-family: "Zilla Slab", serif;
   background-color: #ffb500;

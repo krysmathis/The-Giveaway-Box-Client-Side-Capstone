@@ -115,3 +115,34 @@ $user-listing-fonts: Roboto, sans-serif;
         width: 100%;
     }
 }
+
+.pending__close:hover span {
+    visibility: visible;
+    opacity: 1;
+}
+
+@mixin button-info() {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    left: -270px;
+    top: 3px;
+    width: auto;
+    background-color: $blue;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: opacity .5s, visibility 0s;
+    box-shadow: 4px 4px 5px rgba(0,0,0,.25);
+} 
+
+.pending__close
+{ 
+    position: relative;
+
+    span {
+       @include button-info();
+    }
+}
+
