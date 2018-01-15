@@ -17,6 +17,51 @@
     
 }
 
+.filter-navbar-items {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.filter__flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  #filter__groups {
+    display: none;
+  }
+
+  #filter__map {
+    display: none;
+  }
+  
+  .listings__filter-wrapper div {
+    padding: 5px;
+  }
+
+  .listings__filter-wrapper {
+    height: auto;
+  }
+
+  .listings__filter-wrapper img {
+    display: none;
+  }
+
+  .filter__search {
+    display: block !important;
+  }
+
+  .filter__category{
+    display: block !important;
+  }
+  .filter__flex-center {
+    display: block;
+  }
+}
+
 .filter__icon {
   width: 30px;
   height: auto;

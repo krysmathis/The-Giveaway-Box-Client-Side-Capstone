@@ -110,6 +110,8 @@ angular.module("TheGiveawayBoxApp")
     /**
      * FILTER
      */
+
+    $scope.isNavCollapsed = true;
     $scope.filterInit = () => {
         // reset the filtered listings to the primary source of listings
         FilterFactory.filteredListings = ListingsFactory.listings

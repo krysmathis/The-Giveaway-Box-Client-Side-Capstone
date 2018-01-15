@@ -23,7 +23,8 @@ function ($scope, $location, $window, AuthFactory, $rootScope, ListingsFactory) 
     var windowEl = angular.element($window);
     var handler = function() {
         $scope.st = window.pageYOffset;
-        if ($scope.st > 50) {
+        const width = window.innerWidth;
+        if ($scope.st > 50 || width < 768) {
             $scope.$apply(() => $scope.showBrand = true)
         } else {
             $scope.$apply(() => $scope.showBrand = false)

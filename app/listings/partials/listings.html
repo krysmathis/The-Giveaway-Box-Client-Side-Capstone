@@ -4,17 +4,9 @@
             <form name="filterForm" class="filter__form">
                 <div class="listings__filter-wrapper">
 
-                        <div class="navbar-header">
-                                <button type="button" class="navbar-toggle nav-hidden" ng-click="isNavCollapsed = !isNavCollapsed">
-                                    <!-- <span class="sr-only">Toggle navigation</span> -->
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
 
 
-                            <div class="filter__category form-group flex-center">
+                            <div class="filter__category form-group filter__flex-center">
                                     <div class="filter__icon">
                                         <img src="../../../images/svg/007-settings.svg">
                                     </div>
@@ -26,7 +18,7 @@
                                   
                             </div>
 
-                            <div class="filter__search form-group flex-center">
+                            <div class="filter__search form-group filter__flex-center">
                                     <div class="filter__icon">
                                             <img src="../../../images/svg/001-loupe.svg">
                                     </div>
@@ -35,8 +27,8 @@
                             </div>
                             
                             <!-- group filter -->
-                            <div class="btn-group flex-center" uib-dropdown is-open="status.isopen" auto-close="outsideClick">
-                                <div class="flex-center" id="single-button" type="button"  uib-dropdown-toggle ng-disabled="disabled">
+                            <div class="btn-group filter__flex-center" uib-dropdown is-open="status.isopen" auto-close="outsideClick" id="filter__groups">
+                                <div class="filter__flex-center" id="single-button" type="button"  uib-dropdown-toggle ng-disabled="disabled">
                                     <div class="filter__icon">
                                         <img src="../../../images/svg/005-group.svg">
                                     </div>
@@ -44,7 +36,7 @@
                                     <span class="caret filter__label"></span>
                                 </div>
                                 <div class="dropdown-menu group-dropdown" uib-dropdown-menu role="menu" aria-labelledby="single-button" auto-close="outsideClick">
-                                    <div class="flex-center flex-column ta-l">
+                                    <div class="filter__flex-center flex-column ta-l">
                                         <h4 style="text-align: left;color:black;">Limit to selected groups</h4>
                                         <ul class="filter__group-list">
                                             <li role="menuitem" ng-repeat="group in filterGroups" class="group-dropdown__list-item">
@@ -63,8 +55,8 @@
                             </div>
         
                             <!-- map dropdown -->
-                            <div class="btn-group flex-center" uib-dropdown auto-close="outsideClick">
-                                <div class="flex-center" id="button-template-url" uib-dropdown-toggle ng-disabled="disabled" ng-click="initializeMap()">
+                            <div class="btn-group filter__flex-center" uib-dropdown auto-close="outsideClick" id="filter__map">
+                                <div class="filter__flex-center" id="button-template-url" uib-dropdown-toggle ng-disabled="disabled" ng-click="initializeMap()">
                                     <div class="filter__icon">
                                         <img src="../../../images/svg/003-map-location.svg">
                                     </div>
@@ -88,13 +80,13 @@
                                 </div>
                             </script>
                             <!-- Simple dropdown -->
-                            <div class="flex-center">
+                            <div class="filter__flex-center">
                                <img class="filter__clear-wheel" src="../../../images/gif/waiting.gif" style="width: 25px; height: auto;">
                                 <button class="btn btn-primary" type="button" ng-click="clearSearch()">CLEAR SEARCH</button>
                                 <!-- <button class="btn btn-primary" type="button" ng-click="init()">CLEAR SEARCH</button> -->
                                 
                             </div>
-
+                     
                 </div>
             </form>
         </nav> <!-- end of filter nav -->

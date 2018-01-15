@@ -546,6 +546,12 @@ h3.accordion {
 @media (min-width: 768px) {
   .navbar-brand__header {
     display: none; } }
+@media (max-width: 768px) {
+  .navbar__header {
+    display: none; }
+
+  .navbar-brand {
+    display: block; } }
 .badge {
   padding: 3px 9px 2px;
   font-size: 1.15em;
@@ -633,6 +639,39 @@ h3.accordion {
   align-items: center;
   height: 60px; }
 
+.filter-navbar-items {
+  display: flex;
+  flex-direction: row; }
+
+.filter__flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+@media (max-width: 768px) {
+  #filter__groups {
+    display: none; }
+
+  #filter__map {
+    display: none; }
+
+  .listings__filter-wrapper div {
+    padding: 5px; }
+
+  .listings__filter-wrapper {
+    height: auto; }
+
+  .listings__filter-wrapper img {
+    display: none; }
+
+  .filter__search {
+    display: block !important; }
+
+  .filter__category {
+    display: block !important; }
+
+  .filter__flex-center {
+    display: block; } }
 .filter__icon {
   width: 30px;
   height: auto;
