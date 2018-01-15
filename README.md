@@ -3,8 +3,24 @@
 # The Giveaway Box
 A listing app to connect buyers and sellers of baby and kid strollers, high-chairs and other 'stuff' their children have outgrown.
 
-# The App (hosted)
-- [TheGiveawayBox](https://github.com/krysmathis/client-side-capstone) 
+# Screenshots
+[TheGiveawayBox](https://github.com/krysmathis/client-side-capstone) 
+
+View and Search listings:
+![Listings Page](https://media.giphy.com/media/xULW8CJlKUWW5NfOA8/giphy.gif)
+
+Get Very Local:
+![Map](https://media.giphy.com/media/3o751V76ItzH7EERDq/giphy.gif)
+
+Add Listings  
+![Add Listing Page](https://media.giphy.com/media/3oFzm4qSxLV6DYmzhC/giphy.gif)
+
+Invite Users 
+![Invite Users](https://media.giphy.com/media/3oFzm4lzIbODcq8Pra/giphy.gif)
+
+Manage Listings
+![Manage Listings](https://media.giphy.com/media/xULW8HrLfV2HAHqPFC/giphy.gif)
+
 # The App (local host)
 ## Visual Studio Code
 Download VSC here : [Visual Studio Code](https://code.visualstudio.com/)
