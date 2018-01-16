@@ -661,7 +661,7 @@ h3.accordion {
   .listings__filter-wrapper {
     height: auto; }
 
-  .listings__filter-wrapper img {
+  .filter__icon {
     display: none; }
 
   .filter__search {
