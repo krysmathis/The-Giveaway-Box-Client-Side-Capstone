@@ -80,6 +80,13 @@ angular
             },
             enumerable: true
         },
+        // 1. First retrieve the record from the database
+        // 2. Then update the item attributes for the retrieved record
+        // 3. Update the cached version of the item
+        // 4. Update the database with the modified item
+        // Parameters:
+        // listingId = the Id # from the listing record
+        // user = the current use
         "purchase": {
             value: function(listingId, user) {
                 return $http({
@@ -99,7 +106,7 @@ angular
                     cachedItem.requestedDate = Date.now()
                     cachedItem.buyerEmail = user.email
                     
-
+                    // update the record in the database
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http({
@@ -113,6 +120,11 @@ angular
             },
             enumerable: true
         },
+        
+        // 1. First retrieve the record from the database
+        // 2. Then update the item attributes for the retrieved record
+        // 3. Update the cached version of the item
+        // 4. Update the database with the modified item
         "closeListing":{
             value: function(listingId) {
                 return $http({
@@ -123,6 +135,7 @@ angular
                     // update item values based on what we're modifying
                     item.purchaseCompletedOn = Date.now()
                     
+                    // update the cached item
                     const cachedListing = 
                         this.listings
                             .find(l=> l.id === listingId)
@@ -131,6 +144,7 @@ angular
                         cachedListing.purchaseCompletedOn = Date.now()
                     }
                     
+                    // update the item in the database
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http({
@@ -178,8 +192,15 @@ angular
             },
             enumerable: true
         },
+        // This function breaks up the calculation of additional properties
+        // on the listing that do not involve pulling data from the database
+        // This applies the rules that enrich the listing.
+        // Parameters:
+        // listing: One listing returned from the database
+        // database: master data with all categories and subcategories 
         "addAdditionalData": {
             value: function(listing,database) {
+                
                 // pricing
                 if (!listing.price > 0) { listing.price = "FREE"}
 
