@@ -91,7 +91,6 @@ angular
                 const filteredAttributes = this.attributes.filter(a=> {
                     return filteredSubAttributes.find(fa => fa.attributeExternalId === a.externalId)
                 })
-                //arr.filter(f => brr.includes(f));
                 this.attributeView = filteredAttributes.map(attr => {
                     return {
                         data_type: attr.inputType,
@@ -230,7 +229,7 @@ angular
                 const stamp = Date.now()
                 return firebase.storage().ref().child("images/"+ stamp + file.name).put(file).then(result => {
                     return firebase.storage().ref().child("images/"+ stamp + file.name).getDownloadURL()
-                    //return the url of the image you uploaded
+
                 })
             }
         },
@@ -260,7 +259,6 @@ angular
                     })
                     item.tags = tags
 
-                    // keep this as a backup until everything has been transitioned over
                     $http({
                         method: "POST",
                         url: `https://${firebasePath}/itemListings/.json?auth=${idToken}`,
@@ -296,8 +294,7 @@ angular
                 })
             },
             enumerable: true
-            // add item and then retrieve data.name
-            // then add the attribute values k
+            
         },
         
         

@@ -2,7 +2,7 @@
 
 angular
 .module("TheGiveawayBoxApp")
-.factory("ListingsFactory", function ($http,$sce) {
+.factory("ListingsFactory", function ($http) {
     
     return Object.create(null,{
         
@@ -27,10 +27,7 @@ angular
             enumerable: true,
             writable: true
         },
-        "find": {
-            value: () => console.log("you found me!"),
-            enumerable: true
-        },
+       
         "tags": {
             value: [],
             enumerable: true,
@@ -196,7 +193,6 @@ angular
                 
                 // expiration date
                 if (listing.hasOwnProperty("expirationDate")) {
-                    //moment().add(30,'day').diff(moment(), 'days');
                     listing.expiresInDays = moment(listing.expirationDate).diff(moment(),"days")
                 } else {
                     listing.expiresInDays = 90
@@ -291,7 +287,6 @@ angular
                 if (listingId) {
                     return firebase.auth().currentUser.getIdToken(true)
                     .then(idToken => {
-                        debugger
                         return $http({
                             method: "DELETE",
                             url: `https://${firebasePath}/itemListings/${listingId}/.json?auth=${idToken}`,
@@ -357,29 +352,7 @@ angular
             },
             enumerable: true
         },
-        "makeEbaySearch": {
-            value: function (userSearch) {
-                let url = `http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findCompletedItems&SERVICE-VERSION=1.7.0&SECURITY-APPNAME=${EBAY_APP_ID}&RESPONSE-DATA-FORMAT=XML&categoryId(0)=33034&categoryId(1)=33021&categoryId(2)=4713&itemFilter(0).name=SoldItemsOnly&itemFilter(0).value(0)=true&itemFilter(1).name=Condition&itemFilter(1).value(0)=Used&itemFilter(1).value(1)=2500&itemFilter(1).value(2)=3000&itemFilter(1).value(3)=4000&itemFilter(1).value(4)=5000&itemFilter(1).value(5)=6000&itemFilter(2).name=ExcludeCategory&itemFilter(2).value(0)=181223&itemFilter(2).value(1)=47067&REST-PAYLOAD&keywords=${userSearch}`
-                let trustedUrl = $sce.trustAsResourceUrl(url)
-                return $http.jsonp(trustedUrl, 
-                    {jsonpCallbackParam: 'callback'})
-                    .then(response => {
-                        console.log(response)
-                    })
-            }
-        },
-        "makeAmazonSearch": {
-            value: function (userSearch) {
-                const Crypto = CryptoJS
-                function getSignatureKey(Crypto, key, dateStamp, regionName, serviceName) {
-                    var kDate = Crypto.HmacSHA256(dateStamp, "AWS4" + key);
-                    var kRegion = Crypto.HmacSHA256(regionName, kDate);
-                    var kService = Crypto.HmacSHA256(serviceName, kRegion);
-                    var kSigning = Crypto.HmacSHA256("aws4_request", kService);
-                    return kSigning;
-                }
-            }
-        }
+        
     })
 
 })

@@ -1,14 +1,3 @@
-/**
- * 
-MOMS Club of East Nashville - Eastwood
-
-MOMS Club of East Nashville-Inglewood
-
-MOMS Club of East Nashville-Lockeland
-
-MOMS Club of East Nashville-Rosebank
- */
-
 "use strict"
 
 angular
@@ -55,7 +44,6 @@ angular
                 return $http({
                     method: "GET",
                     url: `https://${firebasePath}/groups/.json?`
-                    // url: `https://${firebasePath}/groups/-L0-rV_L1VPW3pmhOx8D/.json?`
                 }).then(r => {
                     const data = r.data
                     this.groups = Object.keys(data).map(key => {
@@ -63,9 +51,6 @@ angular
                         return data[key]
                     })
                     return this.groups
-
-                    // this.groups.push(data)
-                    // return this.groups
                 })
             },
             enumerable: true
@@ -98,7 +83,6 @@ angular
                         groupObj.name = data[key].groupName,
                         groupObj.groupId = data[key].groupId,
                         groupObj.id = key
-                        //data[key].id = key
                         return groupObj
                     })
                     return this.userGroups

@@ -34,7 +34,6 @@ function(
 
 
         //utility function for filtering
-        //utility function for filtering
         $scope.greaterThan = function(prop, val){
         return function(item){
           return item[prop] > val;

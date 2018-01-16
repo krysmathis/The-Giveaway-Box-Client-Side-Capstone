@@ -8,7 +8,6 @@ function(
     InviteFactory,
     AuthFactory,
     GroupsFactory,
-    $uibModal
 ) {
 
 
@@ -33,12 +32,10 @@ function(
     }
 
     $scope.inviteGroups = []
-    console.log("invite_groups", $scope.groups)
     
     $scope.inviteCode = ""
 
     $scope.inviteUser = () =>  {
-        // clear the user code
         
         document.querySelector(".invite__modal").style.display = "block"
 

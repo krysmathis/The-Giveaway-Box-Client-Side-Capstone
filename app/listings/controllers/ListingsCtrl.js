@@ -153,13 +153,11 @@ angular.module("TheGiveawayBoxApp")
     $scope.groupsInit = () => {
         if (GroupsFactory.userGroups.length === 0) {
             GroupsFactory.getUsersGroups(AuthFactory.getUser()).then(r =>{
-                // $scope.groups = r
                 $scope.filterGroups = r
                 $scope.inviteGroups = angular.copy($scope.filterGroups)
                 $scope.filter.groups = angular.copy($scope.filterGroups)
             })
         } else {
-            // $scope.groups = GroupsFactory.userGroups
             $scope.filterGroups = GroupsFactory.userGroups
             $scope.inviteGroups = angular.copy($scope.filterGroups)
             $scope.filter.groups = angular.copy($scope.filterGroups)

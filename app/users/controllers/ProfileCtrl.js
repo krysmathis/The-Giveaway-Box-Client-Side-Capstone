@@ -34,7 +34,6 @@ angular.module("TheGiveawayBoxApp")
                     $scope.userData = r[0]
                     const indexOfState = $scope.statesList.findIndex(i=> i.abbreviation === r[0].state)
                     $scope.selectedState = $scope.statesList[indexOfState]
-                    //$scope.statesList[0]
                     
     
                 })
@@ -68,7 +67,6 @@ angular.module("TheGiveawayBoxApp")
             //format string for the date
             let address = $scope.userData.address.split(" ").join("+")
             address = address + "," + $scope.userData.city + "," + $scope.userData.state
-            //console.log(address)
     
             $http({
                 url: `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_API_KEY}`
@@ -77,7 +75,6 @@ angular.module("TheGiveawayBoxApp")
                 $scope.userData.lat = location.lat
                 $scope.userData.long = location.lng
                 
-                //console.log(r.data.results[0].geometry.location)
                 
                 if (!$scope.editingProfile) {
                     // Now upload the user data
@@ -99,7 +96,6 @@ angular.module("TheGiveawayBoxApp")
         }
           
 
-    // $scope.selectedState = $scope.statesList[0]
     $scope.statesList = [
         {
             "name": "Alabama",

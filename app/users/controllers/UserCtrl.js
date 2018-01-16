@@ -15,9 +15,7 @@
 
     $scope.seedGroups = () => {
         const user = AuthFactory.getUser()
-        GroupsFactory.seedUserGroups(user).then(r=> {
-            console.log("you've been seeded")
-            
+        GroupsFactory.seedUserGroups(user).then(r=> {            
         })
     }
     //utility function for filtering
@@ -36,11 +34,10 @@
      * REDEEM INVITATIONS
      */
     $scope.inviteCode = ""
-    //$scope.showJoinButton = () => $scope.availableGroups.length = 0
     $scope.availableGroups = null
+    
     // Redeem Invites
     $scope.redeemInvite = () => GroupsFactory.getGroupsFromInvite($scope.inviteCode).then(g=>{
-        console.log(g)
         $scope.availableGroups = g
     })
 
@@ -50,7 +47,6 @@
             const userGroups = r
             // only add groups if they aren't already listed
             const groups = $scope.user.joinGroups.filter(g=> 
-                // TODO: add the ! back in 
                !userGroups.some(i=> 
                     i.groupId === g.groupId))
 
@@ -70,7 +66,6 @@
                 GroupsFactory.joinGroup(user,userGroup).then(r=> {
                     GroupsFactory.getUsersGroups(AuthFactory.getUser()).then(r=> {
                         $scope.groups = r
-                        console.log("init groups: ", $scope.groups)
                         $route.reload()
                     })
                 })

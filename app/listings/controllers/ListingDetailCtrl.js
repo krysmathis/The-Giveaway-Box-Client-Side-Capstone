@@ -8,12 +8,5 @@ angular.module("TheGiveawayBoxApp")
         $scope.listing = listing
     })
 
-    // $scope.deleteListing = (e) => {
-    //     ListingsFactory.deleteListing(e.target.id).then(r=>{
-    //         $timeout(function () {
-    //             $location.url(`/users/${$scope.listing.userId}`)
-    //         }, 100);
-    //     })
-    // }
 })
    

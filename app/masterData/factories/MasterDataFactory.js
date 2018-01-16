@@ -57,19 +57,6 @@ angular
                     this.getAttributes(),
                     this.getUsers()
                 ])
-
-                // return this.getCategories().then(cats => {
-                //     this.categories = cats
-                //     return this.getSubCategories().then(subs => {
-                //         this.subCategories = subs
-                //         return this.getAttributes().then(attrs =>{
-                //             this.attributes = attrs
-                //             return this.getUsers().then(users => {
-                //                 this.users = users
-                //             })
-                //         })
-                //     })
-                // })
                                  
             },
             enumerable: true

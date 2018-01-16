@@ -1,21 +1,5 @@
 <div ng-controller="UserCtrl">
-    <!-- <h1 class="section__header">Redeem Invites</h1>
-    <p>Redeem a group invite</p>
-    <form name="Redeem">
-        <input type="text" name="redeemInvite" ng-model="inviteCode" required/>
-        <button type="button" ng-click="redeemInvite()">Validate</button>
-    </form>
-    <label ng-repeat="avail in availableGroups">
-        <div>
-            <input type="checkbox" checklist-model="user.joinGroups" checklist-value="avail"> {{avail.groupName}}
-        </div>
-    </label>
-    <span ng-repeat="ur in user.availableGroups">{{ur}} </span>
-    <div ng-if="availableGroups">
-        <button type="button" ng-click="joinGroups()">Join</button>
-    </div> -->
-
-
+  
     <div class="panel panel-default box-shadow">
         <div class="panel-heading">
             <h3 class="panel-title section__header">Redeem Invites </h3>
@@ -24,7 +8,6 @@
             <form name="Redeem">
                 <input class="user__redeem-invite" type="text" name="redeemInvite" ng-model="inviteCode" required/>
                 <button class="btn btn-primary" type="button" ng-click="redeemInvite()">Validate</button>
-                <!-- <span ng-show="authorizationForm.generateCode.$touched && myForm.generateCode.$invalid">The name is required.</span> -->
             </form>
             <div class="list-group list-group__ul">
                 <label ng-repeat="avail in availableGroups">

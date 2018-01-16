@@ -30,7 +30,6 @@ function(
         $scope.init()
 
         $scope.deleteListing = (e) => {
-            debugger
             ListingsFactory.deleteListing(e.target.id).then(r=>{
                 console.log("record deleted", e.target.id)
                 //$route.reload()

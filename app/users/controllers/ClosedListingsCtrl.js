@@ -32,13 +32,9 @@ function(
 
         $scope.closeListing = (e) => {    
             console.log($scope.closedListings)    
-            // ListingsFactory.closeListing(e.target.id).then(r=>{
-                //     $scope.updateClosedListings()
-                // })
+            
         }
 
-
-        //utility function for filtering
         //utility function for filtering
         $scope.greaterThan = function(prop, val){
         return function(item){
