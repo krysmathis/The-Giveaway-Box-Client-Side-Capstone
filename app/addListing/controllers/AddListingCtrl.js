@@ -1,7 +1,7 @@
 "use strict"
 
 angular.module("TheGiveawayBoxApp")
-.controller("AddListingCtrl", function($scope, $route, $routeParams, $timeout, $location, AuthFactory, AddListingFactory, MasterDataFactory, ListingsFactory) {
+.controller("AddListingCtrl", function($scope, ngToast, $route, $routeParams, $timeout, $location, AuthFactory, AddListingFactory, MasterDataFactory, ListingsFactory) {
     
     /**
      * For demo purposes only
@@ -21,7 +21,6 @@ angular.module("TheGiveawayBoxApp")
 
     const animateCardComplete = () => {
         const cardEl = angular.element(document.querySelector(".add-listing__card"))
-        console.log(cardEl)
         cardEl.addClass("slide-out")
     }
 
@@ -43,7 +42,8 @@ angular.module("TheGiveawayBoxApp")
      */
     $scope.displayProgress = false
 
-    $scope.uploadFile = function(){
+    $scope.uploadFile = function(e){
+        
         $scope.$apply(() => {
             $scope.displayProgress = true
             $scope.saveImage()
@@ -54,22 +54,37 @@ angular.module("TheGiveawayBoxApp")
         console.log(e.target.files)
         //AddListingFactory.addImage($scope.item.image)
 
-    $scope.currentUser = AuthFactory.getUser()
-    $scope.user = MasterDataFactory.users.find(u=> u.userId === $scope.currentUser.uid)
-    $scope.user.street = MasterDataFactory.extractStreetFromUserAddress($scope.user)
+        $scope.currentUser = AuthFactory.getUser()
+        $scope.user = MasterDataFactory.users.find(u=> u.userId === $scope.currentUser.uid)
+        $scope.user.street = MasterDataFactory.extractStreetFromUserAddress($scope.user)
 
 
     $scope.saveImage = () => {
 
         var filename = document.getElementById("addListing__image");
         let file = filename.files[0]
-        AddListingFactory.addImage(file).then(_url=> {
-            $scope.$apply(function() {
-                $scope.item.image = _url
-                $scope.displayProgress = false
-                
+
+        /*
+            If the file does not exist, exit out
+            The file must fall below 150 KB
+            Otherwise, upload the file
+        */
+        if (file === undefined) {
+            ngToast.create("<strong>Image upload scrapped</strong>");
+            $scope.displayProgress = false;
+        } else if (file.size > 15000) { 
+            ngToast.create("<strong>Max File Size Exceeded</strong> Max size is 150 KB, try a smaller file");
+            $scope.displayProgress = false
+        } else {
+            AddListingFactory.addImage(file).then(_url=> {
+                $scope.$apply(function() {
+                    $scope.item.image = _url
+                    $scope.displayProgress = false
+                    
+                })
             })
-        })
+        }
+
 
     }
     /**

@@ -4,9 +4,10 @@ angular.module("TheGiveawayBoxApp")
 .controller("ListingsCtrl", function($scope, $route, $uibModal, $log, $document, $window, $timeout, $http, ngToast, $location, FilterFactory, GroupsFactory, ListingsFactory, AuthFactory, AddListingFactory, MasterDataFactory) {
 
 
+
     $scope.listings = []
     $scope.listingsCount = FilterFactory.filteredListings.length 
-
+    $scope.showUsers = true;
     const f = ListingsFactory
     const masterData = MasterDataFactory
 
@@ -16,7 +17,6 @@ angular.module("TheGiveawayBoxApp")
     
     //purchase button
     $scope.purchase = (e) => {
-        console.log("making purchase")
         const user = AuthFactory.getUser()
         ngToast.create("<strong>Congrats!</strong> You got it - you should hear from the seller soon!");
         ListingsFactory.purchase(e.target.id, user)
@@ -34,18 +34,18 @@ angular.module("TheGiveawayBoxApp")
     // check if user has a profile set up already or not
     // if not redirect them to the profile set-up
     $scope.init = () => {
-
+        
         // clear the search bar
         document.querySelector(".filter__clear-wheel").style.visibility = "visible"
         document.querySelector(".filter__search-input").value = null
         
-
             if (masterData.isReady()) {
                     initSharedFunctions()
 
             } else {
                 masterData.init().then(d => {
                     initSharedFunctions()
+
                 })                  
             }
     
@@ -60,9 +60,10 @@ angular.module("TheGiveawayBoxApp")
         $scope.getListings(database)
         $scope.filterInit()
         $scope.groupsInit()
+        
         // display the listings
         document.querySelector(".filter__clear-wheel").style.visibility = "hidden"
-        console.log("listings: ", ListingsFactory.listings)
+        //console.log("listings: ", ListingsFactory.listings)
     }
 
     $scope.resetDropDown = () => {
@@ -86,6 +87,7 @@ angular.module("TheGiveawayBoxApp")
                     $scope.listings = r
                     if (progressInd) {progressInd.style.display="none"}
                     $scope.unhideNav()
+                    
                     //navContainer.removeClass("hide")
                     document.querySelector(".progress-circle.indefinite").style.display="none"
                 })

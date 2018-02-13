@@ -89,7 +89,7 @@ angular
                         url: `https://${firebasePath}/itemListings/.json?auth=${idToken}`,
                         data: item
                     }).then(result => {
-                        console.log(result)
+                        //console.log(result)
                     })
                 })
             }

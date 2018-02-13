@@ -1,14 +1,12 @@
+
 <div class="container-fluid">
     <div hl-sticky="">
         <nav class="filter__navbar navbar navbar-default flex-between">
             <form name="filterForm" class="filter__form">
                 <div class="listings__filter-wrapper">
-
-
-
                             <div class="filter__category form-group filter__flex-center">
                                     <div class="filter__icon">
-                                        <img src="../../../images/svg/007-settings.svg">
+                                        <img ng-src="../../../images/svg/007-settings.svg">
                                     </div>
                                     <span class="filter__label">Category</span>
                                     <select class="form-control" ng-model="selectedCategory" ng-change="getSubCategories()" placeholder="Category Search">
@@ -20,7 +18,7 @@
 
                             <div class="filter__search form-group filter__flex-center">
                                     <div class="filter__icon">
-                                            <img src="../../../images/svg/001-loupe.svg">
+                                            <img ng-src="../../../images/svg/001-loupe.svg">
                                     </div>
                                     <span class="filter__label">Search </span>
                                     <input class="form-control filter__search-input" ng-keypress="finder($event)" type="text" ng-model="filterSearchString" placeholder="Keyword Search (enter to search)">
@@ -30,7 +28,7 @@
                             <div class="btn-group filter__flex-center" uib-dropdown is-open="status.isopen" auto-close="outsideClick" id="filter__groups">
                                 <div class="filter__flex-center" id="single-button" type="button"  uib-dropdown-toggle ng-disabled="disabled">
                                     <div class="filter__icon">
-                                        <img src="../../../images/svg/005-group.svg">
+                                        <img ng-src="../../../images/svg/005-group.svg">
                                     </div>
                                     <span class="filter__label">My Groups </span>
                                     <span class="caret filter__label"></span>
@@ -58,7 +56,7 @@
                             <div class="btn-group filter__flex-center" uib-dropdown auto-close="outsideClick" id="filter__map">
                                 <div class="filter__flex-center" id="button-template-url" uib-dropdown-toggle ng-disabled="disabled" ng-click="initializeMap()">
                                     <div class="filter__icon">
-                                        <img src="../../../images/svg/003-map-location.svg">
+                                        <img ng-src="../../../images/svg/003-map-location.svg">
                                     </div>
                                     <span class="filter__label">Map</span>
                                     <span class="caret filter__label"></span>
@@ -81,7 +79,7 @@
                             </script>
                             <!-- Simple dropdown -->
                             <div class="filter__flex-center">
-                               <img class="filter__clear-wheel" src="../../../images/gif/waiting.gif" style="width: 25px; height: auto;">
+                               <img class="filter__clear-wheel" ng-src="../../../images/gif/waiting.gif" style="width: 25px; height: auto;">
                                 <button class="btn btn-primary" type="button" ng-click="clearSearch()">CLEAR SEARCH</button>
                                 <!-- <button class="btn btn-primary" type="button" ng-click="init()">CLEAR SEARCH</button> -->
                                 
@@ -98,15 +96,7 @@
 <div class="container listings__progress">
     <h1 class="section__header" ng-init="init()" ng-clone>{{filteredListings.length}} listings </h1>
     <div class="progress-circle indefinite" style="height:100vh;display:flex;top:200px;text-align:center">
-        <!-- <img class="listings__loading-img" style="width:300px;height:auto;"  src="../../../images/svg/box-logo.svg"> -->
-        <!-- <div class="loader">Loading...</div> -->
     </div>
-    <!-- <svg class="progress-circle indefinite" width="100" height="100">
-        <g transform="rotate(-90,50,50)">
-            <circle class="bg" r="40" cx="50" cy="50" fill="none"></circle>
-            <circle class="progress" r="40" cx="50" cy="50" fill="none"></circle>
-        </g>
-    </svg> -->
 
     <div class="listings__main">
 
@@ -117,11 +107,7 @@
             <div class="modal-body" id="modal-body">
                 {{$ctrl.item.desc}}
                 <ul>
-                    <!-- <li ng-repeat="item in $ctrl.items">
-                        <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item.label }}</a>
-                    </li> -->
                 </ul>
-                <!-- Selected: <b>{{ $ctrl.selected.item }}</b> -->
                 this is selected
             </div>
             <div class="modal-footer">
@@ -174,11 +160,11 @@
                                 
                             </div>
                             <!-- end of flipper -->
-                            <div class="card-block">
+                            <div class="card-block" ng-cloak>
                                 <!-- <div class="btn-circle flex-center listing__btn-circle">+</div> -->
                                 <div class="add-listing__user ">
                                     <figure class="profile" popover-append-to-body="true" uib-popover="'Hi! I'm {{item.user.firstName}}'" popover-trigger="'mouseenter'">
-                                        <img src="{{item.user.image}}" class="profile-avatar" alt="">
+                                        <img ng-if="showUsers" ng-src="{{item.user.image}}" class="profile-avatar" alt="">
                                     </figure>
                                     <span class="add-listing__user-info">{{item.user.street}}, {{item.user.city}} {{item.user.state}}</span>
                                 </div>

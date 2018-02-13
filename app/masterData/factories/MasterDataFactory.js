@@ -50,12 +50,11 @@ angular
         },
         "init": {
             value: function() {
-
                 return $q.all([
+                    this.getUsers(),
                     this.getCategories(),
                     this.getSubCategories(),
                     this.getAttributes(),
-                    this.getUsers()
                 ])
                                  
             },
@@ -98,7 +97,6 @@ angular
                     url: `https://${firebasePath}/users/.json`
                 }).then(response => {
                     const data = response.data
-
                     // Make an array of objects so we can use filters
                     this.users = Object.keys(data).map(key => {
                         data[key].id = key
