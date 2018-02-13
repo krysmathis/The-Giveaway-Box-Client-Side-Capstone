@@ -9,7 +9,7 @@ angular.module("TheGiveawayBoxApp")
             if ($location.url() !== "/listings"){
                 $timeout(function () {
                     $location.url("/listings")
-                }, 500);
+                }, 200);
             } else {
                 $route.reload();
             }
@@ -21,7 +21,7 @@ angular.module("TheGiveawayBoxApp")
             console.log("User is not authenticated")
             $timeout(function () {
                 $location.url("/auth")
-            }, 500);
+            }, 200);
         }
     })
 

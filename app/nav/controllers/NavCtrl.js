@@ -15,7 +15,7 @@ function ($scope, $location, $window, AuthFactory, $rootScope, ListingsFactory) 
      * Show the brand inside the nav bar when the view falls
      * below 58
      */
-    $scope.showBrand = false 
+    $scope.showBrand = false; 
     $scope.isNavCollapsed = true;
     $scope.isCollapsed = false;
     $scope.isCollapsedHorizontal = false;
@@ -57,6 +57,7 @@ function ($scope, $location, $window, AuthFactory, $rootScope, ListingsFactory) 
     $scope.email = ""
 
     $rootScope.$on("authenticationSuccess", function () {
+        // this is where the program begins to display the nav
         const navEl = angular.element(document.getElementById("nav"))
         navEl.removeClass("nav-hidden")
         $scope.logOut = "Logout"

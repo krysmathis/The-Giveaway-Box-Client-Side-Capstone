@@ -225,7 +225,6 @@ angular
         },
         "getListings": {
             value: function(database) {
-            
                 return $http({
                     method: "GET",
                     url: `https://${firebasePath}/itemListings/.json`
